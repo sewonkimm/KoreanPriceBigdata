@@ -5,9 +5,9 @@ import com.ssafy.j301.member.Member;
 
 @Repository
 public interface MemberMapper {
-	
-    public void insertMember(Member member);
 
-    public boolean checkEmail(String memberEmail);
-    
+	public void insertMember(Member member);
+
+	public boolean checkEmail(String memberEmail);
+
 }

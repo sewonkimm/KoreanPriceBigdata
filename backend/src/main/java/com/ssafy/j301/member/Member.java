@@ -12,22 +12,25 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
-	
+
 	private Long memberId;
-	
+
 	@NonNull
 	private String memberEmail;
-	
+
 	@NonNull
 	private String memberName;
-	
+
 	@NonNull
 	private String memberPassword;
-	
+
 	@NonNull
 	private LocalDate memberBirth;
-	
+
 	@NonNull
-	private String memberGender;
+	private Character memberGender;
+
+	@NonNull
+	private String memberArea;
 
 }

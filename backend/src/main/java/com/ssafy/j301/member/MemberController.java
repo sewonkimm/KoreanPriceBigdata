@@ -13,15 +13,15 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "/members")
 public class MemberController {
-	
-	private final MemberService memberService;
-	
-	@ApiOperation(value = "가입하기", notes = "중복 이메일, 이름을 검사합니다.")
-    @PostMapping("/signup")
-    public Member signup(@RequestBody Member member) {
 
-        memberService.validateSignUp(member);
-        return memberService.signup(member);
-    }
+	private final MemberService memberService;
+
+	@ApiOperation(value = "가입하기", notes = "중복 이메일, 이름을 검사합니다.")
+	@PostMapping("/signup")
+	public Member signup(@RequestBody Member member) {
+
+		memberService.validateSignUp(member);
+		return memberService.signup(member);
+	}
 
 }
