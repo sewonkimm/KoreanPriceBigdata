@@ -18,8 +18,5 @@ public class Sha256 {
 			throw new EncoderNoSuchAlgorithmException("SHA256EncoderNoSuchAlgorithmException", e);
 		}
 	}
-	
-	public boolean matches(String rawSt, String encodedSt) {
-        return this.encryption(rawSt).equals(encodedSt);
-    }
+
 }

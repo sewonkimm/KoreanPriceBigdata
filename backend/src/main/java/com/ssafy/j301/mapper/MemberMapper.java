@@ -1,6 +1,5 @@
 package com.ssafy.j301.mapper;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import com.ssafy.j301.member.Member;
 
