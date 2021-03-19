@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pymysql
+sqlalchemy
+numpy==1.17.3
+pandas==0.25.3
+lxml
+requests
+bs4
