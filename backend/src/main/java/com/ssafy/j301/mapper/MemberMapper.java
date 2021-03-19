@@ -10,4 +10,5 @@ public interface MemberMapper {
 
 	public boolean checkEmail(String memberEmail);
 
+	public int getMemberByMemberEmailAndPassword(Member member);
 }

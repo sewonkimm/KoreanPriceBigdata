@@ -18,4 +18,5 @@ public class Sha256 {
 			throw new EncoderNoSuchAlgorithmException("SHA256EncoderNoSuchAlgorithmException", e);
 		}
 	}
+
 }
