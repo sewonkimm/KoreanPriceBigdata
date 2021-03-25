@@ -1,9 +1,9 @@
 <template>
   <div class="card">
     <div class="bookMarkBar">
-      <img src="../../assets/bookmark.png" width="50" height="50" class="charBar" />
+      <BookmarkGreen />
     </div>
-    <img src="../../assets/main/warning.png" width="39" height="39" class="charBar" />
+    <img src="../../assets/warning.png" class="charBar" />
 
     <div class="nameBar">
       <p class="boldText">
@@ -26,12 +26,13 @@
   </div>
 </template>
 
-<style lang="scss">
-@import '../css/main/card';
-</style>
-
 <script>
+import '@/components/css/main/card.scss';
+import { BookmarkGreen } from '@/assets/index.js';
 export default {
   name: 'Card',
+  components: {
+    BookmarkGreen,
+  },
 };
 </script>

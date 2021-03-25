@@ -8,17 +8,21 @@
       <v-text-field hide-details prepend-icon="mdi-magnify" single-line></v-text-field>
     </v-toolbar>
 
-    <div class="cardContainer"></div>
+    <div class="cardContainer">
+      <Card />
+    </div>
   </div>
 </template>
 <script>
 import '@/components/css/main/style.scss';
 import { Logo } from '@/assets/index.js';
+import Card from '@/components/main/card.vue';
 
 export default {
   name: 'Main',
   components: {
     Logo,
+    Card,
   },
 };
 </script>
