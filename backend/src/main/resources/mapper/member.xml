@@ -4,27 +4,36 @@
 
 <mapper namespace="com.ssafy.j301.mapper.MemberMapper">
 
-	<insert id="insertMember" parameterType="com.ssafy.j301.member.Member" useGeneratedKeys="true" keyProperty="memberId">
-    
-			INSERT INTO Member(member_email, member_name, member_password, member_birth, member_gender, member_area)
-			VALUES (#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth}, #{memberGender}, #{memberArea});
-	
+	<insert id="insertMember"
+		parameterType="com.ssafy.j301.member.Member" useGeneratedKeys="true"
+		keyProperty="memberId">
+
+		INSERT INTO Member(member_email, member_name,
+		member_password, member_birth,
+		member_gender, member_area)
+		VALUES
+		(#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth},
+		#{memberGender}, #{memberArea});
+
 	</insert>
 
 	<select id="checkEmail" resultType="boolean">
-    
-			SELECT     
-			IF(COUNT(*) = 1, 1, 0) FROM Member
-			WHERE member_email = #{memberEmail};
-    
+
+		SELECT
+		IF(COUNT(*) = 1, 1, 0)
+		FROM Member
+		WHERE member_email = #{memberEmail};
+
 	</select>
 
 	<select id="getMemberByMemberEmailAndPassword" resultType="int">
 
-    		SELECT COUNT(*)
-    		FROM Member
-    		WHERE member_email = #{memberEmail} AND member_password = #{memberPassword};
+		SELECT COUNT(*)
+		FROM Member
+		WHERE member_email = #{memberEmail} AND
+		member_password =
+		#{memberPassword};
 
 	</select>
-	
+
 </mapper>
