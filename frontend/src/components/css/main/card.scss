@@ -6,27 +6,15 @@
     padding: 0px 10px 10px 20px;
     border-radius: 8px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 0px 9px 10px rgba(0, 0, 0, 0.14), 0px 5px 14px rgba(0, 0, 0, 0.12);
+    background-color: $basic-white;
 }
-.bookmarkWrapper {
+.bookmark {
     height: 45px;
     margin-left: 150px;
-    background-color: $basic-white;
-}
-.characterWrapper {
-    background-color: $basic-white;
-}
-.nameWrapper {
-    background-color: $basic-white;
 }
 .priceWrapper {
     width: 160px;
     height: 54px;
-    background-color: $basic-white;
-}
-.numWrapper {
-    margin-top: 10px;
-    margin-left: 160px;
-    background-color: $basic-white;
 }
 .name {
     font-weight:900;
@@ -37,7 +25,7 @@
     font-size:24px;
     color:#4F4F4F;
 }
-.curPrice {
+.priceTitle {
     font-weight: normal;
     font-size: 14px;
     color:#828282;
@@ -45,5 +33,6 @@
 .num {
     font-weight:900;
     font-size:22px;
+    margin-left: 160px;
     color:$basic-black
 }
