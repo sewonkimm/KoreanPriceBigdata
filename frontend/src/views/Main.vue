@@ -8,7 +8,7 @@
       <v-text-field hide-details prepend-icon="mdi-magnify" single-line></v-text-field>
     </v-toolbar>
 
-    <div class="cardContainer">
+    <div class="card">
       <Card />
     </div>
   </div>

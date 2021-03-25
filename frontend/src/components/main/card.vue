@@ -1,25 +1,25 @@
 <template>
-  <div class="card">
-    <div class="bookMarkBar">
+  <div class="cardContainer">
+    <div class="bookmarkWrapper">
       <BookmarkGreen />
     </div>
-    <img src="../../assets/warning.png" class="charBar" />
+    <img src="../../assets/warning.png" class="characterWrapper" />
 
-    <div class="nameBar">
-      <p class="boldText">
+    <div class="nameWrapper">
+      <p class="name">
         양파
       </p>
     </div>
-    <div class="priceBar">
-      <div class="pb-0">
+    <div class="priceWrapper">
+      <div class="curPrice">
         현재가격
       </div>
-      <div class="priceText">
+      <div class="price">
         3,680원
       </div>
     </div>
-    <div class="numBar">
-      <div class="numText">
+    <div class="numWrapper">
+      <div class="num">
         001
       </div>
     </div>
