@@ -1,0 +1,22 @@
+.Main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+        width: 312px;
+        height: 312px;
+        margin-top: 73px;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .search {
+        width: 350px;
+        margin-top: 20px;
+    }
+}
