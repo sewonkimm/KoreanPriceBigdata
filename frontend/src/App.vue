@@ -1,9 +1,24 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-main>
+      <Main />
+    </v-main>
+  </v-app>
 </template>
+
+<script>
+import '@/components/css/style.scss';
+import Main from './views/Main';
+
+export default {
+  name: 'App',
+
+  components: {
+    Main,
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
