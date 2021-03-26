@@ -62,7 +62,6 @@ def read_api(res):
         데이터가 없을 경우 다음 날짜로 이동
         """
         if not rows:
-            print(rows)
             continue
         rowList = []
         nameList = []
@@ -160,9 +159,6 @@ def main():
     재료들 하나하나 api 호출
     """
     for res in result:
-        if res <54:
-            continue
-        print(res)
         read_api(res)
         # naver_api(res)
 
