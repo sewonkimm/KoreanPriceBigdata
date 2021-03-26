@@ -1,38 +1,44 @@
 @import "../colors";
 
-.cardContainer {
+.card {
     width: 240px;
     height: 320px;
-    padding: 0px 10px 10px 20px;
+    padding: 0px 20px 20px 20px;
     border-radius: 8px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 0px 9px 10px rgba(0, 0, 0, 0.14), 0px 5px 14px rgba(0, 0, 0, 0.12);
     background-color: $basic-white;
-}
-.bookmark {
-    height: 45px;
-    margin-left: 150px;
-}
-.priceWrapper {
-    width: 160px;
-    height: 54px;
-}
-.name {
-    font-weight:900;
-    font-size:54px;
-}
-.price {
-    font-weight:900;
-    font-size:24px;
-    color:#4F4F4F;
-}
-.priceTitle {
-    font-weight: normal;
-    font-size: 14px;
-    color:#828282;
-}
-.num {
-    font-weight:900;
-    font-size:22px;
-    margin-left: 160px;
-    color:$basic-black
+    
+    .bookmark {
+        height: 45px;
+        margin-left: 150px;
+    }
+    
+    .name {
+        font-weight:900;
+        font-size:54px;
+    }
+
+    .priceWrapper {
+        width: 160px;
+        height: 54px;
+        
+        .priceTitle {
+            font-weight: normal;
+            font-size: 14px;
+            color:#828282;
+        }
+
+        .price {
+            font-weight:900;
+            font-size:24px;
+            color:#4F4F4F;
+        }
+    }
+
+    .num {
+        font-weight:900;
+        font-size:22px;
+        text-align: right;
+        color:$basic-black;
+    }
 }
