@@ -32,8 +32,8 @@
         </v-row>
       </v-container>
     </v-form>
-    <button type="submit" class="loginButton" :disabled="loading">로그인</button>
-    <button type="submit" class="socialLoginButton" :disabled="loading">
+    <button type="submit" class="loginButton">로그인</button>
+    <button type="submit" class="socialLoginButton">
       다른 방법으로 시작하기
     </button>
 
