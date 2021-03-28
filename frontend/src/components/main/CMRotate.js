@@ -291,8 +291,8 @@ const CMRotate =
 
       if (_isCard) {
         // 커서 위치 설정
-        $cursor.style.setProperty('--mouse-x', event.clientX - 25 + 'px');
-        $cursor.style.setProperty('--mouse-y', event.clientY + 170 + 'px');
+        $cursor.style.setProperty('--mouse-x', event.pageX - 20 + 'px');
+        $cursor.style.setProperty('--mouse-y', event.pageY - 20 + 'px');
       }
     }
     function onMouseUp(event) {
