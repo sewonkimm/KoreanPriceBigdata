@@ -1,5 +1,8 @@
 <template>
   <div class="main">
+    <!-- 배경 그라데이션을 위한 div -->
+    <div class="background" />
+
     <!-- 로고 -->
     <div class="logo">
       <Logo />
