@@ -5,6 +5,11 @@
       <Logo />
     </div>
 
+    <!-- 로그인 -->
+    <div id="login">
+      <router-link to="/login">로그인</router-link>
+    </div>
+
     <!-- 검색창 -->
     <v-toolbar class="search">
       <v-text-field hide-details prepend-icon="mdi-magnify" single-line></v-text-field>
@@ -13,7 +18,7 @@
     <!-- 카드 컴포넌트 -->
     <div class="cardContainer">
       <!-- data에서 n개 만큼 생성하여 테스트 -->
-      <Card v-for="(item, index) in items(20)" :item="item" :index="index" :key="index" />
+      <Card v-for="(item, index) in items(1)" :item="item" :index="index" :key="index" />
     </div>
   </div>
 </template>

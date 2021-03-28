@@ -6,8 +6,17 @@
     padding: 0px 20px 20px 20px;
     border-radius: 8px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 0px 9px 10px rgba(0, 0, 0, 0.14), 0px 5px 14px rgba(0, 0, 0, 0.12);
-    background-color: $basic-white;
-    
+    background-color: $basic-white; 
+    .circle {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: $primary-green;
+        border-radius: 80%;
+        transform:
+            translateX(calc(var(--mouse-x) * 0.2px))
+            translateY(calc(var(--mouse-y) * 0.2px));
+    }
     .bookmark {
         height: 45px;
         margin-left: 150px;
@@ -36,6 +45,7 @@
     }
 
     .num {
+        padding-top: 10px;
         font-weight:900;
         font-size:22px;
         text-align: right;
