@@ -65,5 +65,23 @@ export default {
     const radius = window.innerHeight >= 900 ? 1400 : 1200;
     CMRotate.init('cardContainer', 240, 320, 700, 8, radius, cardList, clickCard);
   },
+  data() {
+    return {
+      items: function(n) {
+        const item = {
+          name: '양파',
+          price: 3400,
+          hot: false,
+          warn: false,
+          bookmark: false,
+        };
+        const list = [];
+        for (let i = 0; i < n; i++) {
+          list.push(item);
+        }
+        return list;
+      },
+    };
+  },
 };
 </script>
