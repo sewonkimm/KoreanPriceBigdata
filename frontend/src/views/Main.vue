@@ -8,11 +8,6 @@
       <Logo />
     </div>
 
-    <!-- 로그인 -->
-    <div id="login">
-      <router-link to="/login">로그인</router-link>
-    </div>
-
     <!-- 검색창 -->
     <v-toolbar class="search">
       <v-text-field hide-details prepend-icon="mdi-magnify" single-line></v-text-field>
