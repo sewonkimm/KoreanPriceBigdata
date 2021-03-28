@@ -5,6 +5,7 @@ import pandas as pd
 from lxml import html
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode, quote_plus, unquote
+import time
 
 """
 DB 연결을 위한 변수
@@ -23,15 +24,11 @@ def read_api(res):
 
     apiKey = unquote(
         '1J7amwxnHZ22NEowHAjGL9ihrCj%2FI%2BTvgjIesAJH%2F81p%2FJ0hI2qmYcKjcOrEfPkA0wXoVVgrzJHz4i1%2BRRxv6A%3D%3D')
+
     """
     2019/1/1 ~ 현재까지의 데이터를 받기 위한 list 생성
     """
-    df_list = pd.date_range(start='20190101', end='20190201').strftime("%Y%m%d").tolist()
-    """
-    중간에 끊기 insert문을 연결하기 위한 if문 추후 삭제할 예정
-    """
-    if res[0] < 9:
-        return
+    df_list = pd.date_range(start='20190602', end='20190701').strftime("%Y%m%d").tolist()
     """
     날자별로 데이터를 받아오기 위한 반복문
     """
@@ -53,35 +50,33 @@ def read_api(res):
         """
         response = requests.get(xmlUrl + queryParams).text.encode('utf-8')
         xmlobj = bs4.BeautifulSoup(response, 'lxml-xml')
-
+        """
+        데이터를 받기 위한 딜레이
+        """
+        time.sleep(0.5)
         """
         openApi 중 item만 받아오기
         """
         rows = xmlobj.findAll('item')
-        
         """
         데이터가 없을 경우 다음 날짜로 이동
         """
         if not rows:
             continue
-        
-        """
-        첫번째 row는 각 태그명이 들어있음
-        """
-        columns = rows[0].find_all()
         rowList = []
         nameList = []
         columnList = []
-
-        """
-        열만큼 반복해서 rowList에 저장
-        """
         rowsLen = len(rows)
+        """
+        rows의 갯수만큼 반복해서 rowList에 저장
+        """
         for i in range(0, rowsLen):
             columns = rows[i].find_all()
             columnsLen = len(columns)
             for j in range(0, columnsLen):
-
+                """
+                첫번째 columns에는 각 태그명이 들어있음
+                """
                 if i == 0:
                     nameList.append(columns[j].name)
 
@@ -105,16 +100,8 @@ def read_api(res):
         if res[3] is not None:
             result = result[result['prdlst_detail_cd'] == res[4]]
             if len(result.index) == 0:
-                return
-            
-        """
-        필요없는 행을 제거
-        """
-        result.drop(
-            ['examin_area_cd', 'examin_mrkt_nm', 'examin_mrkt_cd', 'prdlst_nm', 'prdlst_cd', 'prdlst_detail_nm',
-             'distb_step_se', 'distb_step', 'grad_cd', 'bfrt_examin_amt', 'prdlst_detail_cd', 'grad'],
-            axis=1, inplace=True)
-            
+                continue
+
         """
         데이터를 DB에 저장
         """
@@ -122,27 +109,23 @@ def read_api(res):
             sql = "insert into ingredient_info(ingredient_id, ingredient_info_date, ingredient_info_price, ingredient_info_area, ingredient_info_unit) values(%s, %s, %s, %s, %s)"
             val = (res[0], data['examin_de'], data['examin_amt'], data['examin_area_nm'], data['stndrd'])
             cursor.execute(sql, val)
-
         """
         한번에 commit, 만약에 저장할 때 중간에 에러가 발생한다면, 전부 rollback
         """
         conn.commit()
 
 
-
-def naver_api(name):
-    
+def naver_api(res):
     """
     네이버 Api 연동을 위한 id, secret
     encText을 사용하여 name으로 검색
     """
     client_id = "bYj15csqOZPThddA4ZSW"
     client_secret = "n0KSJICGeo"
-    encText = urllib.parse.quote(name)
+    encText = urllib.parse.quote(res[2])
     url = "https://openapi.naver.com/v1/search/shop.json?query=" + encText + "&display=10&start=1&sort=sim"
     result = requests.get(url=url, headers={"X-Naver-Client-Id": client_id,
                                             "X-Naver-Client-Secret": client_secret})
-                                            
     """
     받아온 데이터를 데이터프레임으로 변경
     필요없는 행 제거
@@ -155,30 +138,30 @@ def naver_api(name):
     )
     data['title'] = data['title'].str.replace("</b>", "")
     data['title'] = data['title'].str.replace("<b>", "")
-    print(data)
+    """
+    DB에 저장
+    """
+    for index, prod in data.iterrows():
+        sql = "insert into shopping_api(ingredient_id, shopping_api_title, shopping_api_price, shopping_api_store, shopping_api_date, shopping_api_link) VALUES(%s, %s, %s, %s, %s, %s)"
+        val = (res[0], prod['title'], prod['lprice'], prod['mallName'], prod['lastBuildDate'], prod['link'])
+        cursor.execute(sql, val)
+    conn.commit()
 
 
 def main():
-    
     """
     재료 데이터 DB에서 받아옴
     """
     sql = 'SELECT * FROM ingredient'
     cursor.execute(sql)
-
     result = cursor.fetchall()
-
     """
     재료들 하나하나 api 호출
     """
     for res in result:
-        print(res[1])
         read_api(res)
-        #naver_api(res[1])
+        # naver_api(res)
 
-    """
-    DB연결 끊기
-    """
     conn.close()
 
 
