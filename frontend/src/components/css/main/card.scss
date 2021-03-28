@@ -10,17 +10,6 @@
     background-color: $basic-white; 
     cursor: default;
 
-    .circle {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        background: $primary-green;
-        border-radius: 80%;
-        transform:
-            translateX(calc(var(--mouse-x) * 0.2px))
-            translateY(calc(var(--mouse-y) * 0.2px));
-    }
-    
     .bookmark {
         position: absolute;
         top: 0px;
