@@ -3,9 +3,17 @@
     <!-- 배경 그라데이션을 위한 div -->
     <div class="background" />
 
+    <!-- 커서 -->
+    <div class="cursor" id="cursor" />
+
     <!-- 로고 -->
     <div class="logo">
       <Logo />
+    </div>
+
+    <!-- 로그인 -->
+    <div id="login">
+      <router-link to="/login">로그인</router-link>
     </div>
 
     <!-- 검색창 -->
@@ -50,7 +58,6 @@ export default {
   },
   methods: {
     makeCardList(num) {
-      console.log(this.item);
       const cardList = [];
       for (let index = 0; index < num; index++) {
         cardList.push(this.item);

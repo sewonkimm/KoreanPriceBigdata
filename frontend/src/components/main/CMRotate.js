@@ -13,6 +13,7 @@ const CMRotate =
   (function() {
     const _public = {};
     let $contaier;
+    let $cursor;
     const _isTouch = 'ontouchstart' in window;
     let _isTrans3D;
     let _cssTransform;
@@ -37,6 +38,7 @@ const CMRotate =
     let _isDrag = false;
     let _oldMouseX;
     let _moveX = 0;
+    let _isCard = false;
 
     /**
      * init
@@ -52,6 +54,7 @@ const CMRotate =
      */
     function init(div, tw, th, ty, gap, radius, bg, fn) {
       $contaier = document.getElementById(div);
+      $cursor = document.getElementById('cursor');
 
       _cssTransform = getCSSTransform();
       if (!_cssTransform) {
@@ -124,6 +127,29 @@ const CMRotate =
       const no = Number(event.currentTarget.id.substr(10, 3));
       const id = _itemArr[no].id;
       _fn(id);
+    }
+
+    function onMouseEnter(event) {
+      _isCard = true;
+
+      // 커서 크기 설정
+      $cursor.style.transform = 'scale(1)';
+
+      // 커서 색 설정
+      $cursor.style.opacity = 100;
+      if (event.target.getAttribute('data-category') === '농산') {
+        $cursor.style.backgroundColor = '#608F58';
+      } else if (event.target.getAttribute('data-category') === '축산') {
+        $cursor.style.backgroundColor = '#D73F32';
+      } else if (event.target.getAttribute('data-category') === '수산') {
+        $cursor.style.backgroundColor = '#4B6EB2';
+      }
+    }
+
+    function onMouseLeave() {
+      _isCard = false;
+      $cursor.style.transform = 'scale(0)';
+      $cursor.style.opacity = 0;
     }
 
     /**
@@ -262,6 +288,12 @@ const CMRotate =
     function onMouseMove(event) {
       const mx = event.pageX;
       onMove(mx);
+
+      if (_isCard) {
+        // 커서 위치 설정
+        $cursor.style.setProperty('--mouse-x', event.pageX - 20 + 'px');
+        $cursor.style.setProperty('--mouse-y', event.pageY - 20 + 'px');
+      }
     }
     function onMouseUp(event) {
       onUp();
@@ -304,12 +336,19 @@ const CMRotate =
       }
 
       // make new plane
+      // card 배경
       const div = document.createElement('div');
       div.id = 'cm-rotate-' + _itemCur;
       div.style.width = _itemW + 'px';
       div.style.height = _itemH + 'px';
       div.style.position = 'absolute';
       div.className = 'card';
+      // cursor event용 div
+      const cursorWrapper = document.createElement('div');
+      cursorWrapper.className = 'cursorWrapper';
+      cursorWrapper.setAttribute('data-category', _bgArr[id].ingredientCategory);
+      cursorWrapper.addEventListener('mouseenter', onMouseEnter, false); // cursor  이벤트
+      cursorWrapper.addEventListener('mouseleave', onMouseLeave, false);
       // plane contents
       // 상품명
       const name = document.createElement('p');
@@ -340,22 +379,23 @@ const CMRotate =
       if (_bgArr[id].status) {
         const status = document.createElement('div');
         status.className = 'status';
+        status.setAttribute('data-category', _bgArr[id].ingredientCategory);
         status.style.width = '39px';
         status.style.height = '39px';
         status.style.background = 'url(' + _bgArr[id].status + ')';
         div.appendChild(status);
       }
       // card에 삽입
+      div.appendChild(cursorWrapper);
       div.appendChild(name);
       div.appendChild(priceWrapper);
       div.appendChild(cardNumber);
-      // console.log(_bgArr[id]);
       movePlane(div, -5000, -5000, 0);
       $contaier.appendChild(div);
       plane = { plane: div, use: 1, no: no, id: id };
       _itemArr[_itemCur] = plane;
       _itemCur++;
-      div.addEventListener('click', onClick, false);
+      div.addEventListener('click', onClick, false); // card click 이벤트
       return plane;
     }
 
