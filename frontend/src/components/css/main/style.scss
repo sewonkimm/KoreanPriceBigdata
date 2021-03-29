@@ -45,6 +45,28 @@
         background: linear-gradient($basic-white 55%, transparent);
     }
     
+    .cursorWrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        
+    }
+
+    .cursor {
+        position: absolute;
+        left: var(--mouse-x);
+        top: var(--mouse-y);
+        width: 50px;
+        height: 50px;
+        z-index: 999;
+        pointer-events: none;
+        border-radius: 50%;
+        transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+
     .logo {
         width: 312px;
         height: 312px;
