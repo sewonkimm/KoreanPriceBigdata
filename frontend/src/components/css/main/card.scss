@@ -1,23 +1,6 @@
 @import "../colors";
 
 .card {
-<<<<<<< HEAD
-    width: 240px;
-    height: 320px;
-    padding: 0px 20px 20px 20px;
-    border-radius: 8px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 0px 9px 10px rgba(0, 0, 0, 0.14), 0px 5px 14px rgba(0, 0, 0, 0.12);
-    background-color: $basic-white;
-    
-    .bookmark {
-        height: 45px;
-        margin-left: 150px;
-    }
-    
-    .name {
-        font-weight:900;
-        font-size:54px;
-=======
     position: relative;
     width: 240px;
     height: 320px;
@@ -50,7 +33,6 @@
         font-weight:900;
         font-size:46px;
         line-height: 40px;
->>>>>>> 4df971923c8d370e736444a62df9abdda52312a0
     }
 
     .priceWrapper {
@@ -71,17 +53,11 @@
     }
 
     .num {
-<<<<<<< HEAD
-        font-weight:900;
-        font-size:22px;
-        text-align: right;
-=======
         position: absolute;
         bottom: 0px;
         right: 20px;
         font-weight:900;
         font-size:22px;
->>>>>>> 4df971923c8d370e736444a62df9abdda52312a0
         color:$basic-black;
     }
 }

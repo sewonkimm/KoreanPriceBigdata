@@ -24,14 +24,9 @@
     "eslint": "^7.22.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-vue": "^7.7.0",
-<<<<<<< HEAD
-    "sass": "^1.32.0",
-    "sass-loader": "^10.0.0",
-=======
     "node-sass": "^5.0.0",
     "sass": "^1.32.0",
     "sass-loader": "^10.1.1",
->>>>>>> 4df971923c8d370e736444a62df9abdda52312a0
     "vue-cli-plugin-vuetify": "~2.3.1",
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.12",
