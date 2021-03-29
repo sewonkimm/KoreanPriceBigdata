@@ -1,0 +1,28 @@
+@import "../colors";
+
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 200px 550px 576px 520px;
+
+    .informationMessage {
+        width: 386px;
+        height: 45px;
+        text-align: center;
+    }
+    .nextButton {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 41px;
+        padding: 0px 16px;
+        width: 400px;
+        height: 63px;
+        color: $basic-white;
+        background: #0738E8;
+        border-radius: 4px;
+    }
+}
