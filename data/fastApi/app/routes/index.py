@@ -175,7 +175,6 @@ def recommand(id:str, session: Session = Depends(db.session)):
     columns = df.columns
     # 데이터 프레임을 행렬로 변환
     matrix = df.values
-    print(matrix)
     num_members, num_ingredients = matrix.shape
     # 잠재요인 갯수
     K = 9
