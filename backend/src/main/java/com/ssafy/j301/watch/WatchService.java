@@ -1,9 +1,7 @@
 package com.ssafy.j301.watch;
 
 import org.springframework.stereotype.Service;
-
 import com.ssafy.j301.mapper.WatchMapper;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
