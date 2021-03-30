@@ -15,7 +15,15 @@ public class IngredientService {
 		return ingredientMapper.selectAll();
 	}
 
+	public List<Ingredient> selectAllByLogin() {
+		return ingredientMapper.selectAllByLogin();
+	}
+
 	public Ingredient selectByingredientId(Long ingredientId) {
 		return ingredientMapper.selectByIngredientId(ingredientId);
+	}
+
+	public Ingredient selectByIngredientName(String ingredientName) {
+		return ingredientMapper.selectByIngredientName(ingredientName);
 	}
 }
