@@ -30,11 +30,18 @@
         <v-col :cols="3">
           <v-card class="pa-2" outlined tile>
             현재시세
+            <br />
+            <div class="currentPrice">
+              <CurrentPrice />
+            </div>
           </v-card>
         </v-col>
         <v-col :cols="9">
           <v-card class="pa-2" outlined tile>
-            1년 가격 추이
+            <div class="lineChart">
+              1년 가격 추이
+              <LineChart />
+            </div>
           </v-card>
         </v-col>
       </v-row>
@@ -55,8 +62,14 @@
 </template>
 <script>
 import '@/components/css/detail/style.scss';
+import LineChart from '@/components/detail/lineChart.vue';
+import CurrentPrice from '@/components/detail/currentPrice.vue';
 
 export default {
   name: 'Detail',
+  components: {
+    LineChart,
+    CurrentPrice,
+  },
 };
 </script>
