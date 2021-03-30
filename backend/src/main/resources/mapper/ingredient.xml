@@ -4,7 +4,7 @@
 
 <mapper namespace="com.ssafy.j301.mapper.IngredientMapper">
 
-	<resultMap type="com.ssafy.j301.ingredient.IngredientAvg"
+	<resultMap type="com.ssafy.j301.ingredientAvg.IngredientAvg"
 		id="IngredientAvg">
 		<result column="ingredient_id" property="ingredientId" />
 		<result column="ingredient_avg_date"
@@ -43,13 +43,59 @@
 		ingredient_avg.ingredient_avg_id,
 		ingredient_avg.ingredient_avg_price,
 		ingredient_avg.ingredient_avg_date,
-		ingredient_avg.ingredient_avg_predict_price
+		ingredient_avg.ingredient_avg_predict_price,
+		count(watch.watch_date)
 
-		FROM ingredient
+		FROM ingredient, ingredient_avg, watch
 
-		LEFT JOIN
-		ingredient_avg ON ingredient.ingredient_id =
-		ingredient_avg.ingredient_id
+		WHERE ingredient.ingredient_id =
+		ingredient_avg.ingredient_id AND
+		watch.ingredient_id =
+		ingredient.ingredient_id AND
+		ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(NOW(), "%y-%c-%e")
+		AND
+		watch.watch_date = DATE_FORMAT(NOW(),
+		"%y-%c-%e")
+
+		GROUP BY watch.watch_date
+
+		ORDER BY count(watch.watch_date);
+
+	</select>
+
+	<select id="selectAllByLogin" resultMap="Ingredient">
+
+		SELECT
+
+		ingredient.ingredient_id,
+		ingredient.ingredient_name,
+		ingredient.ingredient_name_code,
+		ingredient.ingredient_detail_name,
+		ingredient.ingredient_detail_name_code,
+		ingredient.ingredient_category,
+		ingredient_avg.ingredient_id,
+		ingredient_avg.ingredient_avg_id,
+		ingredient_avg.ingredient_avg_price,
+		ingredient_avg.ingredient_avg_date,
+		ingredient_avg.ingredient_avg_predict_price,
+		count(watch.watch_date)
+
+		FROM ingredient, ingredient_avg, watch
+
+		WHERE ingredient.ingredient_id =
+		ingredient_avg.ingredient_id AND
+		watch.ingredient_id =
+		ingredient.ingredient_id AND
+		ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(NOW(), "%y-%c-%e")
+		AND
+		watch.watch_date = DATE_FORMAT(NOW(),
+		"%y-%c-%e")
+
+		GROUP BY watch.watch_date
+
+		ORDER BY count(watch.watch_date);
 
 	</select>
 
@@ -76,7 +122,36 @@
 		ingredient_avg.ingredient_id
 
 		WHERE ingredient.ingredient_id =
-		#{ingredientId}
+		#{ingredientId} AND ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(NOW(), "%y-%c-%e")
+
+	</select>
+
+	<select id="selectByIngredientName" resultMap="Ingredient">
+
+		SELECT
+
+		ingredient.ingredient_id,
+		ingredient.ingredient_name,
+		ingredient.ingredient_name_code,
+		ingredient.ingredient_detail_name,
+		ingredient.ingredient_detail_name_code,
+		ingredient.ingredient_category,
+		ingredient_avg.ingredient_id,
+		ingredient_avg.ingredient_avg_id,
+		ingredient_avg.ingredient_avg_price,
+		ingredient_avg.ingredient_avg_date,
+		ingredient_avg.ingredient_avg_predict_price
+
+		FROM ingredient
+
+		LEFT JOIN
+		ingredient_avg ON ingredient.ingredient_id =
+		ingredient_avg.ingredient_id
+
+		WHERE ingredient.ingredient_name =
+		#{ingredientName} AND ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(NOW(), "%y-%c-%e")
 
 	</select>
 </mapper>

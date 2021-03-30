@@ -38,9 +38,9 @@ public class MemberService {
 		String password = sha256.encryption(member.getMemberPassword());
 		member.setMemberPassword(password);
 
-		int matchMember = memberMapper.getMemberByMemberEmailAndPassword(member);
+		Member matchMember = memberMapper.getMemberByMemberEmailAndPassword(member);
 
-		if (matchMember != 1) {
+		if (matchMember == null) {
 			throw new LoginFailedException("샤용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
 		}
 

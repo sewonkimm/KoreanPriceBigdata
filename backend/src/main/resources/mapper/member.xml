@@ -8,7 +8,7 @@
 		parameterType="com.ssafy.j301.member.Member" useGeneratedKeys="true"
 		keyProperty="memberId">
 
-		INSERT INTO Member(member_email, member_name,
+		INSERT INTO member(member_email, member_name,
 		member_password, member_birth,
 		member_gender, member_area)
 		VALUES
@@ -21,16 +21,20 @@
 
 		SELECT
 		IF(COUNT(*) = 1, 1, 0)
-		FROM Member
+		FROM member
 		WHERE member_email = #{memberEmail};
 
 	</select>
 
-	<select id="getMemberByMemberEmailAndPassword" resultType="int">
+	<select id="getMemberByMemberEmailAndPassword"
+		resultType="com.ssafy.j301.member.Member">
 
-		SELECT COUNT(*)
-		FROM Member
-		WHERE member_email = #{memberEmail} AND
+		SELECT member_id AS memberId, member_email AS memberEmail,
+		member_name AS memberName, member_password AS memberPassword,
+		member_birth AS memberBirth
+		FROM member
+		WHERE member_email =
+		#{memberEmail} AND
 		member_password =
 		#{memberPassword};
 

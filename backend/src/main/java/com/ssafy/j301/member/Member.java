@@ -28,7 +28,7 @@ public class Member {
 	private LocalDate memberBirth;
 
 	@NonNull
-	private Character memberGender;
+	private char memberGender;
 
 	@NonNull
 	private String memberArea;
