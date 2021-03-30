@@ -46,7 +46,7 @@
         </v-col>
         <v-col :cols="6">
           <v-card class="pa-2" outlined tile>
-            추천시스템
+            <Recommend />
           </v-card>
         </v-col>
       </v-row>
@@ -55,8 +55,12 @@
 </template>
 <script>
 import '@/components/css/detail/style.scss';
+import Recommend from '@/components/detail/recommend';
 
 export default {
   name: 'Detail',
+  components: {
+    Recommend,
+  },
 };
 </script>
