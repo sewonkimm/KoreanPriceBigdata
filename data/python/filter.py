@@ -53,7 +53,7 @@ def main():
     matrix = df.values
     num_members, num_ingredients = matrix.shape
     # 잠재요인 갯수
-    K = 3
+    K = 9
 
     # 난수 생성
     np.random.seed(1)
@@ -64,8 +64,8 @@ def main():
     non_zeros = [(i, j, matrix[i, j]) for i in range(num_members) for j in range(num_ingredients) if matrix[i, j] > 0]
 
     steps = 1000
-    learning_rate = 0.01
-    r_lambda = 0.01
+    learning_rate = 0.05
+    r_lambda = 0.0001
 
     # SGD 방법으로 p,q 행렬을 계속 업데이트(오차를 줄이기 위해)
     for step in range(steps):
