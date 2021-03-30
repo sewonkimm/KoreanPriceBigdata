@@ -17,8 +17,7 @@ class Config:
     SECRET_FILE = path.join(path.dirname(path.dirname(path.abspath(__file__)))+"/database", 'secrets.json')
     secrets = json.loads(open(SECRET_FILE).read())
     DB = secrets["DB"]
-   # DB_URL: str = f"mysql+pymysql://{DB['user']}:{DB['password']}@{DB['host']}:{DB['port']}/{DB['database']}?useUniCode=yes&characterEncoding=UTF-8&serverTimezone=Asia/Seoul"
-    DB_URL : str = "mysql+pymysql://root:j301##@j4a301.p.ssafy.io:3306/ssafy?charset=UTF-8"
+    DB_URL: str = f"mysql+pymysql://{DB['user']}:{DB['password']}@{DB['host']}:{DB['port']}/{DB['database']}"
 
 @dataclass
 class LocalConfig(Config):
