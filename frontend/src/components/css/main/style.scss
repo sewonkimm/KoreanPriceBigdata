@@ -97,57 +97,57 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 330px;
+    background: 
+        linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.54) 44.52%, 
+        rgba(120, 208, 255, 0.5076) 126.32%), 
+        #FFFFFF;
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        
+    }
     
     .logo {
-        width: 300px;
-        height: 300px;
-        margin-top: 73px;
+        margin-top: 211px;
         margin-bottom: 52px;
         z-index: 1;
+    }
 
-        svg {
-            width: 100%;
-            height: 100%;
+    .button {
+        .loginButton {
+            margin-top: 41px;
+            margin-bottom: 14px;
+            width: 225px;
+            height: 63px;
+            font-weight: bold;
+            font-size: 15px;
+            color: $basic-white;
+            background: #EEEEEE;
+            border-radius: 8px;
+        }
+        .socialLoginButton {
+            width: 225px;
+            height: 63px;
+            font-weight: bold;
+            font-size: 15px;
+            color: $basic-white;
+            background: linear-gradient(109.24deg, rgba(168, 235, 18, 0.91) -0.31%, #608F58 145.27%);
+            border-radius: 8px;
         }
     }
 
-    .label {
-        font-size: 14px;
-        width: 300px;
+    .register {
+        font-weight: bold;
+        font-size: 18px;
+        color: #608F58;
+        margin-top: 31px;
+        padding: 0px 0px 0px 0px;
     }
-    .inputBox {
-        width: 360px;
-        height: 48px;
-        border: 2px solid #AAAAAA;
-        box-sizing: border-box;
-        border-radius: 4px;
-        margin-bottom: 22px;
-    }
-    .loginButton {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-top: 41px;
-        margin-bottom: 14px;
-        padding: 0px 16px;
-        width: 225px;
-        height: 63px;
-        color: $basic-white;
-        background: #EEEEEE;
-        border-radius: 4px;
-    }
-    .socialLoginButton {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 41px;
-        padding: 0px 16px;
-        width: 225px;
-        height: 63px;
-        color: $basic-white;
-        background: #0738E8;
-        border-radius: 4px;
-    }
+    
 }

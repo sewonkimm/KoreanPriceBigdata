@@ -1,7 +1,7 @@
 <template>
   <div class="passwordInput">
     <div class="informationMessage">
-      <h1>다음은 비밀번호를 설정해주세요~!</h1>
+      <h1>비밀번호를 입력해주세요.</h1>
     </div>
     <v-form>
       <v-container fluid>
@@ -16,7 +16,6 @@
             hint="At least 8 characters"
             counter
             @click:append="show = !show"
-            outlined
           ></v-text-field>
         </v-row>
         <v-row>
@@ -30,13 +29,12 @@
             hint="At least 8 characters"
             counter
             @click:append="show = !show"
-            outlined
           ></v-text-field>
         </v-row>
       </v-container>
     </v-form>
     <button class="nextButton" v-on:click="nextButton">
-      <router-link to="/login">다음</router-link>
+      <router-link to="/login" class="registerButton">회원가입</router-link>
     </button>
   </div>
 </template>

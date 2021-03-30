@@ -1,5 +1,9 @@
 <template>
   <div class="register">
+    <!-- 로고 -->
+    <div class="logo">
+      <LogoName />
+    </div>
     <div class="email" v-if="!isEmailCheck">
       <EmailInput />
       <button class="nextButton" v-on:click="isEmailCheck = !isEmailCheck">
@@ -13,12 +17,14 @@
 </template>
 <script>
 import '@/components/css/register/style.scss';
+import { LogoName } from '@/assets/index.js';
 import EmailInput from '@/components/register/emailInput.vue';
 import PasswordInput from '@/components/register/passwordInput.vue';
 
 export default {
   name: 'Register',
   components: {
+    LogoName,
     EmailInput,
     PasswordInput,
   },

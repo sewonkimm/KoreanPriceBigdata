@@ -1,7 +1,7 @@
 <template>
   <div class="emailInput">
     <div class="informationMessage">
-      <h1>먼저 이메일을 입력해주세요!</h1>
+      <h1>이메일을 입력해주세요!</h1>
     </div>
     <v-form>
       <v-container fluid>
@@ -11,7 +11,6 @@
             :rules="[rules.required, rules.email]"
             name="input-10-1"
             label="이메일"
-            outlined
           ></v-text-field>
         </v-row>
       </v-container>

@@ -2,7 +2,7 @@
   <div class="login">
     <!-- 로고 -->
     <div class="logo">
-      <Logo />
+      <LogoName />
     </div>
 
     <v-form>
@@ -13,7 +13,6 @@
             :rules="[rules.required, rules.email]"
             name="input-10-1"
             label="이메일"
-            outlined
           ></v-text-field>
         </v-row>
         <v-row>
@@ -27,27 +26,28 @@
             hint="At least 8 characters"
             counter
             @click:append="show = !show"
-            outlined
           ></v-text-field>
         </v-row>
       </v-container>
     </v-form>
-    <button type="submit" class="loginButton">로그인</button>
-    <button type="submit" class="socialLoginButton">
-      다른 방법으로 시작하기
-    </button>
+    <div class="button">
+      <v-btn class="loginButton">로그인</v-btn><br />
+      <v-btn class="socialLoginButton">
+        다른 방법으로 시작하기
+      </v-btn>
+    </div>
 
-    <router-link to="Register">회원가입</router-link>
+    <router-link to="Register" class="register">회원가입</router-link>
   </div>
 </template>
 <script>
 import '@/components/css/main/style.scss';
-import { Logo } from '@/assets/index.js';
+import { LogoName } from '@/assets/index.js';
 
 export default {
   name: 'Login',
   components: {
-    Logo,
+    LogoName,
   },
   data() {
     return {
