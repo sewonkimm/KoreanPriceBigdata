@@ -2,6 +2,7 @@
   <div class="cardContainer" id="cardContainer"></div>
 </template>
 <script>
+import { Login } from '@/assets/index.js';
 import CMRotate from '@/components/main/CMRotate.js';
 
 export default {
@@ -52,14 +53,24 @@ export default {
         });
     },
     renderCards(items) {
-      // api로 불러온 목록을 card로 그리기
+      // api로 불러온 목록을 card로 그리기(카드의 개수는 최소 13개)
       const clickCard = (no) => {
         alert('click no - ' + (no + 1));
       };
       const radius = window.innerHeight >= 900 ? 1400 : 1200;
       CMRotate.init('cardContainer', 240, 320, 700, 8, radius, items, clickCard);
     },
-    addLoginCard() {},
+    addLoginCard() {
+      // 로그인 카드 추가
+      const loginCard = {
+        ingredientId: -1,
+        title: '로그인',
+        status: Login,
+      };
+      for (let index = 0; index < 12; index++) {
+        this.item.push(loginCard);
+      }
+    },
   },
   created() {
     this.callIngredients();

@@ -343,53 +343,69 @@ const CMRotate =
       div.style.height = _itemH + 'px';
       div.style.position = 'absolute';
       div.className = 'card';
-      // cursor event용 div
-      const cursorWrapper = document.createElement('div');
-      cursorWrapper.className = 'cursorWrapper';
-      cursorWrapper.setAttribute('data-category', _bgArr[id].ingredientCategory);
-      cursorWrapper.addEventListener('mouseenter', onMouseEnter, false); // cursor  이벤트
-      cursorWrapper.addEventListener('mouseleave', onMouseLeave, false);
-      // plane contents
-      // 상품명
-      const name = document.createElement('p');
-      name.className = 'name';
-      name.innerText = _bgArr[id].ingredientName;
-      // 가격
-      const priceWrapper = document.createElement('div');
-      priceWrapper.className = 'priceWrapper';
-      priceWrapper.innerText = '현재가격';
-      const price = document.createElement('p');
-      price.className = 'price';
-      price.innerText = _bgArr[id].ingredientAvg.ingredientAvgPrice + '원';
-      priceWrapper.appendChild(price);
-      // 번호
-      const cardNumber = document.createElement('p');
-      cardNumber.className = 'num';
-      cardNumber.innerText = id;
-      // 즐겨찾기 표시
-      // if (_bgArr[id].bookmark) {
-      //   const bookmark = document.createElement('div');
-      //   bookmark.className = 'bookmark';
-      //   bookmark.style.width = '33px';
-      //   bookmark.style.height = '41px';
-      //   bookmark.style.background = 'url(' + _bgArr[id].bookmark + ')';
-      //   div.appendChild(bookmark);
-      // }
-      // // status 표시
-      // if (_bgArr[id].status) {
-      //   const status = document.createElement('div');
-      //   status.className = 'status';
-      //   status.setAttribute('data-category', _bgArr[id].ingredientCategory);
-      //   status.style.width = '39px';
-      //   status.style.height = '39px';
-      //   status.style.background = 'url(' + _bgArr[id].status + ')';
-      //   div.appendChild(status);
-      // }
-      // card에 삽입
-      div.appendChild(cursorWrapper);
-      div.appendChild(name);
-      div.appendChild(priceWrapper);
-      div.appendChild(cardNumber);
+
+      // 로그인 카드
+      if (_bgArr[id].ingredientId === -1) {
+        const status = document.createElement('div');
+        status.className = 'status';
+        status.style.width = '39px';
+        status.style.height = '39px';
+        status.style.background = 'url(' + _bgArr[id].status + ')';
+        div.appendChild(status);
+        const name = document.createElement('p');
+        name.className = 'name';
+        name.innerText = _bgArr[id].title;
+        div.appendChild(name);
+      } else {
+        // cursor event용 div
+        const cursorWrapper = document.createElement('div');
+        cursorWrapper.className = 'cursorWrapper';
+        cursorWrapper.setAttribute('data-category', _bgArr[id].ingredientCategory);
+        cursorWrapper.addEventListener('mouseenter', onMouseEnter, false); // cursor  이벤트
+        cursorWrapper.addEventListener('mouseleave', onMouseLeave, false);
+        // plane contents
+        // 상품명
+        const name = document.createElement('p');
+        name.className = 'name';
+        name.innerText = _bgArr[id].ingredientName;
+        // 가격
+        const priceWrapper = document.createElement('div');
+        priceWrapper.className = 'priceWrapper';
+        priceWrapper.innerText = '현재가격';
+        const price = document.createElement('p');
+        price.className = 'price';
+        price.innerText = _bgArr[id].ingredientAvg.ingredientAvgPrice + '원';
+        priceWrapper.appendChild(price);
+        // 번호
+        const cardNumber = document.createElement('p');
+        cardNumber.className = 'num';
+        cardNumber.innerText = id;
+        // 즐겨찾기 표시
+        // if (_bgArr[id].bookmark) {
+        //   const bookmark = document.createElement('div');
+        //   bookmark.className = 'bookmark';
+        //   bookmark.style.width = '33px';
+        //   bookmark.style.height = '41px';
+        //   bookmark.style.background = 'url(' + _bgArr[id].bookmark + ')';
+        //   div.appendChild(bookmark);
+        // }
+        // // status 표시
+        // if (_bgArr[id].status) {
+        //   const status = document.createElement('div');
+        //   status.className = 'status';
+        //   status.setAttribute('data-category', _bgArr[id].ingredientCategory);
+        //   status.style.width = '39px';
+        //   status.style.height = '39px';
+        //   status.style.background = 'url(' + _bgArr[id].status + ')';
+        //   div.appendChild(status);
+        // }
+        // card에 삽입
+        div.appendChild(cursorWrapper);
+        div.appendChild(name);
+        div.appendChild(priceWrapper);
+        div.appendChild(cardNumber);
+      }
+
       movePlane(div, -5000, -5000, 0);
       $contaier.appendChild(div);
       plane = { plane: div, use: 1, no: no, id: id };
