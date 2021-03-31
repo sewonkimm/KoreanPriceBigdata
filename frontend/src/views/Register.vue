@@ -6,11 +6,7 @@
     </div>
     <div class="email" v-if="!isEmailCheck">
       <EmailInput />
-      <button
-        :disabled="isEmailCheck == false"
-        class="nextButton"
-        v-on:click="isEmailCheck = !isEmailCheck"
-      >
+      <button class="nextButton" v-on:click="isEmailCheck = !isEmailCheck">
         다음
       </button>
     </div>
