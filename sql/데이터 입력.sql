@@ -1,7 +1,3 @@
-# member table
-insert into member (member_email, member_password, member_name, member_gender, member_birth, member_area)
-	values ("ingu@gmail.com", "qwer1234!", "김인구", "M", "1994-10-25", "인천광역시");
-
 # ingredient table
 # 농산
 insert into ingredient (ingredient_name, ingredient_name_code, ingredient_category)
