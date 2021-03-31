@@ -115,16 +115,15 @@ class shopping_api(Base):
 
     ingredient = relationship("ingredient", back_populates='shopping_api')
 
-    def __init__(self, ingredient_id, shopping_api_title, shopping_api_price, shopping_api_store, shopping_api_date, shopping_api_link):
+    def __init__(self, ingredient_id, shopping_api_title, shopping_api_price, shopping_api_store, shopping_api_link):
         self.ingredient_id = ingredient_id
         self.shopping_api_title = shopping_api_title
         self.shopping_api_price = shopping_api_price
         self.shopping_api_store = shopping_api_store
-        self.shopping_api_date = shopping_api_date
         self.shopping_api_link = shopping_api_link
 
     def __repr__(self):
-        return "<shopping_api('%s', '%s', '%s', '%s', '%s', '%s')>" % (self.ingredient_id, self.shopping_api_title, self.shopping_api_price, self.shopping_api_store, self.shopping_api_date, self.shopping_api_link)
+        return "<shopping_api('%s', '%s', '%s', '%s', '%s')>" % (self.ingredient_id, self.shopping_api_title, self.shopping_api_price, self.shopping_api_store, self.shopping_api_link)
 
 class watch(Base):
     __tablename__ = "watch"

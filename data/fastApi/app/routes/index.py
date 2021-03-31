@@ -1,5 +1,4 @@
 import urllib
-
 import requests, bs4
 import pandas as pd
 from urllib.parse import urlencode, quote_plus, unquote
@@ -10,9 +9,9 @@ from starlette.responses import Response
 from starlette.status import HTTP_204_NO_CONTENT
 from app.database.conn import db
 from app.database.schema import ingredient, ingredient_info, shopping_api, member, watch
+from fastapi.responses import JSONResponse
 import time
 import numpy as np
-from sklearn.metrics import mean_squared_error
 
 router = APIRouter()
 
@@ -35,8 +34,7 @@ def openApi(session: Session = Depends(db.session)):
 
     df_list = pd.date_range(start='20200602', end='20200603').strftime("%Y%m%d").tolist()
     ingredientAll = session.query(ingredient).all()
-
-    for i in df_list:
+    for date in df_list:
         for ingred in ingredientAll:
             """
             openApi url과 함께 보낼 쿼리들을 urllib를 통해 생성
@@ -46,7 +44,7 @@ def openApi(session: Session = Depends(db.session)):
                     quote_plus('ServiceKey'): apiKey,
                     quote_plus('numOfRows'): '500',
                     quote_plus('pageNo'): '1',
-                    quote_plus('examin_de'): i,
+                    quote_plus('examin_de'): date,
                     quote_plus('prdlst_cd'): ingred.ingredient_name_code
                 }
             )
@@ -114,10 +112,10 @@ def openApi(session: Session = Depends(db.session)):
                 item = ingredient_info(ingred.ingredient_id, data['examin_de'], data['examin_amt'], data['examin_area_nm'], data['stndrd'])
                 session.add(item)
 
-        """
-        한번에 commit, 만약에 저장할 때 중간에 에러가 발생한다면, 전부 rollback
-        """
-        session.commit()
+    """
+    한번에 commit, 만약에 저장할 때 중간에 에러가 발생한다면, 전부 rollback
+    """
+    session.commit()
     return Response(status_code=HTTP_204_NO_CONTENT)
 
 @router.get('/naverApi')
@@ -177,7 +175,6 @@ def recommand(id:str, session: Session = Depends(db.session)):
     columns = df.columns
     # 데이터 프레임을 행렬로 변환
     matrix = df.values
-    print(matrix)
     num_members, num_ingredients = matrix.shape
     # 잠재요인 갯수
     K = 9
@@ -212,4 +209,4 @@ def recommand(id:str, session: Session = Depends(db.session)):
     for index in recommend.index:
         if np.math.isnan(df.loc[[1], [index]].values[0][0]):
             result.append(index)
-    return result[0:5]
+    return JSONResponse(content=result[0:5])
