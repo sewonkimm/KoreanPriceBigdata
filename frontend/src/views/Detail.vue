@@ -34,7 +34,10 @@
         </v-col>
         <v-col :cols="9">
           <v-card class="pa-2" outlined tile>
-            1년 가격 추이
+            <div class="lineChart">
+              1년 가격 추이
+              <LineChart />
+            </div>
           </v-card>
         </v-col>
       </v-row>
@@ -56,11 +59,13 @@
 <script>
 import '@/components/css/detail/style.scss';
 import Recommend from '@/components/detail/recommend';
+import LineChart from '@/components/detail/lineChart';
 
 export default {
   name: 'Detail',
   components: {
     Recommend,
+    LineChart,
   },
 };
 </script>
