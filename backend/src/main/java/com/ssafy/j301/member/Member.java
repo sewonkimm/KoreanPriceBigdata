@@ -24,13 +24,13 @@ public class Member {
 	@NonNull
 	private String memberPassword;
 
-	@NonNull
+	
 	private LocalDate memberBirth;
 
-	@NonNull
+	
 	private char memberGender;
 
-	@NonNull
+	
 	private String memberArea;
 
 }

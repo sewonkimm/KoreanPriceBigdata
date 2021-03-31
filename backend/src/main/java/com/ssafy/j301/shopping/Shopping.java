@@ -2,7 +2,6 @@ package com.ssafy.j301.shopping;
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -10,7 +9,6 @@ import lombok.NonNull;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Shopping {
 
 	private Long shoppingApiId;
