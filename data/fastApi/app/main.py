@@ -3,9 +3,11 @@ from typing import Optional
 
 import uvicorn
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
+
 from app.database.conn import db
 from app.common.config import conf
-from app.routes import index
+from app.routes import index, data, recommand
 
 
 def create_app():
@@ -22,9 +24,17 @@ def create_app():
     # 레디스 이니셜라이즈
 
     # 미들웨어 정의
-
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=conf().ALLOW_SITE,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
     # 라우터 정의
     app.include_router(index.router)
+    app.include_router(data.router)
+    app.include_router(recommand.router)
     return app
 
 

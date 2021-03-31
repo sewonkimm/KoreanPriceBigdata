@@ -22,13 +22,14 @@ class Config:
 @dataclass
 class LocalConfig(Config):
     PROJ_RELOAD: bool = True
-
+    ALLOW_SITE = ["*"]
 
 
 
 @dataclass
 class ProdConfig(Config):
     PROJ_RELOAD: bool = False
+    ALLOW_SITE = ["*"]
 
 
 def conf():
