@@ -346,12 +346,14 @@ const CMRotate =
 
       // 로그인 카드
       if (_bgArr[id].ingredientId === -1) {
+        // 로그인 아이콘
         const status = document.createElement('div');
         status.className = 'status';
         status.style.width = '39px';
         status.style.height = '39px';
         status.style.background = 'url(' + _bgArr[id].status + ')';
         div.appendChild(status);
+        // 로그인 글씨
         const name = document.createElement('p');
         name.className = 'name';
         name.innerText = _bgArr[id].title;
@@ -408,7 +410,7 @@ const CMRotate =
 
       movePlane(div, -5000, -5000, 0);
       $contaier.appendChild(div);
-      plane = { plane: div, use: 1, no: no, id: id };
+      plane = { plane: div, use: 1, no: no, id: _bgArr[id].ingredientId };
       _itemArr[_itemCur] = plane;
       _itemCur++;
       div.addEventListener('click', onClick, false); // card click 이벤트

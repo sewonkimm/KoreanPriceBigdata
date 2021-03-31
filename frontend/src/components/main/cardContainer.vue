@@ -54,8 +54,13 @@ export default {
     },
     renderCards(items) {
       // api로 불러온 목록을 card로 그리기(카드의 개수는 최소 13개)
-      const clickCard = (no) => {
-        alert('click no - ' + (no + 1));
+      const clickCard = (id) => {
+        this.$router.push({
+          name: 'Detail',
+          params: {
+            id: id,
+          },
+        });
       };
       const radius = window.innerHeight >= 900 ? 1400 : 1200;
       CMRotate.init('cardContainer', 240, 320, 700, 8, radius, items, clickCard);
