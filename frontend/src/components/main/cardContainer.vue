@@ -36,7 +36,13 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          this.item = response.data;
+          console.log(response.data);
+          this.item = response.data.map((item) => {
+            item.ingredientAvg.ingredientAvgPrice = item.ingredientAvg.ingredientAvgPrice
+              .toString()
+              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+            return item;
+          });
           this.renderCards(this.item);
         })
         .catch((error) => {
