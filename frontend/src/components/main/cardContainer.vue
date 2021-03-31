@@ -2,7 +2,6 @@
   <div class="cardContainer" id="cardContainer"></div>
 </template>
 <script>
-// import { BookmarkGreen, BookmarkRed, BookmarkBlue } from '@/assets/index.js';
 import CMRotate from '@/components/main/CMRotate.js';
 
 export default {
@@ -36,13 +35,16 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          console.log(response.data);
           this.item = response.data.map((item) => {
             item.ingredientAvg.ingredientAvgPrice = item.ingredientAvg.ingredientAvgPrice
               .toString()
               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
             return item;
           });
+
+          if (this.$store.state.userId === '') {
+            this.addLoginCard();
+          }
           this.renderCards(this.item);
         })
         .catch((error) => {
@@ -57,6 +59,7 @@ export default {
       const radius = window.innerHeight >= 900 ? 1400 : 1200;
       CMRotate.init('cardContainer', 240, 320, 700, 8, radius, items, clickCard);
     },
+    addLoginCard() {},
   },
   created() {
     this.callIngredients();
