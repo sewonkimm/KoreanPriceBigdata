@@ -97,4 +97,4 @@ def predict(ingredient_id: int, session: Session = Depends(db.session)):
     # 결과 값, 추후 DB에 저장할 예정
     print(line_fitter.predict([[x_train[-1] + 3]]))
 
-    return
+    return Response(status_code=HTTP_204_NO_CONTENT)
