@@ -51,17 +51,17 @@ CREATE TABLE `watch` (
 	`watch_id`	INT	NOT NULL AUTO_INCREMENT,
 	`member_id`	INT	NOT NULL,
 	`ingredient_id`	INT	NOT NULL,
-	`watch_time`	DATETIME	NULL,
+	`watch_date` date DEFAULT current_timestamp(),
     PRIMARY KEY (`watch_id`)
 );
 
 CREATE TABLE `shopping_api` (
 	`shopping_api_id`	INT	NOT NULL AUTO_INCREMENT,
 	`ingredient_id`	INT	NOT NULL,
-	`shopping_api_title`	varchar(20)	NULL,
+	`shopping_api_title`	varchar(128)	NULL,
 	`shopping_api_price`	INT	NULL,
 	`shopping_api_store`	varchar(20)	NULL,
-	`shopping_api_date`	DATE	NULL,
+	`shopping_api_date` date DEFAULT current_timestamp(),
 	`shopping_api_link`	varchar(255)	NULL,
     PRIMARY KEY (`shopping_api_id`)
 );
@@ -70,6 +70,7 @@ CREATE TABLE `ingredient_avg` (
 	`ingredient_avg_id`	INT	NOT NULL AUTO_INCREMENT,
 	`ingredient_id`	INT	NOT NULL,
 	`ingredient_avg_date`	DATE	NULL,
+	`ingredient_avg_previous_price` int(11) DEFAULT NULL,
 	`ingredient_avg_price`	INT	NULL,
 	`ingredient_avg_predict_price`	INT	NULL,
     PRIMARY KEY (`ingredient_avg_id`)
