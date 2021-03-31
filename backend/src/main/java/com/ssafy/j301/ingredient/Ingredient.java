@@ -1,5 +1,6 @@
 package com.ssafy.j301.ingredient;
 
+import com.ssafy.j301.ingredientAvg.IngredientAvg;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

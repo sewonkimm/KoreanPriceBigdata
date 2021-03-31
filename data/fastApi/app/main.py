@@ -15,9 +15,9 @@ def create_app():
     """
     c = conf()
     app = FastAPI()
-   # conf_dict = asdict(c)
-  #  db.init_app(app, **conf_dict)
     # 데이터 베이스 이니셜라이즈
+    conf_dict = asdict(c)
+    db.init_app(app, **conf_dict)
 
     # 레디스 이니셜라이즈
 
