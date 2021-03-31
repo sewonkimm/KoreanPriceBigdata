@@ -1,10 +1,8 @@
 from dataclasses import asdict
 from typing import Optional
-
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-
 from app.database.conn import db
 from app.common.config import conf
 from app.routes import index, data, recommand
