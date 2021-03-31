@@ -75,6 +75,8 @@ const CMRotate =
       _radius = radius;
       _posTotal = Math.ceil(360 / _gap);
 
+      console.log(_bgArr);
+
       let i;
       let id;
       let pos;
@@ -379,7 +381,8 @@ const CMRotate =
       if (_bgArr[id].status) {
         const status = document.createElement('div');
         status.className = 'status';
-        status.setAttribute('data-category', _bgArr[id].ingredientCategory);
+        console.log(_bgArr[id].ingredientCategory);
+        // status.setAttribute('data-category', _bgArr[id].ingredientCategory);
         status.style.width = '39px';
         status.style.height = '39px';
         status.style.background = 'url(' + _bgArr[id].status + ')';
