@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class IngredientAvg {
@@ -24,5 +23,4 @@ public class IngredientAvg {
 
 	private int ingredientAvgPredictPrice;
 	
-	private int status;
 }
