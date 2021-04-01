@@ -26,9 +26,9 @@ public class IngredientController {
 	}
 
 	@ApiOperation(value = "로그인 시 메인페이지 조회", notes = "조회 수 포함 전체 농축산물 조회")
-	@GetMapping("/login")
-	public List<Ingredient> loginSelectAll() {
-		return ingredientService.selectAllByLogin();
+	@GetMapping("/{memberId}")
+	public List<Ingredient> loginSelectAll(@PathVariable Long memberId) {
+		return ingredientService.selectAllByLogin(memberId);
 	}
 
 	@ApiOperation(value = "농축산물 ID로 조회", notes = "IngredientId로 조회한 결과를 리턴합니다.")
