@@ -32,7 +32,7 @@
       </v-container>
     </v-form>
     <div class="button">
-      <v-btn disabled class="loginButton">로그인</v-btn>
+      <v-btn class="loginButton">로그인</v-btn>
     </div>
 
     <!-- 소셜 로그인 모달 -->

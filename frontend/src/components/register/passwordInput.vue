@@ -25,7 +25,7 @@
             :rules="[rules.required, rules.min, passwordConfirmationRule]"
             :type="show ? 'text' : 'password'"
             name="input-10-1"
-            label="비밀번호 다시 입력"
+            label="비밀번호 확인"
             hint="At least 8 characters"
             counter
             @click:append="show = !show"
