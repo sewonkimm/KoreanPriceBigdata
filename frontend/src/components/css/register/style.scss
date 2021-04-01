@@ -6,53 +6,73 @@
     justify-content: center;
     align-items: center;
     padding: 200px 550px 330px 520px;
-    background: 
-        linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.54) 44.52%, 
-        rgba(120, 208, 255, 0.5076) 126.32%), 
-        #FFFFFF;
-
-    .background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        
-    }
     
     .logo {
-        margin-bottom: 52px;
+        margin-bottom: 77px;
         z-index: 1;
     }
 
-    .informationMessage {
-        width: 386px;
-        height: 45px;
-        text-align: left;
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 30px;
-        color: #608F58;
-    }
-    .nextButton {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px;
-        margin-bottom: 41px;
-        padding: 0px 16px;
-        width: 400px;
-        height: 63px;
-        color: $basic-white;
-        background: linear-gradient(109.24deg, rgba(168, 235, 18, 0.91) -0.31%, #608F58 145.27%);            
-        border-radius: 4px;
+    // 로그인 폼
+    .emailForm {
+
+        .informationMessage {
+            width: 386px;
+            height: 45px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 30px;
+            color: #608F58;
+        }
+
+        .input {
+            width: 360px;
+        }
+
+        .nextButton {
+            width: 100%;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 20px;
+            color: $basic-white;
+            border-radius: 8px;
+
+            &.active {
+                background: linear-gradient(109.24deg, rgba(168, 235, 18, 0.91) -0.31%, #608F58 145.27%);
+            }
+        }
     }
 
-    .registerButton {
-        font-size: 20px;
-        line-height: 30px;
-        color: $basic-white;
+    .passwordInput {
+
+        .informationMessage {
+            width: 386px;
+            height: 45px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 30px;
+            color: #608F58;
+        }
+
+        .input {
+            width: 360px;
+        }
+        
+        .registerButton {
+            width: 100%;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 20px;
+            color: $basic-white;
+            border-radius: 8px;
+            
+            
+            &.active {
+                background: linear-gradient(109.24deg, rgba(168, 235, 18, 0.91) -0.31%, #608F58 145.27%);
+            }
+           
+        }
+        
     }
 }
