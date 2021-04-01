@@ -13,8 +13,8 @@
         </v-card-title>
 
         <div class="socialLoginButton">
-          <Google />
-          <Kakao />
+          <Google @click="loginWithGoogle" />
+          <Kakao @click="loginWithKakao" />
         </div>
 
         <v-card-actions>
@@ -29,6 +29,9 @@
 </template>
 <script>
 import { Google, Kakao } from '@/assets/index.js';
+import firebase from 'firebase';
+import '@firebase/auth';
+import '@firebase/firestore';
 
 export default {
   name: 'SocialLogin',
@@ -39,7 +42,88 @@ export default {
   data() {
     return {
       dialog: false,
+      id: '',
     };
+  },
+  methods: {
+    loginWithGoogle: function() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().languageCode = 'ko';
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          const googleFormData = new FormData();
+          this.id = result.user.email;
+          googleFormData.append('memberEmail', result.user.email);
+          googleFormData.append('memberPassword', null);
+          googleFormData.append('memberName', result.user.displayName);
+          googleFormData.append('memberPlatformType', 'Google');
+          this.$axios({
+            url: '/member/social',
+            method: 'POST',
+            data: googleFormData,
+          })
+            .then((response) => {
+              if (response.data.message === 'success') {
+                const token = response.data((accesstoken) => {
+                  return accesstoken;
+                });
+                localStorage.setItem('accesstoken', token);
+                this.$store.commit('setId', id);
+              } else {
+                alert('구글 로그인에 실패했습니다.');
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        });
+    },
+    loginWithKakao: function() {
+      window.Kakao.Auth.login({
+        scope: 'profile, age_range, account_email, gender, birthday',
+        success: this.getInfoWithKaKao,
+      });
+    },
+    getInfoWithKaKao: function() {
+      window.Kakao.API.request({
+        url: '/v2/user/me',
+        success: async (res) => {
+          const kakaoAccount = res.kakao_account;
+          if (info.memberEmail === null) {
+            // kakao 전용 회원가입 필요
+          } else {
+            const kakaoFormData = new FormData();
+            kakaoFormData.append('memberEmail', kakao.email);
+            kakaoFormData.append('memberPassword', null);
+            kakaoFormData.append('memberName', kakaoAccount.profile.nickname);
+            kakaoFormData.append('memberGender', kakaoAccount.gender);
+            kakaoFormData.append('memberBirth', kakaoAccount.birthday);
+            kakaoFormData.append('memberPlatformType', 'Kakao');
+            this.$axios({
+              url: '/member/social',
+              method: 'POST',
+              data: kakaoFormData,
+            })
+              .then((response) => {
+                if (response.data.message === 'success') {
+                  const token = response.data((accesstoken) => {
+                    return accesstoken;
+                  });
+                  localStorage.setItem('accesstoken', token);
+                  this.$store.commit('setId', id);
+                } else {
+                  alert('카카오 로그인에 실패했습니다.');
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
+        },
+      });
+    },
   },
 };
 </script>
