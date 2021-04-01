@@ -51,7 +51,7 @@ export default {
       this.$router.push('/');
     },
     buttonActive: function() {
-      if (this.password !== '') {
+      if (this.password === this.passwordConfirm) {
         this.isActive = true;
       } else this.isActive = false;
     },
@@ -67,17 +67,12 @@ export default {
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/.test(value) ||
           '소문자와 대문자, 숫자를 모두 포함하고 8자 이상이어야 합니다.',
       ],
+      passwordConfirmationRule: [(value) => value == this.password || '비밀번호는 동일해야 합니다'],
     };
   },
   watch: {
-    // password값이 바뀔때마다 함수 실행
-    password: function() {
+    passwordConfirm: function() {
       this.buttonActive();
-    },
-  },
-  computed: {
-    passwordConfirmationRule() {
-      return () => this.password === this.passwordConfirm || '비밀번호는 동일해야 합니다';
     },
   },
 };

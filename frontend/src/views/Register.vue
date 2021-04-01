@@ -61,6 +61,7 @@ export default {
   watch: {
     email: function() {
       this.buttonActive();
+      console.log('이메일룰: ');
     },
   },
   methods: {
@@ -68,7 +69,11 @@ export default {
       this.isEmailCheck = !this.isEmailCheck;
     },
     buttonActive: function() {
-      if (this.email !== '') {
+      if (
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+          this.email
+        ) === true
+      ) {
         this.isActive = true;
       } else this.isActive = false;
     },
