@@ -19,9 +19,7 @@
       </v-container>
     </v-form>
 
-    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" width="100%" height="63px"
-      >로그인</v-btn
-    >
+    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" height="63">로그인</v-btn>
   </div>
 </template>
 <script>
