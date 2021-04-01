@@ -33,7 +33,6 @@ export default {
   },
   data() {
     return {
-      show1: true,
       email: '',
       rules: {
         required: (value) => !!value || '필수로 입력해야 합니다..',
