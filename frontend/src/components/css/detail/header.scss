@@ -1,0 +1,14 @@
+@import "../colors";
+
+.header {
+    .title {
+        color: $basic-white;
+        font-family: "Noto Sans KR", "sans-serif" !important;
+        font-weight: bold;
+        font-size: 20px;
+        margin-right: 5px;
+    }
+    .search {
+        border-radius: 4px;
+    }
+}
