@@ -1,7 +1,7 @@
 <template>
   <div class="currentPrice">
     <p class="title">
-      현재 시세
+      3일 후 예측 가격
     </p>
     <div class="priceContainer">
       <p class="price">{{ price | comma }}원</p>
@@ -13,26 +13,32 @@
         <Down v-else class="arrow" />
       </div>
     </div>
+
     <div class="message">
-      <Eyes />
-      <p>오늘 {{ count | comma }}명의 사람들이 조회했어요!</p>
+      <p v-if="isUp">
+        오늘보다 비싸질 것 같아요.<br />
+        빨리 구매해야겠어요!
+      </p>
+      <p v-else>
+        오늘보다 저렴해질 것 같아요.<br />
+        조금 더 있다 구매하는 건 어떠세요?
+      </p>
     </div>
   </div>
 </template>
 <script>
 import '@/components/css/detail/priceComponent.scss';
-import { Up, Down, Eyes } from '@/assets/index.js';
+import { Up, Down } from '@/assets/index.js';
 
 export default {
-  name: 'CurrentPrice',
+  name: 'PredictPrice',
   components: {
     Up,
     Down,
-    Eyes,
   },
   data() {
     return {
-      price: 2300, // 현재가격
+      price: 1100, // 예측가격
       rangePrice: 1200, // 등락 가격
       rangePercent: 0.8, // 등락률
       isUp: false, // 상승, 하락에 따른 스타일 적용을 위한 state

@@ -7,8 +7,9 @@
     <v-container class="justify-center align-center contents">
       <v-row class="row">
         <v-col :cols="3">
-          <v-card class="pa-2">
-            <CurrentPrice />
+          <v-card class="pa-2 flip-vertical-left" @mouseenter="changePrice">
+            <CurrentPrice v-if="isCurrentPrice" />
+            <PredictPrice v-else />
           </v-card>
         </v-col>
         <v-col :cols="9">
@@ -39,6 +40,7 @@
 import '@/components/css/detail/style.scss';
 import Header from '@/components/detail/header';
 import CurrentPrice from '@/components/detail/currentPrice';
+import PredictPrice from '@/components/detail/predictPrice';
 import Recommend from '@/components/detail/recommend';
 import LineChart from '@/components/detail/lineChart';
 
@@ -47,8 +49,19 @@ export default {
   components: {
     Header,
     CurrentPrice,
+    PredictPrice,
     Recommend,
     LineChart,
+  },
+  data() {
+    return {
+      isCurrentPrice: true,
+    };
+  },
+  methods: {
+    changePrice: function() {
+      this.isCurrentPrice = !this.isCurrentPrice;
+    },
   },
 };
 </script>
