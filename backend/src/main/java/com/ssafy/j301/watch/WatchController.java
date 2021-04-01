@@ -1,5 +1,6 @@
 package com.ssafy.j301.watch;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Watches", description = "조회 API")
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/watches")
