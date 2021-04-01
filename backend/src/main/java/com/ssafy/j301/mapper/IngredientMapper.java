@@ -9,7 +9,7 @@ public interface IngredientMapper {
 
 	public List<Ingredient> selectAll();
 
-	public List<Ingredient> selectAllByLogin();
+	public List<Ingredient> selectAllByLogin(Long memberId);
 
 	public Ingredient selectByIngredientId(Long ingredientId);
 
