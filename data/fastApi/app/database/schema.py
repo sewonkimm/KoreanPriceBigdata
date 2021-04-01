@@ -82,7 +82,7 @@ class ingredient_info(Base):
 
 
 class ingredient_avg(Base):
-    __tablename__ = "ingreient_avg"
+    __tablename__ = "ingredient_avg"
     ingredient_avg_id = Column(Integer, primary_key=True, index=True)
     ingredient_id = Column(Integer, ForeignKey("ingredient.ingredient_id"), nullable=False)
     ingredient_avg_date = Column(Date, nullable=True)
@@ -105,7 +105,7 @@ class ingredient_avg(Base):
 
 class shopping_api(Base):
     __tablename__ = "shopping_api"
-    shopping_api_id  = Column(Integer, primary_key=True, index=True)
+    shopping_api_id = Column(Integer, primary_key=True, index=True)
     ingredient_id = Column(Integer, ForeignKey("ingredient.ingredient_id"), nullable=False)
     shopping_api_title = Column(VARCHAR(128), nullable=True)
     shopping_api_price = Column(Integer, nullable=True)

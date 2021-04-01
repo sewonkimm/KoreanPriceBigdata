@@ -1,28 +1,7 @@
 <template>
   <div class="detail">
     <!-- header -->
-    <v-toolbar color="primary">
-      <v-app-bar-nav-icon>
-        <v-btn icon>
-          <v-icon>mdi-chevron-left</v-icon>
-        </v-btn>
-      </v-app-bar-nav-icon>
-      <v-toolbar-title>{{ $route.params.id }}</v-toolbar-title>
-      <v-btn icon>
-        <v-icon>mdi-heart-outline</v-icon>
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-toolbar class="search" dense max-width="283px">
-        <v-text-field
-          hide-details
-          prepend-icon="mdi-magnify"
-          single-line
-          label="상품 검색"
-        ></v-text-field>
-      </v-toolbar>
-    </v-toolbar>
+    <Header />
 
     <!-- body -->
     <v-container class="red lighten-5 justify-center align-center contents">
@@ -58,12 +37,14 @@
 </template>
 <script>
 import '@/components/css/detail/style.scss';
+import Header from '@/components/detail/header';
 import Recommend from '@/components/detail/recommend';
 import LineChart from '@/components/detail/lineChart';
 
 export default {
   name: 'Detail',
   components: {
+    Header,
     Recommend,
     LineChart,
   },
