@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.j301.mapper.FluctuationRateMapper">
-	<select id="selectFluctuationRate"
+	<select id="selectRateOfDecline"
 		resultType="com.ssafy.j301.fluctuationRate.FluctuationRate">
 		SELECT
 		ingredient.ingredient_id AS ingredientId,
@@ -19,6 +19,26 @@
 		ingredient.ingredient_id =
 		ingredient_avg.ingredient_id
 		ORDER BY rate
+		LIMIT 5;
+	</select>
+
+	<select id="selectRateOfRise"
+		resultType="com.ssafy.j301.fluctuationRate.FluctuationRate">
+		SELECT
+		ingredient.ingredient_id AS ingredientId,
+		ingredient.ingredient_name AS ingredientName,
+		ingredient.ingredient_detail_name AS ingredientDetailName,
+		round((ingredient_avg_price - ingredient_avg_previous_price)/
+		ingredient_avg_previous_price * 100, 2) AS rate
+		FROM ingredient,
+		ingredient_avg
+		WHERE NOT ingredient_avg_previous_price IS NULL
+		&amp;&amp; ingredient_avg_date =
+		'2019-01-02' &amp;&amp;
+		ingredient.ingredient_id =
+		ingredient_avg.ingredient_id
+		ORDER BY rate
+		DESC
 		LIMIT 5;
 	</select>
 </mapper>

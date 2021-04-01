@@ -7,5 +7,7 @@ import com.ssafy.j301.fluctuationRate.FluctuationRate;
 @Repository
 public interface FluctuationRateMapper {
 
-	public List<FluctuationRate> selectFluctuationRate();
+	public List<FluctuationRate> selectRateOfRise();
+	
+	public List<FluctuationRate> selectRateOfDecline();
 }

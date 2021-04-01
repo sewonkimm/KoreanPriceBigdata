@@ -44,7 +44,7 @@ public class IngredientService {
 
 	public List<Ingredient> insertStatus(List<Ingredient> list) {
 		List<Popularity> bestList = popularityMapper.selectPopularity();
-		List<FluctuationRate> warningList = fluctuationRateMapper.selectFluctuationRate();
+		List<FluctuationRate> warningList = fluctuationRateMapper.selectRateOfRise();
 
 		for (int i = 0; i < bestList.size(); i++) {
 			long bestId = bestList.get(i).getIngredientId();
