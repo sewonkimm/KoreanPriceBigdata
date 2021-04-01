@@ -14,7 +14,7 @@
 
         <div class="socialLoginButton">
           <Google />
-          <Kakao />
+          <img src="@/assets/kakao.png" class="kakaoButton" />
         </div>
 
         <v-card-actions>
@@ -28,13 +28,12 @@
   </div>
 </template>
 <script>
-import { Google, Kakao } from '@/assets/index.js';
+import { Google } from '@/assets/index.js';
 
 export default {
   name: 'SocialLogin',
   components: {
     Google,
-    Kakao,
   },
   data() {
     return {
