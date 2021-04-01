@@ -2,6 +2,8 @@ import pandas as pd
 from fastapi import APIRouter, Depends
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
+from starlette.responses import Response
+from starlette.status import HTTP_204_NO_CONTENT
 from app.database.conn import db
 from app.database.schema import ingredient, ingredient_info, shopping_api, member, watch, ingredient_avg
 from fastapi.responses import JSONResponse
@@ -73,28 +75,30 @@ def recommand(id: int, session: Session = Depends(db.session)):
     return data
 
 
-@router.get('/predict/{ingredient_id}')
-def predict(ingredient_id: int, session: Session = Depends(db.session)):
+@router.get('/predict')
+def predict(session: Session = Depends(db.session)):
     # sql로 데이터를 받아서 데이터 프레임 생성
-    df = pd.read_sql(session.query(ingredient_avg).filter(ingredient_avg.ingredient_id == ingredient_id).statement, session.bind)
-    # 사용할 데이터 중 불필요한 Column 삭제
-    del df['ingredient_avg_id']
-    del df['ingredient_id']
-    del df['ingredient_avg_previous_price']
-    del df['ingredient_avg_predict_price']
+    df_list = pd.date_range(start='20200101', end='20200922').strftime("%Y%m%d").tolist()
+    for ingredient_id in range(1,84):
+        for date in df_list:
+            df = pd.read_sql(session.query(ingredient_avg).filter(and_(ingredient_avg.ingredient_id == ingredient_id, ingredient_avg.ingredient_avg_date <= date)).statement, session.bind)
 
-    # 날짜를 사용할 수 있는 Int형으로 변환(현재 날짜 기준)
-    df['ingredient_avg_date'] = (df['ingredient_avg_date'] - df['ingredient_avg_date'].max()).dt.days
-    # 비어있는 데이터 삭제
-    df = df.dropna()
-    # 트레이닝 데이터
-    x_train = df['ingredient_avg_date'].to_numpy()  # 날짜 (오늘 날짜 기준)
-    y_train = df['ingredient_avg_price'].to_numpy()  # 가격 (y원)
+            # 날짜를 사용할 수 있는 Int형으로 변환(현재 날짜 기준)
+            # df['ingredient_avg_date'] = (df['ingredient_avg_date'] - df['ingredient_avg_date'].max()).dt.days
+            prev = df[['ingredient_avg_previous_price', 'ingredient_avg_price']].dropna()
+            # 트레이닝 데이터
+            x_train = prev['ingredient_avg_previous_price'].to_numpy()  # 날짜 (오늘 날짜 기준)
+            y_train = prev['ingredient_avg_price'].to_numpy()  # 가격 (y원)
 
-    # 회귀 선형을 위한 라이브러리 객체 호출
-    line_fitter = LinearRegression()
-    line_fitter.fit(x_train.reshape(-1, 1), y_train)
-    # 결과 값, 추후 DB에 저장할 예정
-    print(line_fitter.predict([[x_train[-1] + 3]]))
-
+            # 회귀 선형을 위한 라이브러리 객체 호출
+            line_fitter = LinearRegression()
+            line_fitter.fit(x_train.reshape(-1, 1), y_train)
+            # 결과 값, 추후 DB에 저장할 예정
+            print(line_fitter.predict([[x_train[-1] + 3]]))
+            sql = session.query(ingredient_avg).filter(and_(ingredient_avg.ingredient_id == ingredient_id, ingredient_avg.ingredient_avg_date == date))
+            cnt = sql.count()
+            if cnt >= 1:
+                avg = sql.one()
+                avg.ingredient_avg_predict_price = np.round(line_fitter.predict([[x_train[-1] + 3]])[0], )
+                session.commit()
     return Response(status_code=HTTP_204_NO_CONTENT)
