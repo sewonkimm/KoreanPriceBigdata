@@ -27,7 +27,7 @@ def openApi(session: Session = Depends(db.session)):
     apiKey = unquote(
         '1J7amwxnHZ22NEowHAjGL9ihrCj%2FI%2BTvgjIesAJH%2F81p%2FJ0hI2qmYcKjcOrEfPkA0wXoVVgrzJHz4i1%2BRRxv6A%3D%3D')
 
-    df_list = pd.date_range(start='20200704', end='20200803').strftime("%Y%m%d").tolist()
+    df_list = pd.date_range(start='20201104', end='20201203').strftime("%Y%m%d").tolist()
     ingredientAll = session.query(ingredient).all()
     for date in df_list:
         for ingred in ingredientAll:
