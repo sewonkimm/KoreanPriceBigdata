@@ -8,17 +8,21 @@
 		resultType="com.ssafy.j301.popularity.Popularity">
 		SELECT
 		ingredient.ingredient_id AS ingredientId,
-		ingredient.ingredient_name AS ingredientName, sum(fame.fav) AS
+		ingredient.ingredient_name AS ingredientName,
+		ingredient.ingredient_detail_name AS ingredientDetailName,
+		sum(fame.fav) AS
 		popularity
 		FROM ingredient join ((
-		SELECT ingredient_id, (COUNT(*)*3) AS
+		SELECT ingredient_id,
+		(COUNT(*)*3) AS
 		fav
 		FROM favorite
 		GROUP BY ingredient_id
 		)
 		UNION
 		(
-		SELECT ingredient_id,
+		SELECT
+		ingredient_id,
 		COUNT(*) AS fav
 		FROM watch
 		WHERE MONTH(watch.watch_date) =

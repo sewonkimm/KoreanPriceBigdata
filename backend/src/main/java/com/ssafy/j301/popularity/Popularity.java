@@ -13,5 +13,7 @@ public class Popularity {
 
 	private String ingredientName;
 
+	private String ingredientDetailName;
+
 	private int Popularity;
 }

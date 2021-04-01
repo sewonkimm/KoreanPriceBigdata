@@ -8,6 +8,7 @@
 		SELECT
 		ingredient.ingredient_id AS ingredientId,
 		ingredient.ingredient_name AS ingredientName,
+		ingredient.ingredient_detail_name AS ingredientDetailName,
 		round((ingredient_avg_price - ingredient_avg_previous_price)/
 		ingredient_avg_previous_price * 100, 2) AS rate
 		FROM ingredient,

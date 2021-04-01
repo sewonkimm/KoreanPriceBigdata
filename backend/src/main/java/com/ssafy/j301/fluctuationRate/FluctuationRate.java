@@ -13,5 +13,7 @@ public class FluctuationRate {
 
 	private String ingredientName;
 
+	private String ingredientDetailName;
+
 	private double rate;
 }
