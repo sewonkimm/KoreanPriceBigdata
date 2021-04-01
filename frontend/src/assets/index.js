@@ -4,5 +4,6 @@ import BookmarkGreen from './bookmark_green.png';
 import BookmarkBlue from './bookmark_blue.png';
 import Hot from './hot.png';
 import Warning from './warning.png';
+import Login from './login.png';
 
-export { Logo, BookmarkRed, BookmarkGreen, BookmarkBlue, Hot, Warning };
+export { Logo, BookmarkRed, BookmarkGreen, BookmarkBlue, Hot, Warning, Login };
