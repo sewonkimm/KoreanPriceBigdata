@@ -60,12 +60,15 @@ export default {
             data: {
               memberEmail: result.user.email,
               memberPassword: null,
+              memberGender: null,
+              memberArea: null,
+              memberBirth: null,
               memberName: result.user.displayName,
               memberPlatformType: 'Google',
             },
           })
             .then((response) => {
-              if (response.data.message === 'Success') {
+              if (response.status == 202) {
                 const token = response.data.accesstoken;
                 localStorage.setItem('accesstoken', token);
                 this.$store.commit('setId', this.id);
@@ -110,11 +113,12 @@ export default {
                 memberName: kakaoAccount.profile.nickname,
                 memberGender: gender,
                 memberBirth: kakaoAccount.birthday,
+                memberArea: null,
                 memberPlatformType: 'Kakao',
               },
             })
               .then((response) => {
-                if (response.data.message === 'Success') {
+                if (response.status == 202) {
                   const token = response.data.accesstoken;
                   localStorage.setItem('accesstoken', token);
                   this.$store.commit('setId', this.id);
