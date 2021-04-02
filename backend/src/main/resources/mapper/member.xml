@@ -10,10 +10,10 @@
 
 		INSERT INTO member(member_email, member_name,
 		member_password, member_birth,
-		member_gender, member_area)
+		member_gender, member_area, member_platform_type)
 		VALUES
 		(#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth},
-		#{memberGender}, #{memberArea});
+		#{memberGender}, #{memberArea}, #{memberPlatformType});
 
 	</insert>
 
