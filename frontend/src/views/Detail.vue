@@ -63,5 +63,17 @@ export default {
       this.isCurrentPrice = !this.isCurrentPrice;
     },
   },
+  created: function() {
+    this.$axios({
+      url: `/shoppings/${this.$route.params.id}`,
+      method: 'GET',
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
 };
 </script>
