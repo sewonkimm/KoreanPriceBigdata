@@ -1,6 +1,6 @@
 <template>
   <div class="recommendContainer">
-    <v-tabs v-model="tab" grow height="90">
+    <v-tabs v-model="tab" grow height="70">
       <v-tab>
         <img src="@/assets/hot.png" alt="인기상품" width="29" height="29" />
         인기상품
@@ -16,6 +16,7 @@
 
     <PopularRecommend v-show="tab === 0" class="recommend" />
     <CheapRecommend v-show="tab === 1" class="recommend" />
+    <CFRecommend v-show="tab === 2" class="recommend" />
   </div>
 </template>
 <script>
@@ -23,6 +24,7 @@
 import '@/components/css/detail/recommend.scss';
 import PopularRecommend from './popularRecommend';
 import CheapRecommend from './cheapRecommend';
+import CFRecommend from './CFRecommend';
 
 export default {
   name: 'Recommend',
@@ -30,6 +32,7 @@ export default {
     // Hot,
     PopularRecommend,
     CheapRecommend,
+    CFRecommend,
   },
   data() {
     return {
