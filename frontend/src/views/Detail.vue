@@ -7,7 +7,7 @@
     <v-container class="justify-center align-center contents">
       <v-row class="row">
         <v-col :cols="3">
-          <v-card class="pa-2 flip-vertical-left" @mouseenter="changePrice">
+          <v-card class="pa-2 flip-vertical-left" @mouseenter.stop="changePrice">
             <CurrentPrice v-if="isCurrentPrice" />
             <PredictPrice v-else />
           </v-card>

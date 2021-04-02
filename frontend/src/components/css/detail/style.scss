@@ -28,8 +28,8 @@
 
     // flip animation
     .flip-vertical-left:hover {
-        -webkit-animation: flip-vertical-left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-                animation: flip-vertical-left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+        -webkit-animation: flip-vertical-left 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+                animation: flip-vertical-left 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
     }
 }
 
