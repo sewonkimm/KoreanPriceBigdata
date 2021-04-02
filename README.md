@@ -7,6 +7,7 @@
 <br />
 <br />
 <img src="https://img.shields.io/static/v1?label=SSAFY&message=4%EA%B8%B0&color=ff69b4">
+<img src="https://img.shields.io/static/v1?label=서울&message=3반&color=violet">
 <img src="https://img.shields.io/static/v1?label=Domain&message=Bigdata&color=blueviolet">
 </p>
 
@@ -157,7 +158,7 @@ npm run serve
 
 # 🧙‍♂️만든사람들
 
-## SSAFY 4기 서울 2반 A301팀
+## SSAFY 4기 서울 3반 A301팀
 
 ### 팀명 - 오.합.지.존
 
