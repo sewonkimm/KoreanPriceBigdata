@@ -21,16 +21,13 @@ public class Member {
 	@NonNull
 	private String memberName;
 
-	@NonNull
 	private String memberPassword;
 
-	@NonNull
 	private LocalDate memberBirth;
 
-	@NonNull
-	private Character memberGender;
+	private char memberGender;
 
-	@NonNull
 	private String memberArea;
 
+	private String memberPlatformType;
 }
