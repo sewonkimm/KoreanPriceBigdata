@@ -13,8 +13,8 @@ from sklearn.linear_model import LinearRegression
 
 router = APIRouter(prefix="/recommand")
 
-@router.get('/latent/{id}')
-def recommand(id: int, session: Session = Depends(db.session)):
+@router.get('/latent/{memberId}')
+def recommand(memberId: int, session: Session = Depends(db.session)):
     memberAll = session.query(member).all()
     index = []
     memberList = []
@@ -61,12 +61,12 @@ def recommand(id: int, session: Session = Depends(db.session)):
     finalMatrix = np.dot(p, q.T)
     finalDf = pd.DataFrame(np.round(finalMatrix, 2), index=index, columns=columns)
     # 추천해줘야할 유저를 기준으로 데이터 추출 및 정렬
-    recommend = finalDf.loc[[id], :].transpose().sort_values(by=[id], axis=0, ascending=False)
+    recommend = finalDf.loc[[memberId], :].transpose().sort_values(by=[memberId], axis=0, ascending=False)
 
     # 결과값 도출(해당 유저에게 추천해줄만한 데이터(아직 조회하지 않은 재료 중))
     result = []
     for ingredient_id in recommend.index:
-        if np.math.isnan(df.loc[[id], [ingredient_id]].values[0][0]):
+        if np.math.isnan(df.loc[[memberId], [ingredient_id]].values[0][0]):
             result.append(ingredient_id)
     data = []
     for ingredient_id in result[0:5]:
