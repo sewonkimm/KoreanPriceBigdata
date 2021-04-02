@@ -1,14 +1,36 @@
 <template>
-  <div>
-    <PopularRecommend />
+  <div class="recommendContainer">
+    <v-tabs v-model="tab" grow height="90">
+      <v-tab>
+        <img src="@/assets/hot.png" alt="인기상품" width="29" height="29" />
+        인기상품
+      </v-tab>
+      <v-tab>
+        <img src="@/assets/cheap.png" alt="저렴한상품" width="29" height="29" />
+        저렴한 상품</v-tab
+      >
+      <v-tab>
+        <img src="@/assets/recommend.png" alt="추천상품" width="29" height="29" />추천상품</v-tab
+      >
+    </v-tabs>
+
+    <PopularRecommend v-show="tab === 0" height="300" />
   </div>
 </template>
 <script>
+// import { Hot } from '@/assets/index.js';
+import '@/components/css/detail/recommend.scss';
 import PopularRecommend from './popularRecommend';
 export default {
   name: 'Recommend',
   components: {
+    // Hot,
     PopularRecommend,
+  },
+  data() {
+    return {
+      tab: 0,
+    };
   },
 };
 </script>

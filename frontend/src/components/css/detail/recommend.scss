@@ -1,0 +1,16 @@
+/*******************************************************************
+// 위치 : src/components/css/detail/recommend.scss 
+// 설명 : 상세페이지 view 추천시스템에 적용되는 스타일에 대해 정의함 
+********************************************************************/
+
+.recommendContainer {
+    .v-tab {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 10px 0;
+
+        img {
+            margin-bottom: 10px;
+        }
+    }
+}
