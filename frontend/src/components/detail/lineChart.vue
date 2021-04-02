@@ -1,6 +1,5 @@
 <script>
 import { Line } from 'vue-chartjs';
-import '@/components/css/detail/style.scss';
 export default {
   extends: Line,
   data: () => ({
