@@ -50,7 +50,19 @@ public class MemberService {
 		resultMap.put("accesstoken", token);
 		resultMap.put("message", "Success");
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
-
 	}
 
+	public ResponseEntity<Map<String, Object>> social(Member member) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		if (!memberMapper.checkEmail(member.getMemberEmail())) {
+			memberMapper.insertMember(member);
+		}
+		
+		String token = jwtService.create(member);
+		resultMap.put("accesstoken", token);
+		resultMap.put("message", "Success");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
+	}
 }

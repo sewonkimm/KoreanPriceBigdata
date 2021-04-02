@@ -53,24 +53,23 @@ export default {
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
-          const googleFormData = new FormData();
           this.id = result.user.email;
-          googleFormData.append('memberEmail', result.user.email);
-          googleFormData.append('memberPassword', null);
-          googleFormData.append('memberName', result.user.displayName);
-          googleFormData.append('memberPlatformType', 'Google');
           this.$axios({
-            url: '/member/social',
+            url: '/members/social',
             method: 'POST',
-            data: googleFormData,
+            data: {
+              memberEmail: result.user.email,
+              memberPassword: null,
+              memberName: result.user.displayName,
+              memberPlatformType: 'Google',
+            },
           })
             .then((response) => {
-              if (response.data.message === 'success') {
-                const token = response.data((accesstoken) => {
-                  return accesstoken;
-                });
+              if (response.data.message === 'Success') {
+                const token = response.data.accesstoken;
                 localStorage.setItem('accesstoken', token);
-                this.$store.commit('setId', id);
+                this.$store.commit('setId', this.id);
+                alert('구글 로그인에 성공하셨습니다.');
               } else {
                 alert('구글 로그인에 실패했습니다.');
               }
@@ -91,28 +90,35 @@ export default {
         url: '/v2/user/me',
         success: async (res) => {
           const kakaoAccount = res.kakao_account;
-          if (info.memberEmail === null) {
+          let gender = '';
+          if (kakaoAccount.gender === 'female') {
+            gender = 'F';
+          } else if (kakaoAccount.gender === 'male') {
+            gender = 'M';
+          } else {
+            gender = null;
+          }
+          if (kakaoAccount.email === null) {
             // kakao 전용 회원가입 필요
           } else {
-            const kakaoFormData = new FormData();
-            kakaoFormData.append('memberEmail', kakao.email);
-            kakaoFormData.append('memberPassword', null);
-            kakaoFormData.append('memberName', kakaoAccount.profile.nickname);
-            kakaoFormData.append('memberGender', kakaoAccount.gender);
-            kakaoFormData.append('memberBirth', kakaoAccount.birthday);
-            kakaoFormData.append('memberPlatformType', 'Kakao');
             this.$axios({
-              url: '/member/social',
+              url: '/members/social',
               method: 'POST',
-              data: kakaoFormData,
+              data: {
+                memberEmail: kakaoAccount.email,
+                memberPassword: null,
+                memberName: kakaoAccount.profile.nickname,
+                memberGender: gender,
+                memberBirth: kakaoAccount.birthday,
+                memberPlatformType: 'Kakao',
+              },
             })
               .then((response) => {
-                if (response.data.message === 'success') {
-                  const token = response.data((accesstoken) => {
-                    return accesstoken;
-                  });
+                if (response.data.message === 'Success') {
+                  const token = response.data.accesstoken;
                   localStorage.setItem('accesstoken', token);
-                  this.$store.commit('setId', id);
+                  this.$store.commit('setId', this.id);
+                  alert('카카오 로그인에 성공하셨습니다.');
                 } else {
                   alert('카카오 로그인에 실패했습니다.');
                 }
