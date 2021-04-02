@@ -1,47 +1,56 @@
 <template>
   <div class="emailInput">
-    <div class="informationMessage">
-      <h1>이메일을 입력해주세요</h1>
-    </div>
+    <h1 class="informationMessage">이메일을 입력해주세요</h1>
+
     <v-form>
       <v-container fluid>
         <v-row>
-          <v-text-field
-            v-model="email"
-            :rules="[rules.required, rules.email]"
-            name="input-10-1"
-            label="이메일"
-          ></v-text-field>
+          <v-text-field v-model="email" :rules="emailRule" label="이메일" required></v-text-field>
         </v-row>
       </v-container>
     </v-form>
-    <!-- <button class="nextButton" v-on:click="nextButton">
-      다음
-    </button> -->
+
+    <v-btn
+      @click="goPassword()"
+      :disabled="!isActive"
+      :class="{ active: isActive, goPasswordButton: 'goPasswordButton' }"
+      height="63"
+      >다음</v-btn
+    >
   </div>
 </template>
 <script>
-import '@/components/css/register/style.scss';
-
 export default {
   name: 'EmailInput',
-  components: {},
-  methods: {
-    nextButton: function(event) {
-      alert('다음 버튼 클릭');
-    },
-  },
-  data() {
+  data: function() {
     return {
       email: '',
-      rules: {
-        required: (value) => !!value || '필수로 입력해야 합니다..',
-        email: (value) => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(value) || '이메일 형식에 맞춰 작성해주세요.';
-        },
-      },
+      isActive: false,
+      emailRule: [
+        (v) =>
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          '이메일 형식에 맞춰 작성해주세요.',
+      ],
     };
+  },
+  methods: {
+    validateEmail: function() {
+      const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+      if (regex.test(this.email)) {
+        this.isActive = true;
+      } else {
+        this.isActive = false;
+      }
+    },
+    goPassword: function() {
+      this.$emit('pass'); // 상위 컴포넌트로 이벤트 전달
+    },
+  },
+  watch: {
+    email: function() {
+      // email 값이 변경될 때마다 다음 버튼을 활성화하기위한 함수 호출
+      this.validateEmail();
+    },
   },
 };
 </script>

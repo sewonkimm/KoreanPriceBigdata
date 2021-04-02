@@ -1,25 +1,15 @@
 <template>
   <div class="register">
-    <!-- 로고 -->
-    <div class="logo">
-      <LogoName />
-    </div>
-    <div class="email" v-if="!isEmailCheck">
-      <EmailInput />
-      <button class="nextButton" v-on:click="isEmailCheck = !isEmailCheck">
-        다음
-      </button>
-    </div>
-    <div class="password" v-if="isEmailCheck">
-      <PasswordInput />
-    </div>
+    <LogoName />
+    <EmailInput v-if="!emailStatus" v-on:pass="checkEmail" />
+    <PasswordInput v-if="emailStatus" />
   </div>
 </template>
 <script>
 import '@/components/css/register/style.scss';
 import { LogoName } from '@/assets/index.js';
-import EmailInput from '@/components/register/emailInput.vue';
-import PasswordInput from '@/components/register/passwordInput.vue';
+import EmailInput from '@/components/register/emailInput';
+import PasswordInput from '@/components/register/passwordInput';
 
 export default {
   name: 'Register',
@@ -30,9 +20,14 @@ export default {
   },
   data: function() {
     return {
-      isEmailCheck: false,
+      isActive: false, // 다음 버튼 활성화 비활성화 결정
+      emailStatus: false,
     };
   },
-  methods: {},
+  methods: {
+    checkEmail: function() {
+      this.emailStatus = true;
+    },
+  },
 };
 </script>
