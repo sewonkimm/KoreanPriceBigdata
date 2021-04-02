@@ -4,7 +4,7 @@
 
 <mapper namespace="com.ssafy.j301.mapper.IngredientMapper">
 
-	<resultMap type="com.ssafy.j301.ingredient.IngredientAvg"
+	<resultMap type="com.ssafy.j301.ingredientAvg.IngredientAvg"
 		id="IngredientAvg">
 		<result column="ingredient_id" property="ingredientId" />
 		<result column="ingredient_avg_date"
@@ -25,6 +25,8 @@
 			property="ingredientDetailNameCode" />
 		<result column="ingredient_category"
 			property="ingredientCategory" />
+		<result column="favorite"
+			property="favorite" />
 		<collection property="ingredientAvg"
 			resultMap="IngredientAvg" />
 	</resultMap>
@@ -35,22 +37,87 @@
 
 		ingredient.ingredient_id,
 		ingredient.ingredient_name,
-		ingredient.ingredient_name_code,
-		ingredient.ingredient_detail_name,
-		ingredient.ingredient_detail_name_code,
 		ingredient.ingredient_category,
-		ingredient_avg.ingredient_id,
 		ingredient_avg.ingredient_avg_id,
 		ingredient_avg.ingredient_avg_price,
 		ingredient_avg.ingredient_avg_date,
-		ingredient_avg.ingredient_avg_predict_price
+		ingredient_avg.ingredient_avg_predict_price,
+		(
+		SELECT count(*)
+		FROM watch
+		WHERE ingredient.ingredient_id = watch.ingredient_id
+		) AS "count"
 
-		FROM ingredient
+		FROM
+		ingredient LEFT OUTER JOIN ingredient_avg ON ingredient.ingredient_id
+		= ingredient_avg.ingredient_id, watch
 
-		LEFT JOIN
-		ingredient_avg ON ingredient.ingredient_id =
-		ingredient_avg.ingredient_id
+		WHERE
+		ingredient_avg.ingredient_avg_date = "2019-01-01" AND
+		watch.watch_date
+		= "2019-01-01"
 
+		GROUP BY ingredient.ingredient_id
+
+		ORDER BY (
+		SELECT
+		count(*)
+		FROM watch
+		WHERE ingredient.ingredient_id = watch.ingredient_id
+		) DESC;
+
+
+	</select>
+
+	<select id="selectAllByLogin" resultMap="Ingredient">
+
+		SELECT
+
+		ingredient.ingredient_id,
+		ingredient.ingredient_name,
+		ingredient.ingredient_category,
+		ingredient_avg.ingredient_avg_id,
+		ingredient_avg.ingredient_avg_price,
+		ingredient_avg.ingredient_avg_date,
+		ingredient_avg.ingredient_avg_predict_price,
+		CASE WHEN
+		ingredient.ingredient_id IN (
+		SELECT ingredient_id
+		FROM favorite
+		WHERE
+		member_id = #{memberId}
+		) THEN 1 ELSE 0 END AS favorite,
+		(
+		SELECT
+		count(*)
+		FROM watch
+		WHERE ingredient.ingredient_id = watch.ingredient_id
+		) AS "count"
+
+		FROM ingredient LEFT OUTER JOIN ingredient_avg ON
+		ingredient.ingredient_id
+		= ingredient_avg.ingredient_id, watch,
+		favorite
+
+		WHERE
+		ingredient_avg.ingredient_avg_date = "2019-01-01" AND
+		watch.watch_date
+		= "2019-01-01"
+
+		GROUP BY ingredient.ingredient_id
+
+		ORDER
+		BY CASE WHEN ingredient.ingredient_id in (
+		SELECT ingredient_id
+		FROM
+		favorite
+		WHERE member_id = #{memberId}
+		) THEN 1 ELSE 0 END DESC, (
+		SELECT
+		count(*)
+		FROM watch
+		WHERE ingredient.ingredient_id = watch.ingredient_id
+		) DESC;
 	</select>
 
 	<select id="selectByIngredientId" resultMap="Ingredient">
@@ -76,7 +143,36 @@
 		ingredient_avg.ingredient_id
 
 		WHERE ingredient.ingredient_id =
-		#{ingredientId}
+		#{ingredientId} AND ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(NOW(), "%y-%c-%e")
+
+	</select>
+
+	<select id="selectByIngredientName" resultMap="Ingredient">
+
+		SELECT
+
+		ingredient.ingredient_id,
+		ingredient.ingredient_name,
+		ingredient.ingredient_name_code,
+		ingredient.ingredient_detail_name,
+		ingredient.ingredient_detail_name_code,
+		ingredient.ingredient_category,
+		ingredient_avg.ingredient_id,
+		ingredient_avg.ingredient_avg_id,
+		ingredient_avg.ingredient_avg_price,
+		ingredient_avg.ingredient_avg_date,
+		ingredient_avg.ingredient_avg_predict_price
+
+		FROM ingredient
+
+		LEFT JOIN
+		ingredient_avg ON ingredient.ingredient_id =
+		ingredient_avg.ingredient_id
+
+		WHERE ingredient.ingredient_name =
+		#{ingredientName} AND ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(NOW(), "%y-%c-%e")
 
 	</select>
 </mapper>

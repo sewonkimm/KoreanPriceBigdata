@@ -38,9 +38,9 @@ public class MemberService {
 		String password = sha256.encryption(member.getMemberPassword());
 		member.setMemberPassword(password);
 
-		int matchMember = memberMapper.getMemberByMemberEmailAndPassword(member);
+		Member matchMember = memberMapper.getMemberByMemberEmailAndPassword(member);
 
-		if (matchMember != 1) {
+		if (matchMember == null) {
 			throw new LoginFailedException("샤용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
 		}
 
@@ -50,7 +50,19 @@ public class MemberService {
 		resultMap.put("accesstoken", token);
 		resultMap.put("message", "Success");
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
-
 	}
 
+	public ResponseEntity<Map<String, Object>> social(Member member) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		if (!memberMapper.checkEmail(member.getMemberEmail())) {
+			memberMapper.insertMember(member);
+		}
+		
+		String token = jwtService.create(member);
+		resultMap.put("accesstoken", token);
+		resultMap.put("message", "Success");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
+	}
 }

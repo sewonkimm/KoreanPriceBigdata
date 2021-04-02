@@ -1,10 +1,13 @@
 package com.ssafy.j301.ingredient;
 
+import com.ssafy.j301.ingredientAvg.IngredientAvg;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ingredient {
@@ -22,4 +25,8 @@ public class Ingredient {
 	private String ingredientCategory;
 
 	private IngredientAvg ingredientAvg;
+	
+	private int favorite;
+	
+	private int status;
 }

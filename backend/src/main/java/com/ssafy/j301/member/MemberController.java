@@ -2,6 +2,7 @@ package com.ssafy.j301.member;
 
 import java.util.Map;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Members", description = "사용자  API")
+@CrossOrigin
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/members")
@@ -31,5 +33,12 @@ public class MemberController {
 	public ResponseEntity<Map<String, Object>> login(@RequestBody Member member) {
 
 		return memberService.login(member);
+	}
+	
+	@ApiOperation(value = "소셜 로그인", notes = "로그인 성공 시 토큰을 반환합니다.")
+	@PostMapping("/social")
+	public ResponseEntity<Map<String, Object>> social(@RequestBody Member member) {
+		
+		return memberService.social(member);
 	}
 }
