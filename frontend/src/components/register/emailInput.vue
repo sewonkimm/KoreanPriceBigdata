@@ -13,7 +13,7 @@
     <v-btn
       @click="goPassword()"
       :disabled="!isActive"
-      :class="{ active: isActive, nextButton: 'nextButton' }"
+      :class="{ active: isActive, goPasswordButton: 'goPasswordButton' }"
       height="63"
       >다음</v-btn
     >
