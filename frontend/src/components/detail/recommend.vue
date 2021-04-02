@@ -14,18 +14,22 @@
       >
     </v-tabs>
 
-    <PopularRecommend v-show="tab === 0" height="300" />
+    <PopularRecommend v-show="tab === 0" class="recommend" />
+    <CheapRecommend v-show="tab === 1" class="recommend" />
   </div>
 </template>
 <script>
 // import { Hot } from '@/assets/index.js';
 import '@/components/css/detail/recommend.scss';
 import PopularRecommend from './popularRecommend';
+import CheapRecommend from './cheapRecommend';
+
 export default {
   name: 'Recommend',
   components: {
     // Hot,
     PopularRecommend,
+    CheapRecommend,
   },
   data() {
     return {
