@@ -21,7 +21,6 @@ public class Member {
 	@NonNull
 	private String memberName;
 
-	@NonNull
 	private String memberPassword;
 
 	private LocalDate memberBirth;
@@ -30,4 +29,5 @@ public class Member {
 
 	private String memberArea;
 
+	private String memberPlatformType;
 }
