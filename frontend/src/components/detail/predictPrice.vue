@@ -36,18 +36,55 @@ export default {
     Up,
     Down,
   },
+  created() {
+    this.ingredientId = this.$route.params.id;
+
+    this.getIngredientPrice(this.ingredientId);
+    this.getIngredientPriceInterval(this.ingredientId);
+    this.getIngredientPriceRate(this.ingredientId);
+    this.getIngredientWatchs(this.ingredientId);
+  },
   data() {
     return {
-      price: 1100, // 예측가격
-      rangePrice: 1200, // 등락 가격
-      rangePercent: 0.8, // 등락률
+      price: '', // 예측가격
+      rangePrice: '', // 등락 가격
+      rangePercent: '', // 등락률
       isUp: false, // 상승, 하락에 따른 스타일 적용을 위한 state
-      count: 1390,
+      count: '',
+      previousPrice: '',
     };
   },
   filters: {
     comma(val) {
       return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
+  },
+  methods: {
+    getIngredientPrice(ingredientId) {
+      this.$axios({
+        url: '/ingredients/detailId/' + ingredientId,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.price = response.data.ingredientAvg.ingredientAvgPredictPrice;
+          this.previousPrice = response.data.ingredientAvg.ingredientAvgPrice;
+          this.rangePercent = ((this.price - this.previousPrice) / this.previousPrice) * 100;
+          this.rangePrice = this.price - this.previousPrice;
+          if (this.rangePrice > 0) {
+            this.isUp = true;
+          }
+        })
+        .catch(() => {});
+    },
+    getIngredientWatchs(ingredientId) {
+      this.$axios({
+        url: '/watches/' + ingredientId,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.count = response.data;
+        })
+        .catch(() => {});
     },
   },
 };
