@@ -5,7 +5,7 @@
 
     <!-- body -->
     <v-container class="justify-center align-center contents">
-      <v-row class="row">
+      <v-row class="row row-1">
         <v-col :cols="3">
           <v-card class="pa-2 flip-vertical-left" @mouseenter.stop="changePrice">
             <CurrentPrice v-if="isCurrentPrice" />
@@ -16,7 +16,7 @@
           <v-card class="pa-2">
             <div class="lineChart">
               1년 가격 추이
-              <LineChart />
+              <LineChart :height="300" />
             </div>
           </v-card>
         </v-col>
