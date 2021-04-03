@@ -21,10 +21,10 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row class="row">
+      <v-row class="row row-2">
         <v-col :cols="6">
           <v-card class="pa-2">
-            쇼핑몰별 최저가
+            <Shopping />
           </v-card>
         </v-col>
         <v-col :cols="6">
@@ -41,8 +41,9 @@ import '@/components/css/detail/style.scss';
 import Header from '@/components/detail/header';
 import CurrentPrice from '@/components/detail/currentPrice';
 import PredictPrice from '@/components/detail/predictPrice';
-import Recommend from '@/components/detail/recommend';
 import LineChart from '@/components/detail/lineChart';
+import Shopping from '@/components/detail/shopping';
+import Recommend from '@/components/detail/recommend';
 
 export default {
   name: 'Detail',
@@ -50,8 +51,9 @@ export default {
     Header,
     CurrentPrice,
     PredictPrice,
-    Recommend,
     LineChart,
+    Shopping,
+    Recommend,
   },
   data() {
     return {
@@ -62,18 +64,6 @@ export default {
     changePrice: function() {
       this.isCurrentPrice = !this.isCurrentPrice;
     },
-  },
-  created: function() {
-    this.$axios({
-      url: `/shoppings/${this.$route.params.id}`,
-      method: 'GET',
-    })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   },
 };
 </script>
