@@ -1,0 +1,51 @@
+/*******************************************************************
+// 위치 : src/components/css/main/onboard.scss 
+// 설명 : 온보드 view에 적용되는 스타일에 대해 정의함 
+********************************************************************/
+
+@import "../colors.scss";
+
+.onboard {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $basic-white;
+
+    .logo {
+        width: 364px;
+        height: 59px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        margin-top: 0;
+    }
+
+    .page {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .textContainer {
+        margin-left: 76px;
+
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 32px;
+            font-weight: bold;
+            font-size: 64px;
+        }
+        p {
+            font-weight: normal;
+            font-size: 36px;
+        }
+        .nextButton {
+            margin-top: 70px;
+            font-weight: bold;
+            font-size: 28px;
+            color: $basic-white;
+            border-radius: 70px;
+        }
+    }
+}
