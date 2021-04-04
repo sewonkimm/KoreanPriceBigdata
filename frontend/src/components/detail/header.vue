@@ -6,7 +6,6 @@
           <v-icon color="white">mdi-chevron-left</v-icon>
         </v-btn>
       </v-app-bar-nav-icon>
-      <!-- <v-toolbar-title class="title">{{ $route.params.id }}</v-toolbar-title> -->
       <v-toolbar-title class="title">{{ ingredientName }}</v-toolbar-title>
       <v-btn icon>
         <v-icon color="white">mdi-heart-outline</v-icon>
