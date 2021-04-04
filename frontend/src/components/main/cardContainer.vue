@@ -26,6 +26,9 @@ export default {
               .toString()
               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
+            // 상품 이미지 추가
+            item.imageURL = `https://j4a301.p.ssafy.io/ingredients/ingredients_${item.ingredientId}.png`;
+
             // 유형에 따라 다른 색상으로 북마크 표시
             if (item.ingredientCategory === '농산') {
               item.bookmark = BookmarkGreen;

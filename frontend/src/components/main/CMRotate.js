@@ -359,6 +359,12 @@ const CMRotate =
         name.innerText = _bgArr[id].title;
         div.appendChild(name);
       } else {
+        // 상품 이미지
+        const ingredientImage = document.createElement('img');
+        ingredientImage.className = 'ingredientImage';
+        ingredientImage.src = _bgArr[id].imageURL;
+        div.appendChild(ingredientImage);
+
         // cursor event용 div
         const cursorWrapper = document.createElement('div');
         cursorWrapper.className = 'cursorWrapper';
