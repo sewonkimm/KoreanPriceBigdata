@@ -16,7 +16,10 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in items" :key="index">
-          <td>{{ item.ingredientName }}</td>
+          <td v-if="item.ingredientDetailName == null">
+            {{ item.ingredientName }}
+          </td>
+          <td v-else>{{ item.ingredientDetailName }}</td>
           <td>2300</td>
           <td>{{ item.rate }}%</td>
         </tr>
@@ -29,34 +32,27 @@ export default {
   name: 'CheapRecommend',
   data() {
     return {
-      items: [
-        {
-          ingredientId: 42,
-          ingredientName: '새송이버섯',
-          rate: -1.91,
-        },
-        {
-          ingredientId: 42,
-          ingredientName: '새송이버섯',
-          rate: -1.91,
-        },
-        {
-          ingredientId: 42,
-          ingredientName: '새송이버섯',
-          rate: -1.91,
-        },
-        {
-          ingredientId: 42,
-          ingredientName: '새송이버섯',
-          rate: -1.91,
-        },
-        {
-          ingredientId: 42,
-          ingredientName: '새송이버섯',
-          rate: -1.91,
-        },
-      ],
+      items: [],
     };
+  },
+  methods: {
+    getFluctuationRecommand: function() {
+      this.$axios({
+        url: '/fluctuationRates/rate/' + this.$route.params.id,
+        method: 'GET',
+      })
+        .then((response) => {
+          console.log('등락률');
+          console.log(response);
+          this.items = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  created() {
+    this.getFluctuationRecommand();
   },
 };
 </script>

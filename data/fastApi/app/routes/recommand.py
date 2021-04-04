@@ -69,9 +69,11 @@ def recommand(memberId: int, session: Session = Depends(db.session)):
         if np.math.isnan(df.loc[[memberId], [ingredient_id]].values[0][0]):
             result.append(ingredient_id)
     data = []
-    for ingredient_id in result[0:5]:
-        query = session.query(ingredient).filter(ingredient.ingredient_id == ingredient_id)
-        data.append(query.first())
+    for ingredient_id in result[0:3]:
+        query = session.query(ingredient.ingredient_id, ingredient.ingredient_name, ingredient.ingredient_detail_name,ingredient.ingredient_category).filter(ingredient.ingredient_id == ingredient_id)
+        response = query.first()
+        reDesign = {'ingredientId': response[0], 'ingredientName': response[1], 'ingredientDetailName': response[2], 'ingredientCategory': response[3]}
+        data.append(reDesign)
     print(data)
     return data
 

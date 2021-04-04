@@ -8,6 +8,7 @@
 </template>
 <script>
 import CFRecommendCard from './CFRecommendCard';
+import axios from 'axios';
 
 export default {
   name: 'CFRecommend',
@@ -16,24 +17,28 @@ export default {
   },
   data() {
     return {
-      items: [
-        {
-          ingredientId: 1,
-          ingredientName: '감자',
-          ingredientCategory: '농산',
-        },
-        {
-          ingredientId: 2,
-          ingredientName: '고등어',
-          ingredientCategory: '수산',
-        },
-        {
-          ingredientId: 11,
-          ingredientName: '쇠고기',
-          ingredientCategory: '축산',
-        },
-      ],
+      items: [],
     };
+  },
+  methods: {
+    getCFRecommand: function() {
+      const instance = axios.create({
+        baseURL: 'http://localhost:8000',
+      });
+      instance
+        .get('/recommand/latent/' + this.$route.params.id)
+        .then((response) => {
+          console.log('추천');
+          console.log(response);
+          this.items = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  created() {
+    this.getCFRecommand();
   },
 };
 </script>

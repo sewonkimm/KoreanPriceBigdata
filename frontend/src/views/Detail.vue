@@ -65,7 +65,7 @@ export default {
   },
   created: function() {
     this.$axios({
-      url: `/shoppings/${this.$route.params.id}`,
+      url: '/shoppings/' + this.$route.params.id,
       method: 'GET',
     })
       .then((response) => {
