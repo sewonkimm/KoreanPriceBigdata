@@ -42,6 +42,10 @@ public class IngredientService {
 		return ingredientMapper.selectByIngredientName(ingredientName);
 	}
 
+	public List<RequestIngredientName> selectAllName() {
+		return ingredientMapper.selectAllName();
+	}
+
 	public List<Ingredient> insertStatus(List<Ingredient> list) {
 		List<Popularity> bestList = popularityMapper.selectPopularity();
 		List<FluctuationRate> warningList = fluctuationRateMapper.selectRateOfRise();
