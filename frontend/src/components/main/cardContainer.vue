@@ -2,7 +2,7 @@
   <div class="cardContainer" id="cardContainer"></div>
 </template>
 <script>
-import { Login } from '@/assets/index.js';
+import { Login, BookmarkGreen, BookmarkBlue, BookmarkRed, Hot, Warning } from '@/assets/index.js';
 import CMRotate from '@/components/main/CMRotate.js';
 
 export default {
@@ -10,22 +10,6 @@ export default {
   data() {
     return {
       item: [],
-      //   item: {
-      //     ingredientId: 3,
-      //     ingredientName: '배추',
-      //     ingredientNameCode: '211',
-      //     ingredientDetailName: null,
-      //     ingredientDetailNameCode: null,
-      //     ingredientCategory: '농산',
-      //     ingredientAvg: {
-      //       ingredientId: 3,
-      //       ingredientAvgDate: '2021-03-19',
-      //       ingredientAvgPrice: 3794,
-      //       ingredientAvgPredictPrice: 0,
-      //     },
-      //     bookmark: BookmarkGreen,
-      //     status: Hot,
-      //   },
     };
   },
   methods: {
@@ -37,9 +21,26 @@ export default {
       })
         .then((response) => {
           this.item = response.data.map((item) => {
+            // 숫자 3자리 수에 맞춰 comma 표시
             item.ingredientAvg.ingredientAvgPrice = item.ingredientAvg.ingredientAvgPrice
               .toString()
               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+
+            // 유형에 따라 다른 색상으로 북마크 표시
+            if (item.ingredientCategory === '농산') {
+              item.bookmark = BookmarkGreen;
+            } else if (item.ingredientCategory === '수산') {
+              item.bookmark = BookmarkBlue;
+            } else if (item.ingredientCategory === '축산') {
+              item.bookmark = BookmarkRed;
+            }
+
+            // status 표시 (1: 인기상품, 2: 비추천상품)
+            if (item.status === 1) {
+              item.status = Hot;
+            } else if (item.status === 2) {
+              item.status = Warning;
+            }
             return item;
           });
 
@@ -72,9 +73,7 @@ export default {
         title: '로그인',
         status: Login,
       };
-      for (let index = 0; index < 12; index++) {
-        this.item.push(loginCard);
-      }
+      this.item.push(loginCard);
     },
   },
   created() {

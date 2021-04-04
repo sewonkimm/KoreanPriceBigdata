@@ -383,24 +383,23 @@ const CMRotate =
         cardNumber.className = 'num';
         cardNumber.innerText = id;
         // 즐겨찾기 표시
-        // if (_bgArr[id].bookmark) {
-        //   const bookmark = document.createElement('div');
-        //   bookmark.className = 'bookmark';
-        //   bookmark.style.width = '33px';
-        //   bookmark.style.height = '41px';
-        //   bookmark.style.background = 'url(' + _bgArr[id].bookmark + ')';
-        //   div.appendChild(bookmark);
-        // }
-        // // status 표시
-        // if (_bgArr[id].status) {
-        //   const status = document.createElement('div');
-        //   status.className = 'status';
-        //   status.setAttribute('data-category', _bgArr[id].ingredientCategory);
-        //   status.style.width = '39px';
-        //   status.style.height = '39px';
-        //   status.style.background = 'url(' + _bgArr[id].status + ')';
-        //   div.appendChild(status);
-        // }
+        if (_bgArr[id].favorite === 1) {
+          const bookmark = document.createElement('div');
+          bookmark.className = 'bookmark';
+          bookmark.style.width = '33px';
+          bookmark.style.height = '41px';
+          bookmark.style.background = 'url(' + _bgArr[id].bookmark + ')';
+          div.appendChild(bookmark);
+        }
+        // status 표시
+        if (_bgArr[id].status !== 0) {
+          const status = document.createElement('div');
+          status.className = 'status';
+          status.style.width = '39px';
+          status.style.height = '39px';
+          status.style.background = 'url(' + _bgArr[id].status + ')';
+          div.appendChild(status);
+        }
         // card에 삽입
         div.appendChild(cursorWrapper);
         div.appendChild(name);
