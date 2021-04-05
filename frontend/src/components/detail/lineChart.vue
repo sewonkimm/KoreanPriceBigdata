@@ -1,5 +1,6 @@
 <script>
 import { Line } from 'vue-chartjs';
+import zoom from 'chartjs-plugin-zoom';
 export default {
   extends: Line,
   created() {
@@ -14,8 +15,8 @@ export default {
       datasets: [
         {
           label: '가격 그래프',
-          borderColor: '#FF9551',
-          pointBackgroundColor: '#FF9551',
+          borderColor: 'rgb(229, 85, 114)',
+          pointBackgroundColor: 'rgb(229, 85, 114)',
           backgroundColor: 'transparent',
           data: [],
           pointRadius: 0,
@@ -24,8 +25,8 @@ export default {
         },
         {
           label: '가격 예측 그래프',
-          borderColor: ' #78D0FF',
-          pointBackgroundColor: '#78D0FF',
+          borderColor: ' rgb(72, 140, 222)',
+          pointBackgroundColor: 'rgb(229, 85, 114)',
           backgroundColor: 'transparent',
           data: [],
           pointRadius: 0,
@@ -38,6 +39,14 @@ export default {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        zoom: {
+          zoom: {
+            enabled: true,
+            mode: 'x',
+          },
+        },
+      },
       scales: {
         xAxes: [
           {
@@ -61,7 +70,7 @@ export default {
             },
             scaleLabel: {
               display: true,
-              labelString: '단위: 천원',
+              labelString: '단위: 원',
               fontColor: 'green',
             },
           },
@@ -95,6 +104,7 @@ export default {
     },
   },
   mounted() {
+    this.addPlugin(zoom);
     this.renderChart(this.chartdata, this.options);
   },
 };
