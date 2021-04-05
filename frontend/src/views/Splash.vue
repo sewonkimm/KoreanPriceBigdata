@@ -32,6 +32,7 @@ export default {
   },
   mounted() {
     setTimeout(this.startOnboarding, 2500);
+    this.$store.commit('READSPLASH');
   },
 };
 </script>
