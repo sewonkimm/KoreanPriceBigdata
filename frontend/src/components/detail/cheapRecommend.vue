@@ -42,8 +42,6 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          console.log('등락률');
-          console.log(response);
           this.items = response.data;
         })
         .catch((error) => {
