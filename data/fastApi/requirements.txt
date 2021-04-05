@@ -1,9 +1,15 @@
-fastapi
-uvicorn
-pymysql
-sqlalchemy
+beautifulsoup4
+fastapi==0.63.0
+lxml @ file:///C:/ci/lxml_1616443391272/work
 numpy==1.17.3
 pandas==0.25.3
-lxml
-requests
-bs4
+pydantic==1.8.1
+PyMySQL @ file:///C:/ci/pymysql_1610464946597/work
+requests @ file:///tmp/build/80754af9/requests_1608241421344/work
+scikit-learn @ file:///C:/ci/scikit-learn_1614446716349/work
+scipy @ file:///C:/ci/scipy_1616703425152/work
+sklearn==0.0
+SQLAlchemy @ file:///C:/ci/sqlalchemy_1612467804654/work
+starlette==0.13.6
+urllib3 @ file:///tmp/build/80754af9/urllib3_1615837158687/work
+uvicorn==0.13.4
