@@ -28,11 +28,20 @@
         }
     }
 
+    // 첫째줄
     .row-1 {
       .v-card {
         height: 366px;
       }
     }
+
+    // 둘째줄
+    .row-2 {
+      .v-card {
+        height: 440px;
+      }
+    }
+
 
     // flip animation
     .flip-vertical-left:hover {

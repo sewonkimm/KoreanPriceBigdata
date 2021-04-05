@@ -8,5 +8,12 @@ export default new Vuex.Store({
     splash: true,
     userId: '',
   },
-  mutations: {},
+  mutations: {
+    SOCIALLOGIN: (state, id) => {
+      state.userId = id;
+    },
+    LOGOUT: (state) => {
+      state.userId = '';
+    },
+  },
 });

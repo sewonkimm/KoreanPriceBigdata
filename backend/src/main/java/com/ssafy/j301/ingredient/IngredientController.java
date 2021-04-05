@@ -42,4 +42,10 @@ public class IngredientController {
 	public Ingredient selectByIngredientName(@PathVariable String ingredientName) {
 		return ingredientService.selectByIngredientName(ingredientName);
 	}
+
+	@ApiOperation(value = "농축산물 83개 항목 이름 조회", notes = "IngredientId, IngredientName을 조회합니다.")
+	@GetMapping("/ingredientName")
+	public List<RequestIngredientName> selectAllName() {
+		return ingredientService.selectAllName();
+	}
 }
