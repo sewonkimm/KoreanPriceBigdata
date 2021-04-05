@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     splash: true,
-    userId: '',
+    userId: '1',
   },
   mutations: {
     SOCIALLOGIN: (state, id) => {
