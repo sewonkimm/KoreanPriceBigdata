@@ -74,7 +74,6 @@ def recommand(memberId: int, session: Session = Depends(db.session)):
         response = query.first()
         reDesign = {'ingredientId': response[0], 'ingredientName': response[1], 'ingredientDetailName': response[2], 'ingredientCategory': response[3]}
         data.append(reDesign)
-    print(data)
     return data
 
 
