@@ -19,9 +19,13 @@
       </v-container>
     </v-form>
 
-    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" height="63" @click="login"
-      >로그인</v-btn
-    >
+    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" height="63" @click="login">
+      로그인
+    </v-btn>
+
+    <v-alert :value="showError" type="error" class="error">
+      {{ errorMessage }}
+    </v-alert>
   </div>
 </template>
 <script>
@@ -33,6 +37,8 @@ export default {
       password: '',
       showText: false, // 비밀번호 보여줄지 말지 결정
       isActive: false, // 로그인 버튼 활성화 비활성화 결정
+      showError: false,
+      errorMessage: '',
     };
   },
   watch: {
@@ -65,8 +71,19 @@ export default {
           memberPlatformType: '',
         },
       })
-        .then(() => {
-          this.$router.push({ name: 'Main' });
+        .then((response) => {
+          this.$store.commit('LOGIN', response.data.accesstoken);
+          if (!this.$store.state.error) {
+            // 로그인 성공시 메인 페이지로 분기
+            this.$router.push({ name: 'Main' });
+          } else {
+            this.showError = true;
+            this.errorMessage = '로그인에 실패했습니다.';
+
+            setTimeout(() => {
+              this.showError = false;
+            }, 5000);
+          }
         })
         .catch((error) => {
           console.error(error);
