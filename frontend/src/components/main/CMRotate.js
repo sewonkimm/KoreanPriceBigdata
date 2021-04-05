@@ -344,8 +344,8 @@ const CMRotate =
       div.style.position = 'absolute';
       div.className = 'card';
 
-      // 로그인 카드
-      if (_bgArr[id].ingredientId === -1) {
+      // 로그인,로그아웃 카드
+      if (_bgArr[id].ingredientId < 0) {
         // 로그인 아이콘
         const status = document.createElement('div');
         status.className = 'status';
