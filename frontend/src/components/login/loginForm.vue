@@ -65,8 +65,7 @@ export default {
           memberPlatformType: '',
         },
       })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           this.$router.push({ name: 'Main' });
         })
         .catch((error) => {
