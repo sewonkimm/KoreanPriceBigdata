@@ -42,7 +42,6 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          console.log(response.data);
           this.items = response.data;
         })
         .catch((error) => {
