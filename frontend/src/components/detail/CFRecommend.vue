@@ -32,8 +32,6 @@ export default {
       instance
         .get('/recommand/latent/' + this.$route.params.id)
         .then((response) => {
-          console.log('추천');
-          console.log(response);
           this.items = response.data;
         })
         .catch((error) => {
