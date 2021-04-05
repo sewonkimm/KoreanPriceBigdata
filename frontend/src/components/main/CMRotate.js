@@ -378,7 +378,7 @@ const CMRotate =
         name.innerText = _bgArr[id].ingredientName;
         // 상품명이 5글자 이상일 경우 폰트 조정
         if (_bgArr[id].ingredientName.length >= 5) {
-          name.className = 'nameSmall';
+          name.className = 'longName';
         }
         // 가격
         const priceWrapper = document.createElement('div');
