@@ -22,5 +22,5 @@ public class Member {
 	private String memberPassword;
 
 	private String memberPlatformType;
-
+	
 }
