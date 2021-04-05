@@ -59,6 +59,9 @@ export default {
       passwordConfirmationRule: [(value) => this.password === value || '비밀번호가 같지 않습니다.'],
     };
   },
+  props: {
+    email: String,
+  },
   methods: {
     validatePassword: function() {
       const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
@@ -70,8 +73,26 @@ export default {
       return this.password === this.passwordConfirm ? true : false;
     },
     register: function() {
-      alert('회원가입 완료! 메인 페이지로 이동합니다 :)');
-      this.$router.push('/');
+      this.$axios({
+        url: '/members/signup',
+        method: 'POST',
+        data: {
+          memberEmail: this.email,
+          memberPassword: this.password,
+          memberName: '',
+          memberGender: '',
+          memberArea: '',
+          memberBirth: '',
+          memberPlatformType: '',
+        },
+      })
+        .then(() => {
+          this.$router.push({ name: 'Login' });
+        })
+        .catch((error) => {
+          console.error(error);
+          alert('회원가입 실패 : 이메일과 비밀번호를 확인해주세요.');
+        });
     },
   },
   watch: {
