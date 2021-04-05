@@ -52,8 +52,6 @@ export default {
           this.id = response.data.map((item) => {
             return item.ingredientId;
           });
-          console.log(this.id);
-          console.log(this.chartdata);
         })
         .catch((error) => {
           console.error(error);
