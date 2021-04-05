@@ -42,9 +42,8 @@ export default {
           this.chartdata.labels = response.data.map((item) => {
             if (item.ingredientDetailName == null) {
               return item.ingredientName;
-            } else {
-              return item.ingredientDetailName;
             }
+            return item.ingredientDetailName;
           });
           this.chartdata.datasets.data = response.data.map((item) => {
             return item.Popularity;
