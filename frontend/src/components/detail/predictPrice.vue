@@ -68,7 +68,10 @@ export default {
         .then((response) => {
           this.price = response.data.ingredientAvg.ingredientAvgPredictPrice;
           this.previousPrice = response.data.ingredientAvg.ingredientAvgPrice;
-          this.rangePercent = ((this.price - this.previousPrice) / this.previousPrice) * 100;
+          this.rangePercent = (
+            ((this.price - this.previousPrice) / this.previousPrice) *
+            100
+          ).toFixed(2);
           this.rangePrice = this.price - this.previousPrice;
           if (this.rangePrice > 0) {
             this.isUp = true;
