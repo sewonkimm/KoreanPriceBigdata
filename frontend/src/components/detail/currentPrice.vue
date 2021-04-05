@@ -13,22 +13,17 @@
         <Down v-else class="arrow" />
       </div>
     </div>
-    <div class="message">
-      <Eyes />
-      <p>오늘 {{ count | comma }}명의 사람들이 조회했어요!</p>
-    </div>
   </div>
 </template>
 <script>
 import '@/components/css/detail/priceComponent.scss';
-import { Up, Down, Eyes } from '@/assets/index.js';
+import { Up, Down } from '@/assets/index.js';
 
 export default {
   name: 'CurrentPrice',
   components: {
     Up,
     Down,
-    Eyes,
   },
   created() {
     this.ingredientId = this.$route.params.id;
@@ -36,7 +31,6 @@ export default {
     this.getIngredientPrice(this.ingredientId);
     this.getIngredientPriceInterval(this.ingredientId);
     this.getIngredientPriceRate(this.ingredientId);
-    this.getIngredientWatchs(this.ingredientId);
   },
   data() {
     return {
@@ -44,7 +38,6 @@ export default {
       rangePrice: '', // 등락 가격
       rangePercent: '', // 등락률
       isUp: false, // 상승, 하락에 따른 스타일 적용을 위한 state
-      count: '',
       ingredientId: '',
     };
   },
@@ -62,7 +55,9 @@ export default {
         .then((response) => {
           this.price = response.data;
         })
-        .catch(() => {});
+        .catch((error) => {
+          console.error(error);
+        });
     },
     getIngredientPriceInterval(ingredientId) {
       this.$axios({
@@ -72,7 +67,9 @@ export default {
         .then((response) => {
           this.rangePrice = response.data;
         })
-        .catch(() => {});
+        .catch((error) => {
+          console.error(error);
+        });
     },
     getIngredientPriceRate(ingredientId) {
       this.$axios({
@@ -85,17 +82,9 @@ export default {
             this.isUp = true;
           }
         })
-        .catch(() => {});
-    },
-    getIngredientWatchs(ingredientId) {
-      this.$axios({
-        url: '/watches/' + ingredientId,
-        method: 'GET',
-      })
-        .then((response) => {
-          this.count = response.data;
-        })
-        .catch(() => {});
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
 };

@@ -68,16 +68,13 @@ export default {
             },
           })
             .then((response) => {
-              if (response.status == 202) {
-                const token = response.data.accesstoken;
-                localStorage.setItem('accesstoken', token);
-                this.$store.commit('SOCIALLOGIN', this.id);
-                alert('구글 로그인에 성공하셨습니다.');
-              } else {
-                alert('구글 로그인에 실패했습니다.');
-              }
+              const token = response.data.accesstoken;
+              localStorage.setItem('accesstoken', token);
+              this.$store.commit('SOCIALLOGIN', this.id);
+              alert('구글 로그인에 성공하셨습니다.');
             })
             .catch((error) => {
+              alert('구글 로그인에 실패했습니다.');
               console.error(error);
             });
         });
@@ -93,7 +90,7 @@ export default {
         url: '/v2/user/me',
         success: async (res) => {
           const kakaoAccount = res.kakao_account;
-          let gender = '';
+          let gender = null;
           if (kakaoAccount.gender === 'female') {
             gender = 'F';
           } else if (kakaoAccount.gender === 'male') {
@@ -118,17 +115,14 @@ export default {
               },
             })
               .then((response) => {
-                if (response.status == 202) {
-                  const token = response.data.accesstoken;
-                  this.id = kakaoAccount.email;
-                  localStorage.setItem('accesstoken', token);
-                  this.$store.commit('SOCIALLOGIN', this.id);
-                  alert('카카오 로그인에 성공하셨습니다.');
-                } else {
-                  alert('카카오 로그인에 실패했습니다.');
-                }
+                const token = response.data.accesstoken;
+                this.id = kakaoAccount.email;
+                localStorage.setItem('accesstoken', token);
+                this.$store.commit('SOCIALLOGIN', this.id);
+                alert('카카오 로그인에 성공하셨습니다.');
               })
               .catch((error) => {
+                alert('카카오 로그인에 실패했습니다.');
                 console.error(error);
               });
           }
