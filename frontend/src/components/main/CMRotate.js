@@ -344,8 +344,8 @@ const CMRotate =
       div.style.position = 'absolute';
       div.className = 'card';
 
-      // 로그인 카드
-      if (_bgArr[id].ingredientId === -1) {
+      // 로그인,로그아웃 카드
+      if (_bgArr[id].ingredientId < 0) {
         // 로그인 아이콘
         const status = document.createElement('div');
         status.className = 'status';
@@ -359,6 +359,12 @@ const CMRotate =
         name.innerText = _bgArr[id].title;
         div.appendChild(name);
       } else {
+        // 상품 이미지
+        const ingredientImage = document.createElement('img');
+        ingredientImage.className = 'ingredientImage';
+        ingredientImage.src = _bgArr[id].imageURL;
+        div.appendChild(ingredientImage);
+
         // cursor event용 div
         const cursorWrapper = document.createElement('div');
         cursorWrapper.className = 'cursorWrapper';
@@ -370,6 +376,10 @@ const CMRotate =
         const name = document.createElement('p');
         name.className = 'name';
         name.innerText = _bgArr[id].ingredientName;
+        // 상품명이 5글자 이상일 경우 폰트 조정
+        if (_bgArr[id].ingredientName.length >= 5) {
+          name.className = 'longName';
+        }
         // 가격
         const priceWrapper = document.createElement('div');
         priceWrapper.className = 'priceWrapper';
@@ -383,24 +393,23 @@ const CMRotate =
         cardNumber.className = 'num';
         cardNumber.innerText = id;
         // 즐겨찾기 표시
-        // if (_bgArr[id].bookmark) {
-        //   const bookmark = document.createElement('div');
-        //   bookmark.className = 'bookmark';
-        //   bookmark.style.width = '33px';
-        //   bookmark.style.height = '41px';
-        //   bookmark.style.background = 'url(' + _bgArr[id].bookmark + ')';
-        //   div.appendChild(bookmark);
-        // }
-        // // status 표시
-        // if (_bgArr[id].status) {
-        //   const status = document.createElement('div');
-        //   status.className = 'status';
-        //   status.setAttribute('data-category', _bgArr[id].ingredientCategory);
-        //   status.style.width = '39px';
-        //   status.style.height = '39px';
-        //   status.style.background = 'url(' + _bgArr[id].status + ')';
-        //   div.appendChild(status);
-        // }
+        if (_bgArr[id].favorite === 1) {
+          const bookmark = document.createElement('div');
+          bookmark.className = 'bookmark';
+          bookmark.style.width = '33px';
+          bookmark.style.height = '41px';
+          bookmark.style.background = 'url(' + _bgArr[id].bookmark + ')';
+          div.appendChild(bookmark);
+        }
+        // status 표시
+        if (_bgArr[id].status !== 0) {
+          const status = document.createElement('div');
+          status.className = 'status';
+          status.style.width = '39px';
+          status.style.height = '39px';
+          status.style.background = 'url(' + _bgArr[id].status + ')';
+          div.appendChild(status);
+        }
         // card에 삽입
         div.appendChild(cursorWrapper);
         div.appendChild(name);
