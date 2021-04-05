@@ -23,7 +23,7 @@ export default {
   methods: {
     getCFRecommand: function() {
       const instance = axios.create({
-        baseURL: 'http://localhost:8000',
+        baseURL: 'https://j4a301.p.ssafy.io:8000',
       });
       instance
         .get('/recommand/latent/' + this.$store.state.userId)
