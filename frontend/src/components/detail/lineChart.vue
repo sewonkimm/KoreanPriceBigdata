@@ -15,8 +15,8 @@ export default {
       datasets: [
         {
           label: '가격 그래프',
-          borderColor: 'rgb(229, 85, 114)',
-          pointBackgroundColor: 'rgb(229, 85, 114)',
+          borderColor: '#e55572',
+          pointBackgroundColor: '#e55572',
           backgroundColor: 'transparent',
           data: [],
           pointRadius: 0,
@@ -25,8 +25,8 @@ export default {
         },
         {
           label: '가격 예측 그래프',
-          borderColor: ' rgb(72, 140, 222)',
-          pointBackgroundColor: 'rgb(229, 85, 114)',
+          borderColor: ' #488cde',
+          pointBackgroundColor: '#488cde',
           backgroundColor: 'transparent',
           data: [],
           pointRadius: 0,
@@ -44,6 +44,7 @@ export default {
           zoom: {
             enabled: true,
             mode: 'x',
+            speed: 100,
           },
         },
       },
@@ -51,7 +52,6 @@ export default {
         xAxes: [
           {
             gridLines: {
-              // display: false,
               color: 'lightgray',
               borderDash: [2, 5],
             },
