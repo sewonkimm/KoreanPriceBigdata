@@ -8,7 +8,7 @@
 		resultType="com.ssafy.j301.transition.Transition">
 		
 		<![CDATA[SELECT ingredient_id AS ingredientId, ingredient_avg_date AS ingredientAvgDate, ingredient_avg_price AS ingredientAvgPrice,
-		ingredient_avg_predict_price AS ingredientAvgPrediectPrice
+		ingredient_avg_predict_price AS ingredientAvgPredictPrice
 		FROM ingredient_avg
 		WHERE ingredient_id = #{ingredientId}
 		AND DATEDIFF(SYSDATE(), ingredient_avg_date) <= 365

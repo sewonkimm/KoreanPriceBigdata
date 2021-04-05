@@ -2,16 +2,24 @@
 import { Line } from 'vue-chartjs';
 export default {
   extends: Line,
+  created() {
+    this.ingredientId = this.$route.params.id;
+
+    this.getIngredientPriceYear(this.ingredientId);
+  },
   data: () => ({
     chartdata: {
-      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      labels: [],
+      items: [],
       datasets: [
         {
           label: '가격 그래프',
           borderColor: '#FF9551',
           pointBackgroundColor: '#FF9551',
           backgroundColor: 'transparent',
-          data: [40, 20, 30, 50, 12, 10, 40, 20, 40, 20, 25, 15],
+          data: [],
+          pointRadius: 0,
+          borderWidth: 1,
           fill: false,
         },
         {
@@ -19,11 +27,14 @@ export default {
           borderColor: ' #78D0FF',
           pointBackgroundColor: '#78D0FF',
           backgroundColor: 'transparent',
-          data: [10, 40, 30, 40, 20, 25, 20, 30, 50, 12, 40, 40],
+          data: [],
+          pointRadius: 0,
+          borderWidth: 1,
           fill: false,
         },
       ],
     },
+    ingredientId: '',
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -37,7 +48,7 @@ export default {
             },
             scaleLabel: {
               display: true,
-              labelString: '월',
+              labelString: '일',
               fontColor: 'red',
             },
           },
@@ -58,7 +69,31 @@ export default {
       },
     },
   }),
+  methods: {
+    getIngredientPriceYear(ingredientId) {
+      this.$axios({
+        url: '/transition/' + ingredientId,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.items = response.data;
 
+          this.chartdata.labels = this.items.map((item) => {
+            item = item.ingredientAvgDate;
+            return item;
+          });
+          this.chartdata.datasets[0].data = this.items.map((price) => {
+            price = price.ingredientAvgPrice;
+            return price;
+          });
+          this.chartdata.datasets[1].data = this.items.map((PredictPrice) => {
+            PredictPrice = PredictPrice.ingredientAvgPredictPrice;
+            return PredictPrice;
+          });
+        })
+        .catch(() => {});
+    },
+  },
   mounted() {
     this.renderChart(this.chartdata, this.options);
   },
