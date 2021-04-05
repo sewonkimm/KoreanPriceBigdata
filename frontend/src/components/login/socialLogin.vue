@@ -69,6 +69,7 @@ export default {
           })
             .then((response) => {
               if (response.status == 202) {
+                console.log(response.data);
                 const token = response.data.accesstoken;
                 localStorage.setItem('accesstoken', token);
                 this.$store.commit('setId', this.id);
@@ -93,7 +94,7 @@ export default {
         url: '/v2/user/me',
         success: async (res) => {
           const kakaoAccount = res.kakao_account;
-          let gender = '';
+          let gender = null;
           if (kakaoAccount.gender === 'female') {
             gender = 'F';
           } else if (kakaoAccount.gender === 'male') {
@@ -120,6 +121,8 @@ export default {
               .then((response) => {
                 if (response.status == 202) {
                   const token = response.data.accesstoken;
+                  this.id = kakaoAccount.email;
+                  console.log(this.id);
                   localStorage.setItem('accesstoken', token);
                   this.$store.commit('setId', this.id);
                   alert('카카오 로그인에 성공하셨습니다.');
