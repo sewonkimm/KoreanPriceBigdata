@@ -6,22 +6,33 @@
     <!-- body -->
     <v-container class="justify-center align-center contents">
       <v-row class="row row-1">
-        <v-col :cols="3">
-          <v-card class="pa-2 flip-vertical-left" @mouseenter.stop="changePrice">
-            <CurrentPrice v-if="isCurrentPrice" />
-            <PredictPrice v-else />
+        <v-col :cols="4">
+          <v-card class="pa-2 infoCard" :style="cssVars">
+            <Information />
           </v-card>
         </v-col>
-        <v-col :cols="9">
+        <v-col :cols="4">
           <v-card class="pa-2">
-            <div class="lineChart">
-              1년 가격 추이
-              <LineChart :height="300" />
-            </div>
+            <CurrentPrice />
+          </v-card>
+        </v-col>
+        <v-col :cols="4">
+          <v-card class="pa-2">
+            <PredictPrice />
           </v-card>
         </v-col>
       </v-row>
       <v-row class="row row-2">
+        <v-col :cols="12">
+          <v-card class="pa-2">
+            <div class="lineChart">
+              1년 가격 추이
+              <LineChart :height="270" />
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row class="row row-3">
         <v-col :cols="6">
           <v-card class="pa-2">
             <Shopping />
@@ -39,6 +50,7 @@
 <script>
 import '@/components/css/detail/style.scss';
 import Header from '@/components/detail/header';
+import Information from '@/components/detail/information';
 import CurrentPrice from '@/components/detail/currentPrice';
 import PredictPrice from '@/components/detail/predictPrice';
 import LineChart from '@/components/detail/lineChart';
@@ -49,20 +61,18 @@ export default {
   name: 'Detail',
   components: {
     Header,
+    Information,
     CurrentPrice,
     PredictPrice,
     LineChart,
     Shopping,
     Recommend,
   },
-  data() {
-    return {
-      isCurrentPrice: true,
-    };
-  },
-  methods: {
-    changePrice: function() {
-      this.isCurrentPrice = !this.isCurrentPrice;
+  computed: {
+    cssVars() {
+      return {
+        '--bg-url': `url('https://j4a301.p.ssafy.io/ingredients/ingredients_${this.$route.params.id}.png')`,
+      };
     },
   },
 };
