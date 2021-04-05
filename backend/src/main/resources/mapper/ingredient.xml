@@ -25,8 +25,7 @@
 			property="ingredientDetailNameCode" />
 		<result column="ingredient_category"
 			property="ingredientCategory" />
-		<result column="favorite"
-			property="favorite" />
+		<result column="favorite" property="favorite" />
 		<collection property="ingredientAvg"
 			resultMap="IngredientAvg" />
 	</resultMap>
@@ -66,6 +65,13 @@
 		WHERE ingredient.ingredient_id = watch.ingredient_id
 		) DESC;
 
+
+	</select>
+
+	<select id="selectAllName" resultType="com.ssafy.j301.ingredient.RequestIngredientName">
+
+		SELECT ingredient_id AS ingredientId, ingredient_name AS ingredientName, ingredient_detail_name AS ingredientDetailName
+		FROM ingredient
 
 	</select>
 
@@ -116,7 +122,8 @@
 		SELECT
 		count(*)
 		FROM watch
-		WHERE ingredient.ingredient_id = watch.ingredient_id
+		WHERE ingredient.ingredient_id =
+		watch.ingredient_id
 		) DESC;
 	</select>
 

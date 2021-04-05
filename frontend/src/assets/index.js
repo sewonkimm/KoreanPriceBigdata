@@ -8,6 +8,7 @@ import Eyes from './eyes.svg';
 import BlueIcon from './blueIcon.svg';
 import GreenIcon from './greenIcon.svg';
 import RedIcon from './redIcon.svg';
+import OnboardImg1 from './onboard_img1.svg';
 import BookmarkRed from './bookmark_red.png';
 import BookmarkGreen from './bookmark_green.png';
 import BookmarkBlue from './bookmark_blue.png';
@@ -26,6 +27,7 @@ export {
   BlueIcon,
   GreenIcon,
   RedIcon,
+  OnboardImg1,
   BookmarkRed,
   BookmarkGreen,
   BookmarkBlue,

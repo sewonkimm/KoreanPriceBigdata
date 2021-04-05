@@ -19,7 +19,9 @@
       </v-container>
     </v-form>
 
-    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" height="63">로그인</v-btn>
+    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" height="63" @click="login"
+      >로그인</v-btn
+    >
   </div>
 </template>
 <script>
@@ -48,6 +50,28 @@ export default {
       if (this.email !== '' && this.password !== '') {
         this.isActive = true;
       } else this.isActive = false;
+    },
+    login: function() {
+      this.$axios({
+        url: '/members/login',
+        method: 'POST',
+        data: {
+          memberEmail: this.email,
+          memberPassword: this.password,
+          memberGender: '',
+          memberArea: '',
+          memberBirth: '',
+          memberName: '',
+          memberPlatformType: '',
+        },
+      })
+        .then(() => {
+          this.$router.push({ name: 'Main' });
+        })
+        .catch((error) => {
+          console.error(error);
+          alert('이메일과 비밀번호를 확인해주세요.');
+        });
     },
   },
 };
