@@ -72,7 +72,7 @@ export default {
                 console.log(response.data);
                 const token = response.data.accesstoken;
                 localStorage.setItem('accesstoken', token);
-                this.$store.commit('setId', this.id);
+                this.$store.commit('SOCIALLOGIN', this.id);
                 alert('구글 로그인에 성공하셨습니다.');
               } else {
                 alert('구글 로그인에 실패했습니다.');
@@ -122,9 +122,8 @@ export default {
                 if (response.status == 202) {
                   const token = response.data.accesstoken;
                   this.id = kakaoAccount.email;
-                  console.log(this.id);
                   localStorage.setItem('accesstoken', token);
-                  this.$store.commit('setId', this.id);
+                  this.$store.commit('SOCIALLOGIN', this.id);
                   alert('카카오 로그인에 성공하셨습니다.');
                 } else {
                   alert('카카오 로그인에 실패했습니다.');

@@ -2,11 +2,7 @@
   <div class="CFRecommend">
     <h1 class="title">이런 상품은 어때요?</h1>
     <div class="cardContainer">
-      <CFRecommendCard
-        v-for="(item, index) in items"
-        :key="index"
-        :ingredient="item"
-      />
+      <CFRecommendCard v-for="(item, index) in items" :key="index" :ingredient="item" />
     </div>
   </div>
 </template>

@@ -39,6 +39,15 @@
             font-weight:900;
             font-size:46px;
             line-height: 40px;
+            z-index: 1;
+        }
+        
+        .longName {
+            margin-top: 120px;
+            font-weight:900;
+            font-size:40px;
+            line-height: 40px;
+            z-index: 1;
         }
 
         .priceWrapper {
@@ -49,12 +58,14 @@
                 font-weight: normal;
                 font-size: 14px;
                 color:#828282;
+                z-index: 1;
             }
 
             .price {
                 font-weight:900;
                 font-size:24px;
                 color:#4F4F4F;
+                z-index: 1;
             }
         }
 
@@ -65,6 +76,18 @@
             font-weight:900;
             font-size:22px;
             color:$basic-black;
+            z-index: 1;
+        }
+
+        .ingredientImage {
+            position: absolute;
+            bottom: 50px;
+            right: 8px;
+            max-width:130px;
+            max-height:300px;
+            width: auto;
+            height: auto;
+            z-index: -1;
         }
     }
 }
