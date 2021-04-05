@@ -7,7 +7,7 @@
       <p class="price">{{ price | comma }}원</p>
       <div :class="{ range: 'range', up: isUp, down: !isUp }">
         <span v-if="isUp">+</span>
-        <span v-else>-</span>
+        <span v-else></span>
         {{ rangePrice | comma }} ({{ rangePercent }}%)
         <Up v-if="isUp" class="arrow" />
         <Down v-else class="arrow" />
