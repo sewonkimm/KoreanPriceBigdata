@@ -7,8 +7,9 @@
         </v-btn>
       </v-app-bar-nav-icon>
       <v-toolbar-title class="title">{{ ingredientName }}</v-toolbar-title>
-      <v-btn icon>
-        <v-icon color="white">mdi-heart-outline</v-icon>
+      <v-btn icon @click="handleStarClick">
+        <v-icon color="white" v-if="favorite">mdi-heart</v-icon>
+        <v-icon color="white" v-else>mdi-heart-outline</v-icon>
       </v-btn>
 
       <v-spacer></v-spacer>
@@ -30,12 +31,17 @@ import '@/components/css/detail/header.scss';
 export default {
   name: 'Header',
   created() {
+    // this.memberId = this.$store.state.userId;
+
+    this.getFavorite(this.memberId, this.ingredientId);
     this.getIngredientName(this.ingredientId); // 찾은 ingredientId로 ingredientName 찾기
   },
   data() {
     return {
-      ingredientId: this.$route.params.id, //  라우터에서 ingredientId 찾기
+      ingredientId: this.$router.params.id, //  라우터에서 ingredientId 찾기
       ingredientName: '',
+      memberId: 1,
+      favorite: false,
     };
   },
   methods: {
@@ -49,6 +55,40 @@ export default {
       })
         .then((response) => {
           this.ingredientName = response.data.ingredientName;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    handleStarClick() {
+      this.$axios({
+        url: '/favorites',
+        method: 'POST',
+        data: {
+          ingredientId: 1,
+          memberId: 1,
+        },
+      })
+        .then(() => {
+          this.favorite = true;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getFavorite(memberId, ingredientId) {
+      this.$axios({
+        url: '/favorites/' + 1 + '/' + 1,
+        method: 'GET',
+      })
+        .then((response) => {
+          console.log(response);
+          console.log(this.favorite);
+          if (response.data == 1) {
+            this.favorite = true;
+          } else {
+            console.log(this.favorite);
+          }
         })
         .catch((error) => {
           console.error(error);
