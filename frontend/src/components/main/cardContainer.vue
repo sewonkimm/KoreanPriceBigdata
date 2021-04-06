@@ -9,6 +9,7 @@ export default {
   name: 'CardContainer',
   data() {
     return {
+      userId: this.$store.state.userId,
       item: [],
     };
   },
@@ -104,13 +105,19 @@ export default {
           this.$store.commit('LOGOUT');
           this.$router.go(this.$router.currentRoute); // 페이지 새로고침
         } else {
-          // 상세 페이지로 이동
-          this.$router.push({
-            name: 'Detail',
-            params: {
-              id: id,
-            },
-          });
+          // 비로그인 시 로그인 화면으로 분기
+          if (this.userId === '') {
+            this.$router.push({ name: 'Login' });
+          } else {
+            this.handleInsertWatch(id);
+            // 상세 페이지로 이동
+            this.$router.push({
+              name: 'Detail',
+              params: {
+                id: id,
+              },
+            });
+          }
         }
       };
       const radius = window.innerHeight >= 900 ? 1400 : 1200;
@@ -133,6 +140,23 @@ export default {
         status: Login,
       };
       this.item.push(logoutCard);
+    },
+    // 조회수 카운트를 위한 api 호출
+    handleInsertWatch(ingredientId) {
+      this.$axios({
+        url: '/watches',
+        method: 'POST',
+        data: {
+          ingredientId: ingredientId,
+          memberId: this.userId,
+        },
+      })
+        .then(() => {
+          console.log(1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   created() {
