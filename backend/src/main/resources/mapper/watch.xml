@@ -12,7 +12,8 @@
 		watch_date)
 		VALUES
 		(#{memberId}, #{ingredientId},
-		DATE_FORMAT(NOW(), "%y-%c-%e"));
+		DATE_FORMAT(DATE_ADD(NOW(),
+		INTERVAL -1 WEEK), "%y-%c-%e");
 	</insert>
 
 	<select id="selectCount" resultType="int">
