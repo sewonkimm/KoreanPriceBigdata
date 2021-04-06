@@ -39,7 +39,6 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          console.log(response.data);
           this.chartdata.labels = response.data.map((item) => {
             if (item.ingredientDetailName == null) {
               return item.ingredientName;
@@ -52,7 +51,6 @@ export default {
           this.id = response.data.map((item) => {
             return item.ingredientId;
           });
-          console.log(this.chartdata);
         })
         .catch((error) => {
           console.error(error);
