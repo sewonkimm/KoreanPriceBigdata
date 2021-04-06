@@ -23,4 +23,6 @@ public class IngredientAvg {
 
 	private int ingredientAvgPredictPrice;
 	
+	private String ingredientUnit;
+	
 }
