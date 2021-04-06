@@ -1,14 +1,13 @@
 package com.ssafy.j301.ingredient;
 
 import java.util.List;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
 import com.ssafy.j301.fluctuationRate.FluctuationRate;
 import com.ssafy.j301.mapper.FluctuationRateMapper;
 import com.ssafy.j301.mapper.IngredientMapper;
 import com.ssafy.j301.mapper.PopularityMapper;
 import com.ssafy.j301.popularity.Popularity;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -19,6 +18,7 @@ public class IngredientService {
 	private final FluctuationRateMapper fluctuationRateMapper;
 	private final PopularityMapper popularityMapper;
 
+	@Cacheable(value = "selectAll")
 	public List<Ingredient> selectAll() {
 
 		List<Ingredient> list = ingredientMapper.selectAll();
@@ -27,6 +27,7 @@ public class IngredientService {
 
 	}
 
+	@Cacheable(value = "selectAllByLogin")
 	public List<Ingredient> selectAllByLogin(Long memberId) {
 
 		List<Ingredient> list = ingredientMapper.selectAllByLogin(memberId);
@@ -34,6 +35,7 @@ public class IngredientService {
 		return insertStatus(list);
 	}
 
+	@Cacheable(value = "ingredientId")
 	public Ingredient selectByingredientId(Long ingredientId) {
 		return ingredientMapper.selectByIngredientId(ingredientId);
 	}
@@ -42,6 +44,7 @@ public class IngredientService {
 		return ingredientMapper.selectByIngredientName(ingredientName);
 	}
 
+	@Cacheable(value = "selectAllName")
 	public List<RequestIngredientName> selectAllName() {
 		return ingredientMapper.selectAllName();
 	}

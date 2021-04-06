@@ -20,6 +20,8 @@ public class MemberService {
 	private final JwtService jwtService;
 
 	public Member signup(Member member) {
+
+		validateSignUp(member);
 		member.setMemberPassword(sha256.encryption(member.getMemberPassword()));
 		memberMapper.insertMember(member);
 		return member;
@@ -51,13 +53,13 @@ public class MemberService {
 	}
 
 	public ResponseEntity<Map<String, Object>> social(Member member) {
-		
+
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		
+
 		if (!memberMapper.checkEmail(member.getMemberEmail())) {
 			memberMapper.insertMember(member);
 		}
-		
+
 		Member matchMember = memberMapper.getMemberByMemberEmail(member);
 		String token = jwtService.create(matchMember);
 		resultMap.put("accesstoken", token);

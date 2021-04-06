@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
@@ -22,7 +21,7 @@ public class IngredientAvg {
 	private int ingredientAvgPrice;
 
 	private int ingredientAvgPredictPrice;
-	
+
 	private String ingredientUnit;
-	
+
 }

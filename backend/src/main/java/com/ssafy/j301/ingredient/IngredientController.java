@@ -1,7 +1,6 @@
 package com.ssafy.j301.ingredient;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Ingredients", description = "농축산물 API")
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/ingredients")

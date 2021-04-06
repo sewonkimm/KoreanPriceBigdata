@@ -1,6 +1,5 @@
 package com.ssafy.j301.ingredientAvg;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "IngredientAvg", description = "농축산물 가격 API")
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/ingredientAvg")

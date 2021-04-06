@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Members", description = "사용자  API")
-@CrossOrigin
+@CrossOrigin("*")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/members")
@@ -24,7 +24,6 @@ public class MemberController {
 	@PostMapping("/signup")
 	public Member signup(@RequestBody Member member) {
 
-		memberService.validateSignUp(member);
 		return memberService.signup(member);
 	}
 
@@ -34,11 +33,11 @@ public class MemberController {
 
 		return memberService.login(member);
 	}
-	
+
 	@ApiOperation(value = "소셜 로그인", notes = "로그인 성공 시 토큰을 반환합니다.")
 	@PostMapping("/social")
 	public ResponseEntity<Map<String, Object>> social(@RequestBody Member member) {
-		
+
 		return memberService.social(member);
 	}
 }

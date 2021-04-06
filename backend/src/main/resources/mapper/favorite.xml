@@ -25,12 +25,12 @@
 		WHERE member_id = #{memberId}
 	</select>
 
-	<select id="selectFavorite"
-		resultType="int">
-		SELECT 
+	<select id="selectFavorite" resultType="int">
+		SELECT
 		IF(COUNT(*) = 1, 1, 0)
 		FROM favorite
-		WHERE member_id = #{memberId} AND ingredient_id =
+		WHERE member_id = #{memberId} AND
+		ingredient_id =
 		#{ingredientId}
 	</select>
 </mapper>

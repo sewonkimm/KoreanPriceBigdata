@@ -1,7 +1,6 @@
 package com.ssafy.j301.favorite;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Favorites", description = "즐겨찾기 API")
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/favorites")
@@ -35,7 +33,7 @@ public class FavoriteController {
 
 	@ApiOperation(value = "사용자 즐겨찾기 체크", notes = "즐겨찾기 항목 조회")
 	@GetMapping("/{memberId}/{ingredientId}")
-	public int selectFavorite(@PathVariable Long memberId,@PathVariable Long ingredientId) {
+	public int selectFavorite(@PathVariable Long memberId, @PathVariable Long ingredientId) {
 		return favoriteService.selectFavorite(memberId, ingredientId);
 	}
 }
