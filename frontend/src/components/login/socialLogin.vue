@@ -25,6 +25,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-alert :value="showError" type="error" class="error">
+      {{ errorMessage }}
+    </v-alert>
   </div>
 </template>
 <script>
@@ -42,6 +46,8 @@ export default {
   data() {
     return {
       dialog: false,
+      showError: false,
+      errorMessage: '', // 에러메세지
     };
   },
   methods: {
@@ -68,12 +74,19 @@ export default {
           })
             .then((response) => {
               const token = response.data.accesstoken;
-              this.$store.commit('SOCIALLOGIN', token);
-              alert('구글 로그인에 성공하셨습니다.');
+              this.$store.commit('LOGIN', token);
+              this.$router.push({ name: 'Main' });
             })
             .catch((error) => {
-              alert('구글 로그인에 실패했습니다.');
               console.error(error);
+
+              // error alert 출력
+              this.showError = true;
+              this.errorMessage = '로그인에 실패했습니다.';
+
+              setTimeout(() => {
+                this.showError = false;
+              }, 5000);
             });
         });
     },
@@ -115,11 +128,19 @@ export default {
               .then((response) => {
                 const token = response.data.accesstoken;
                 this.$store.commit('LOGIN', token);
+                this.$router.push({ name: 'Main' });
                 alert('카카오 로그인에 성공하셨습니다.');
               })
               .catch((error) => {
-                alert('카카오 로그인에 실패했습니다.');
                 console.error(error);
+
+                // error alert 출력
+                this.showError = true;
+                this.errorMessage = '로그인에 실패했습니다.';
+
+                setTimeout(() => {
+                  this.showError = false;
+                }, 5000);
               });
           }
         },
