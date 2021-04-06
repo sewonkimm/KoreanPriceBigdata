@@ -52,9 +52,10 @@
 		= ingredient_avg.ingredient_id, watch
 
 		WHERE
-		ingredient_avg.ingredient_avg_date = "2019-01-01" AND
+		ingredient_avg.ingredient_avg_date = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
+		"%y-%c-%e") AND
 		watch.watch_date
-		= "2019-01-01"
+		= DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 
 		GROUP BY ingredient.ingredient_id
 
@@ -106,9 +107,10 @@
 		favorite
 
 		WHERE
-		ingredient_avg.ingredient_avg_date = "2019-01-01" AND
+		ingredient_avg.ingredient_avg_date = DATE_FORMAT(DATE_ADD(NOW(), 
+		INTERVAL -1 WEEK), "%y-%c-%e") AND
 		watch.watch_date
-		= "2019-01-01"
+		= DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 
 		GROUP BY ingredient.ingredient_id
 
@@ -151,7 +153,7 @@
 
 		WHERE ingredient.ingredient_id =
 		#{ingredientId} AND ingredient_avg.ingredient_avg_date =
-		DATE_FORMAT(NOW(), "%y-%c-%e")
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 
 	</select>
 
@@ -179,7 +181,7 @@
 
 		WHERE ingredient.ingredient_name =
 		#{ingredientName} AND ingredient_avg.ingredient_avg_date =
-		DATE_FORMAT(NOW(), "%y-%c-%e")
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 
 	</select>
 </mapper>
