@@ -59,7 +59,7 @@ public class MemberService {
 		if (!memberMapper.checkEmail(member.getMemberEmail())) {
 			memberMapper.insertMember(member);
 		}
-		
+
 		Member matchMember = memberMapper.getMemberByMemberEmail(member);
 		String token = jwtService.create(matchMember);
 		resultMap.put("accesstoken", token);
