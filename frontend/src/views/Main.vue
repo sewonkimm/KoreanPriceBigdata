@@ -34,7 +34,6 @@
         label="상품 검색"
         solo
       ></v-autocomplete>
-      <!-- <v-text-field hide-details prepend-icon="mdi-magnify" single-line></v-text-field> -->
     </v-toolbar>
 
     <!-- 카드 컴포넌트 -->
@@ -56,14 +55,16 @@ export default {
   data() {
     return {
       loading: false,
-      items: [],
+      items: [], // 검색할 때마다 밑에 나오는 데이터
+      ingredientName: [], // autocomplete 검색을 위해 이름만 있는 데이터
       search: null,
       select: null,
-      ingredients: {
-        ingredientName: [],
-        ingredientId: [],
-      },
-      ingredientsId: [],
+      ingredients: [
+        {
+          ingredientId: 0,
+          ingredientName: '',
+        },
+      ],
     };
   },
   watch: {
@@ -72,10 +73,11 @@ export default {
     },
     select: function() {
       // 검색한 카드 컴포넌트만 보여주기
+      const selectId = this.getIngredientId(this.select);
       this.$router.push({
         name: 'Detail',
         params: {
-          id: this.ingredientsId,
+          id: selectId,
         },
       });
     },
@@ -85,7 +87,7 @@ export default {
       this.loading = true;
       // Simulated ajax query
       setTimeout(() => {
-        this.items = this.ingredients.ingredientName.filter((e) => {
+        this.items = this.ingredientName.filter((e) => {
           return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1;
         });
         this.loading = false;
@@ -99,12 +101,30 @@ export default {
       })
         .then((response) => {
           // this.ingredientsId = response;
-          this.ingredients.ingredientName = response.data.map((item) => {
-            item = item.ingredientName;
+          this.ingredients = response.data.map((item) => {
+            let ingredientName = item.ingredientName;
+            if (item.ingredientDetailName !== null) {
+              ingredientName += `(${item.ingredientDetailName})`;
+            }
+            item = {
+              ingredientId: item.ingredientId,
+              ingredientName: ingredientName,
+            };
             return item;
           });
+
+          this.ingredientName = this.ingredients.map((item) => {
+            return item.ingredientName;
+          });
         })
-        .catch(() => {});
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getIngredientId(name) {
+      return this.ingredients.filter((item) => {
+        return item.ingredientName === name;
+      })[0].ingredientId;
     },
   },
   created() {
