@@ -5,6 +5,7 @@
     </p>
     <div class="priceContainer">
       <p class="price">{{ price | comma }}원</p>
+      <p class="unit">({{ unit }})</p>
       <div :class="{ range: 'range', up: isUp, down: !isUp }">
         <span v-if="isUp">+</span>
         <span v-else></span>
@@ -45,6 +46,7 @@ export default {
   data() {
     return {
       price: '', // 예측가격
+      unit: '', // 단위
       rangePrice: '', // 등락 가격
       rangePercent: '', // 등락률
       isUp: false, // 상승, 하락에 따른 스타일 적용을 위한 state
@@ -66,6 +68,7 @@ export default {
       })
         .then((response) => {
           this.price = response.data.ingredientAvg.ingredientAvgPredictPrice;
+          this.unit = response.data.ingredientUnit;
           this.previousPrice = response.data.ingredientAvg.ingredientAvgPrice;
           this.rangePercent = (
             ((this.price - this.previousPrice) / this.previousPrice) *

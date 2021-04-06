@@ -21,7 +21,7 @@ public class IngredientAvgService {
 		return FluctuationRate;
 	}
 
-	public int selectPrice(Long ingredientId) {
+	public IngredientAvg selectPrice(Long ingredientId) {
 		return ingredientAvgMapper.selectPrice(ingredientId);
 	}
 

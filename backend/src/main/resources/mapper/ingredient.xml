@@ -25,6 +25,8 @@
 			property="ingredientDetailNameCode" />
 		<result column="ingredient_category"
 			property="ingredientCategory" />
+		<result column="ingredient_unit"
+			property="ingredientUnit" />
 		<result column="favorite" property="favorite" />
 		<collection property="ingredientAvg"
 			resultMap="IngredientAvg" />
@@ -37,6 +39,7 @@
 		ingredient.ingredient_id,
 		ingredient.ingredient_name,
 		ingredient.ingredient_category,
+		ingredient.ingredient_unit,
 		ingredient_avg.ingredient_avg_id,
 		ingredient_avg.ingredient_avg_price,
 		ingredient_avg.ingredient_avg_date,
@@ -90,6 +93,7 @@
 		ingredient.ingredient_id,
 		ingredient.ingredient_name,
 		ingredient.ingredient_category,
+		ingredient.ingredient_unit,
 		ingredient_avg.ingredient_avg_id,
 		ingredient_avg.ingredient_avg_price,
 		ingredient_avg.ingredient_avg_date,
@@ -152,6 +156,7 @@
 		ingredient.ingredient_detail_name,
 		ingredient.ingredient_detail_name_code,
 		ingredient.ingredient_category,
+		ingredient.ingredient_unit,
 		ingredient_avg.ingredient_id,
 		ingredient_avg.ingredient_avg_id,
 		ingredient_avg.ingredient_avg_price,
