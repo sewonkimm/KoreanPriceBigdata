@@ -60,7 +60,8 @@ public class MemberService {
 			memberMapper.insertMember(member);
 		}
 		
-		String token = jwtService.create(member);
+		Member matchMember = memberMapper.getMemberByMemberEmail(member);
+		String token = jwtService.create(matchMember);
 		resultMap.put("accesstoken", token);
 		resultMap.put("message", "Success");
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);

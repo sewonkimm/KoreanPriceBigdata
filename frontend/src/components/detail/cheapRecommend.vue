@@ -20,7 +20,7 @@
             {{ item.ingredientName }}
           </td>
           <td v-else>{{ item.ingredientDetailName }}</td>
-          <td>2300</td>
+          <td>{{ item.ingredientAvgPrice }}</td>
           <td>{{ item.rate }}%</td>
         </tr>
       </tbody>
