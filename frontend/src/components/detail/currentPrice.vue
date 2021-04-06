@@ -5,6 +5,7 @@
     </p>
     <div class="priceContainer">
       <p class="price">{{ price | comma }}원</p>
+      <p class="unit">({{ unit }})</p>
       <div :class="{ range: 'range', up: isUp, down: !isUp }">
         <span v-if="isUp">+</span>
         <span v-else></span>
@@ -25,9 +26,7 @@ export default {
     Up,
     Down,
   },
-  created() {
-    this.ingredientId = this.$route.params.id;
-
+  mounted() {
     this.getIngredientPrice(this.ingredientId);
     this.getIngredientPriceInterval(this.ingredientId);
     this.getIngredientPriceRate(this.ingredientId);
@@ -35,10 +34,11 @@ export default {
   data() {
     return {
       price: '', // 현재가격
+      unit: '', // 단위
       rangePrice: '', // 등락 가격
       rangePercent: '', // 등락률
       isUp: false, // 상승, 하락에 따른 스타일 적용을 위한 state
-      ingredientId: '',
+      ingredientId: this.$route.params.id,
     };
   },
   filters: {
@@ -53,7 +53,8 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          this.price = response.data['ingredientAvgPrice'];
+          this.price = response.data.ingredientAvgPrice;
+          this.unit = response.data.ingredientUnit;
         })
         .catch((error) => {
           console.error(error);

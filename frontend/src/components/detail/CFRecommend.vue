@@ -36,7 +36,7 @@ export default {
     getCFRecommand: function() {
       // 해당 axios만 python에서 호출하기에 baseURL변경을 위해 instance를 생성했습니다.
       const instance = axios.create({
-        baseURL: 'http://j4a301.p.ssafy.io:8000',
+        baseURL: 'https://j4a301.p.ssafy.io',
       });
       instance
         .get('/cf/' + this.$store.state.userId)
@@ -51,7 +51,7 @@ export default {
     },
   },
   created() {
-    this.getCFRecommand();
+    // this.getCFRecommand();
   },
 };
 </script>

@@ -61,8 +61,6 @@ export default {
   },
   created() {
     this.getPopularityRecommand();
-  },
-  mounted() {
     this.renderChart(this.chartdata, this.options);
   },
 };
