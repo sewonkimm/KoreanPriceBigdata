@@ -12,8 +12,8 @@ public class FavoriteService {
 	private final FavoriteMapper favoriteMapper;
 
 	public void insertFavorite(Favorite favorite) {
-		Favorite checkFavorite = favoriteMapper.selectFavorite(favorite);
-		if (checkFavorite == null) {
+		int checkFavorite = favoriteMapper.selectFavorite(favorite.getMemberId(), favorite.getIngredientId());
+		if (checkFavorite == 0) {
 			favoriteMapper.insertFavorite(favorite);
 		} else {
 			favoriteMapper.deleteFavorite(favorite);
@@ -24,7 +24,7 @@ public class FavoriteService {
 		return favoriteMapper.selectAll(memberId);
 	}
 
-	public Favorite selectFavorite(Favorite favorite) {
-		return favoriteMapper.selectFavorite(favorite);
+	public int selectFavorite(Long memberId, Long ingredientId) {
+		return favoriteMapper.selectFavorite(memberId, ingredientId);
 	}
 }

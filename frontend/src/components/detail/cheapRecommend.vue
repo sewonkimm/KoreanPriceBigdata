@@ -33,12 +33,13 @@ export default {
   data() {
     return {
       items: [],
+      ingredientId: this.$route.params.id,
     };
   },
   methods: {
     getFluctuationRecommand: function() {
       this.$axios({
-        url: '/fluctuationRates/rate/' + this.$route.params.id,
+        url: '/fluctuationRates/rate/' + this.ingredientId,
         method: 'GET',
       })
         .then((response) => {
