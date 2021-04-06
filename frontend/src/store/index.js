@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import jwtDecode from 'jwt-decode';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    splash: true,
+    splash: true, // 첫 방문시에만 splash 보기
     userId: '',
     error: false,
   },
@@ -25,5 +26,9 @@ export default new Vuex.Store({
     LOGOUT: (state) => {
       state.userId = '';
     },
+    READSPLASH: (state) => {
+      state.splash = false;
+    },
   },
+  plugins: [createPersistedState()],
 });
