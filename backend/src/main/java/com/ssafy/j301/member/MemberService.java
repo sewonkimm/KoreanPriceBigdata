@@ -44,9 +44,7 @@ public class MemberService {
 			throw new LoginFailedException("샤용자가 존재하지 않거나 비밀번호가 틀렸습니다.");
 		}
 
-		member.setMemberPassword(member.getMemberPassword());
-
-		String token = jwtService.create(member);
+		String token = jwtService.create(matchMember);
 		resultMap.put("accesstoken", token);
 		resultMap.put("message", "Success");
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);

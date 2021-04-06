@@ -52,27 +52,34 @@
 		= ingredient_avg.ingredient_id, watch
 
 		WHERE
-		ingredient_avg.ingredient_avg_date = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
+		ingredient_avg.ingredient_avg_date = DATE_FORMAT(DATE_ADD(NOW(),
+		INTERVAL -1 WEEK),
 		"%y-%c-%e") AND
 		watch.watch_date
-		= DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
+		=
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 
-		GROUP BY ingredient.ingredient_id
+		GROUP BY
+		ingredient.ingredient_id
 
 		ORDER BY (
 		SELECT
 		count(*)
 		FROM watch
-		WHERE ingredient.ingredient_id = watch.ingredient_id
+		WHERE
+		ingredient.ingredient_id = watch.ingredient_id
 		) DESC;
 
 
 	</select>
 
-	<select id="selectAllName" resultType="com.ssafy.j301.ingredient.RequestIngredientName">
+	<select id="selectAllName"
+		resultType="com.ssafy.j301.ingredient.RequestIngredientName">
 
-		SELECT ingredient_id AS ingredientId, ingredient_name AS ingredientName, ingredient_detail_name AS ingredientDetailName
-		FROM ingredient
+		SELECT ingredient_id AS ingredientId, ingredient_name AS
+		ingredientName, ingredient_detail_name AS ingredientDetailName
+		FROM
+		ingredient
 
 	</select>
 
@@ -107,24 +114,30 @@
 		favorite
 
 		WHERE
-		ingredient_avg.ingredient_avg_date = DATE_FORMAT(DATE_ADD(NOW(), 
+		ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(DATE_ADD(NOW(),
 		INTERVAL -1 WEEK), "%y-%c-%e") AND
 		watch.watch_date
-		= DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
+		=
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 
-		GROUP BY ingredient.ingredient_id
+		GROUP BY
+		ingredient.ingredient_id
 
 		ORDER
-		BY CASE WHEN ingredient.ingredient_id in (
+		BY CASE WHEN ingredient.ingredient_id in
+		(
 		SELECT ingredient_id
 		FROM
 		favorite
 		WHERE member_id = #{memberId}
-		) THEN 1 ELSE 0 END DESC, (
+		) THEN 1
+		ELSE 0 END DESC, (
 		SELECT
 		count(*)
 		FROM watch
-		WHERE ingredient.ingredient_id =
+		WHERE
+		ingredient.ingredient_id =
 		watch.ingredient_id
 		) DESC;
 	</select>
