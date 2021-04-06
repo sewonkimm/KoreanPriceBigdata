@@ -8,7 +8,7 @@
 		resultType="com.ssafy.j301.ingredientAvg.IngredientAvg">
 		SELECT
 		ingredient_avg_id AS ingredientAvgId,
-		ingredient_id as
+		ingredient_id AS
 		ingredientId, ingredient_avg_date AS ingredientAvgDate,
 		ingredient_avg_previous_price AS ingredientAvgPreviousPrice,
 		ingredient_avg_price AS ingredientAvgPrice,
