@@ -70,6 +70,7 @@ export default {
               const token = response.data.accesstoken;
               this.$store.commit('SOCIALLOGIN', token);
               alert('구글 로그인에 성공하셨습니다.');
+              this.$router.push({ name: 'Main' });
             })
             .catch((error) => {
               alert('구글 로그인에 실패했습니다.');
@@ -116,6 +117,7 @@ export default {
                 const token = response.data.accesstoken;
                 this.$store.commit('LOGIN', token);
                 alert('카카오 로그인에 성공하셨습니다.');
+                this.$router.push({ name: 'Main' });
               })
               .catch((error) => {
                 alert('카카오 로그인에 실패했습니다.');

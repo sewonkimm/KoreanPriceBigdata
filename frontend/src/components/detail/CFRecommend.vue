@@ -2,7 +2,17 @@
   <div class="CFRecommend">
     <h1 class="title">이런 상품은 어때요?</h1>
     <div class="cardContainer">
-      <CFRecommendCard v-for="(item, index) in items" :key="index" :ingredient="item" />
+      <tbody class="table">
+        <tr class="table">
+          <CFRecommendCard v-for="(item, index) in itemsFirst" :key="index" :ingredient="item" />
+        </tr>
+        <tr class="table">
+          <CFRecommendCard v-for="(item, index) in itemsSecond" :key="index" :ingredient="item" />
+        </tr>
+        <tr class="table">
+          <CFRecommendCard v-for="(item, index) in itemsThird" :key="index" :ingredient="item" />
+        </tr>
+      </tbody>
     </div>
   </div>
 </template>
@@ -17,18 +27,22 @@ export default {
   },
   data() {
     return {
-      items: [],
+      itemsFirst: [],
+      itemsSecond: [],
+      itemsThird: [],
     };
   },
   methods: {
     getCFRecommand: function() {
       const instance = axios.create({
-        baseURL: 'https://j4a301.p.ssafy.io:8000',
+        baseURL: 'http://j4a301.p.ssafy.io:8000',
       });
       instance
-        .get('/recommand/latent/' + this.$store.state.userId)
+        .get('/cf/' + this.$store.state.userId)
         .then((response) => {
-          this.items = response.data;
+          this.itemsThird = response.data;
+          this.itemsFirst = this.itemsThird.splice(0, 2);
+          this.itemsSecond = this.itemsThird.splice(0, 2);
         })
         .catch((error) => {
           console.error(error);
