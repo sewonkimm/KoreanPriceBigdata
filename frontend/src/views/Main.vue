@@ -100,7 +100,6 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          // this.ingredientsId = response;
           this.ingredients = response.data.map((item) => {
             let ingredientName = item.ingredientName;
             if (item.ingredientDetailName !== null) {
