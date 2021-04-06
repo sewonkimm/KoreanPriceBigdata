@@ -118,6 +118,33 @@ export default {
           console.error(error);
         });
     },
+    getIngredientPriceInterval(ingredientId) {
+      this.$axios({
+        url: '/ingredientAvg/price/interval/' + ingredientId,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.rangePrice = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getIngredientPriceRate(ingredientId) {
+      this.$axios({
+        url: '/ingredientAvg/rate/' + ingredientId,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.rangePercent = response.data;
+          if (this.rangePercent > 0) {
+            this.isUp = true;
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     getIngredientWatchs(ingredientId) {
       this.$axios({
         url: '/watches/' + ingredientId,
