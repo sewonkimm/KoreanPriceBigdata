@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" :key="index">
+        <tr v-for="(item, index) in items" :key="index" @click="moveToRecommend(item.ingredientId)">
           <td v-if="item.ingredientDetailName == null">
             {{ item.ingredientName }}
           </td>
@@ -48,6 +48,14 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    moveToRecommend: function(index) {
+      this.$router.push({
+        name: 'Detail',
+        params: {
+          id: index,
+        },
+      });
     },
   },
   created() {
