@@ -19,6 +19,6 @@
 		SELECT COUNT(ingredient_id)
 		FROM watch
 		WHERE ingredient_id = #{ingredientId}
-		AND watch_date = DATE_FORMAT(NOW(), "%y-%c-%e")
+		AND watch_date = DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 	</select>
 </mapper>
