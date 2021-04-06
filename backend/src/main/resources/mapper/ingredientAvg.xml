@@ -35,7 +35,7 @@
 		FROM
 		ingredient_avg
 		WHERE ingredient_id
-		= 1
+		= #{ingredient_id}
 		AND
 		ingredient_avg_date=DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
 		"%y-%c-%e")

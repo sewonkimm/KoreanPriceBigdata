@@ -53,7 +53,7 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          this.price = response.data;
+          this.price = response.data['ingredientAvgPrice'];
         })
         .catch((error) => {
           console.error(error);
@@ -77,7 +77,7 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          this.rangePercent = response.data;
+          this.rangePercent = response.data.toFixed(2);
           if (this.rangePercent > 0) {
             this.isUp = true;
           }

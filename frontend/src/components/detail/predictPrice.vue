@@ -40,8 +40,6 @@ export default {
     this.ingredientId = this.$route.params.id;
 
     this.getIngredientPrice(this.ingredientId);
-    this.getIngredientPriceInterval(this.ingredientId);
-    this.getIngredientPriceRate(this.ingredientId);
     this.getIngredientWatchs(this.ingredientId);
   },
   data() {

@@ -1,10 +1,24 @@
 <template>
   <td class="table">
-    <div :class="['CFRecommendCard', 'border', ingredient.ingredientCategory]">
+    <div
+      :class="['CFRecommendCard', 'border', ingredient.ingredientCategory]"
+      v-if="ingredient.ingredientDetailName === null"
+      @click="moveToIngredient"
+    >
       <GreenIcon v-if="ingredient.ingredientCategory === '농산'" class="icon" />
       <BlueIcon v-if="ingredient.ingredientCategory === '수산'" class="icon" />
       <RedIcon v-if="ingredient.ingredientCategory === '축산'" class="icon" />
       {{ ingredient.ingredientName }}
+    </div>
+    <div
+      :class="['CFRecommendCard', 'border', ingredient.ingredientCategory]"
+      v-else
+      @click="moveToIngredient"
+    >
+      <GreenIcon v-if="ingredient.ingredientCategory === '농산'" class="icon" />
+      <BlueIcon v-if="ingredient.ingredientCategory === '수산'" class="icon" />
+      <RedIcon v-if="ingredient.ingredientCategory === '축산'" class="icon" />
+      {{ ingredient.ingredientDetailName }}
     </div>
   </td>
 </template>
@@ -20,6 +34,16 @@ export default {
   },
   props: {
     ingredient: Object,
+  },
+  methods: {
+    moveToIngredient: function() {
+      this.$router.push({
+        name: 'Detail',
+        params: {
+          id: this.ingredient.ingredientId,
+        },
+      });
+    },
   },
 };
 </script>
