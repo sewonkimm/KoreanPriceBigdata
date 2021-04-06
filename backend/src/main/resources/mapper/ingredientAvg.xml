@@ -26,10 +26,10 @@
 		SELECT
 		CASE WHEN ingredient_avg_price -
 		ingredient_avg_previous_price IS NULL
-        THEN 0
-        ELSE ingredient_avg_price -
+		THEN 0
+		ELSE ingredient_avg_price -
 		ingredient_avg_previous_price
-        END
+		END
 		FROM ingredient_avg
 		WHERE ingredient_id
 		= 1
