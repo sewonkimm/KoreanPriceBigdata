@@ -25,9 +25,7 @@ export default {
     Up,
     Down,
   },
-  created() {
-    this.ingredientId = this.$route.params.id;
-
+  mounted() {
     this.getIngredientPrice(this.ingredientId);
     this.getIngredientPriceInterval(this.ingredientId);
     this.getIngredientPriceRate(this.ingredientId);
@@ -38,7 +36,7 @@ export default {
       rangePrice: '', // 등락 가격
       rangePercent: '', // 등락률
       isUp: false, // 상승, 하락에 따른 스타일 적용을 위한 state
-      ingredientId: '',
+      ingredientId: this.$route.params.id,
     };
   },
   filters: {

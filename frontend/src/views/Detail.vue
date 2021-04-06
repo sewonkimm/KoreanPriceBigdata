@@ -68,38 +68,12 @@ export default {
     Shopping,
     Recommend,
   },
-  data: function() {
-    return {
-      userId: '',
-      ingredientId: '',
-    };
-  },
   computed: {
+    // 상품 이미지 출력
     cssVars() {
       return {
         '--bg-url': `url('https://j4a301.p.ssafy.io/ingredients/ingredients_${this.$route.params.id}.png')`,
       };
-    },
-  },
-  created() {
-    this.userId = this.$store.state.userId;
-    this.ingredientId = this.$route.params.id;
-    handleInsertWatch();
-  },
-  methods: {
-    handleInsertWatch() {
-      this.$axios({
-        url: '/watches',
-        method: 'POST',
-        data: {
-          ingredientId: this.ingredientId,
-          memberId: this.userId,
-        },
-      })
-        .then(() => {})
-        .catch((error) => {
-          console.log(error);
-        });
     },
   },
 };
