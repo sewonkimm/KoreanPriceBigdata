@@ -10,9 +10,9 @@ import numpy as np
 import datetime
 from sklearn.linear_model import LinearRegression
 
-router = APIRouter(prefix="/recommand")
+router = APIRouter()
 
-@router.get('/latent/{memberId}')
+@router.get('/cf/{memberId}')
 def recommand(memberId: int, session: Session = Depends(db.session)):
     memberAll = session.query(member).all()
     index = []
