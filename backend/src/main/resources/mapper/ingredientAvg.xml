@@ -18,19 +18,23 @@
 		WHERE ingredient_id
 		= #{ingredientId}
 		AND
-		ingredient_avg_date=DATE_FORMAT(NOW(),
+		ingredient_avg_date=DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
 		"%y-%c-%e")
 	</select>
 
 	<select id="selectIntervalPrice" resultType="int">
 		SELECT
-		ingredient_avg_price -
+		CASE WHEN ingredient_avg_price -
+		ingredient_avg_previous_price IS NULL
+        THEN 0
+        ELSE ingredient_avg_price -
 		ingredient_avg_previous_price
+        END
 		FROM ingredient_avg
 		WHERE ingredient_id
-		= #{ingredientId}
+		= 1
 		AND
-		ingredient_avg_date=DATE_FORMAT(NOW(),
+		ingredient_avg_date=DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
 		"%y-%c-%e")
 	</select>
 
@@ -41,7 +45,7 @@
 		WHERE ingredient_id
 		= #{ingredientId}
 		AND
-		ingredient_avg_date=DATE_FORMAT(NOW(),
+		ingredient_avg_date=DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
 		"%y-%c-%e")
 	</select>
 </mapper>
