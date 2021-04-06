@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       dialog: false,
-      id: '',
     };
   },
   methods: {
@@ -69,8 +68,7 @@ export default {
           })
             .then((response) => {
               const token = response.data.accesstoken;
-              localStorage.setItem('accesstoken', token);
-              this.$store.commit('SOCIALLOGIN', this.id);
+              this.$store.commit('SOCIALLOGIN', token);
               alert('구글 로그인에 성공하셨습니다.');
             })
             .catch((error) => {
@@ -116,9 +114,7 @@ export default {
             })
               .then((response) => {
                 const token = response.data.accesstoken;
-                this.id = kakaoAccount.email;
-                localStorage.setItem('accesstoken', token);
-                this.$store.commit('SOCIALLOGIN', this.id);
+                this.$store.commit('LOGIN', token);
                 alert('카카오 로그인에 성공하셨습니다.');
               })
               .catch((error) => {

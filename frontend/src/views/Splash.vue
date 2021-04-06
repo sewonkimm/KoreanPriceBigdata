@@ -27,11 +27,13 @@ export default {
       this.showOnboard = true;
     },
     endOnboarding() {
+      // 메인페이지로 이동
       this.$router.push('/');
     },
   },
   mounted() {
     setTimeout(this.startOnboarding, 2500);
+    this.$store.commit('READSPLASH');
   },
 };
 </script>

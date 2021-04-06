@@ -2,7 +2,7 @@
   <div class="register">
     <LogoName />
     <EmailInput v-if="!emailStatus" v-on:pass="checkEmail" />
-    <PasswordInput v-if="emailStatus" />
+    <PasswordInput v-if="emailStatus" :email="email" />
   </div>
 </template>
 <script>
@@ -22,11 +22,13 @@ export default {
     return {
       isActive: false, // 다음 버튼 활성화 비활성화 결정
       emailStatus: false,
+      email: '',
     };
   },
   methods: {
-    checkEmail: function() {
+    checkEmail: function(email) {
       this.emailStatus = true;
+      this.email = email;
     },
   },
 };

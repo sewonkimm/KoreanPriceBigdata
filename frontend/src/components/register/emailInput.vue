@@ -43,7 +43,7 @@ export default {
       }
     },
     goPassword: function() {
-      this.$emit('pass'); // 상위 컴포넌트로 이벤트 전달
+      this.$emit('pass', this.email); // 상위 컴포넌트로 이벤트 전달
     },
   },
   watch: {

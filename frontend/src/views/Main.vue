@@ -128,6 +128,11 @@ export default {
     },
   },
   created() {
+    // 첫 방문인 경우 -> splash 화면으로 분기
+    if (this.$store.state.splash) {
+      this.$router.push({ name: 'Splash' });
+    }
+
     this.getIngredients();
   },
 };
