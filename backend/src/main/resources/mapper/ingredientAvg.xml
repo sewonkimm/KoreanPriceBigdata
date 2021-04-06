@@ -24,13 +24,16 @@
 
 	<select id="selectIntervalPrice" resultType="int">
 		SELECT
-		CASE WHEN ingredient_avg_price -
+		CASE WHEN
+		ingredient_avg_price -
 		ingredient_avg_previous_price IS NULL
 		THEN 0
-		ELSE ingredient_avg_price -
+		ELSE
+		ingredient_avg_price -
 		ingredient_avg_previous_price
 		END
-		FROM ingredient_avg
+		FROM
+		ingredient_avg
 		WHERE ingredient_id
 		= 1
 		AND
