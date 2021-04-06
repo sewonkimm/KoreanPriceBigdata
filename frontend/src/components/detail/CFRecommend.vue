@@ -1,6 +1,14 @@
 <template>
   <div class="CFRecommend">
-    <h1 class="title">이런 상품은 어때요?</h1>
+    <h1 class="title">
+      이런 상품은 어때요?
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+        </template>
+        <span>회원 정보를 기반으로 추천하는 상품입니다.</span>
+      </v-tooltip>
+    </h1>
     <div class="cardContainer">
       <CFRecommendCard v-for="(item, index) in items" :key="index" :ingredient="item" />
     </div>

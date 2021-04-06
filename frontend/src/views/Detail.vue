@@ -26,7 +26,18 @@
         <v-col :cols="12">
           <v-card class="pa-2">
             <div class="lineChart">
-              1년 가격 추이
+              <p class="title">
+                1년 가격 추이
+                <v-tooltip top>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-icon v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+                  </template>
+                  <span
+                    >1년동안의 시세를 시각화했습니다. 범례를 클릭하면 각각의 그래프를 볼 수
+                    있습니다.</span
+                  >
+                </v-tooltip>
+              </p>
               <LineChart :height="270" />
             </div>
           </v-card>
