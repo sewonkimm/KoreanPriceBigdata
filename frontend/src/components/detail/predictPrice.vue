@@ -37,9 +37,7 @@ export default {
     Up,
     Down,
   },
-  created() {
-    this.ingredientId = this.$route.params.id;
-
+  mounted() {
     this.getIngredientPrice(this.ingredientId);
     this.getIngredientPriceInterval(this.ingredientId);
     this.getIngredientPriceRate(this.ingredientId);
@@ -54,6 +52,7 @@ export default {
       isUp: false, // 상승, 하락에 따른 스타일 적용을 위한 state
       count: '',
       previousPrice: '',
+      ingredientId: this.$route.params.id,
     };
   },
   filters: {
@@ -81,6 +80,33 @@ export default {
           }
         })
         .catch(() => {});
+    },
+    getIngredientPriceInterval(ingredientId) {
+      this.$axios({
+        url: '/ingredientAvg/price/interval/' + ingredientId,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.rangePrice = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getIngredientPriceRate(ingredientId) {
+      this.$axios({
+        url: '/ingredientAvg/rate/' + ingredientId,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.rangePercent = response.data;
+          if (this.rangePercent > 0) {
+            this.isUp = true;
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
     getIngredientWatchs(ingredientId) {
       this.$axios({

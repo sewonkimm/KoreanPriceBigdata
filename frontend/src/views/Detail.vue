@@ -69,6 +69,7 @@ export default {
     Recommend,
   },
   computed: {
+    // 상품 이미지 출력
     cssVars() {
       return {
         '--bg-url': `url('https://j4a301.p.ssafy.io/ingredients/ingredients_${this.$route.params.id}.png')`,
