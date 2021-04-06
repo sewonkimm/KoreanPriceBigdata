@@ -388,6 +388,10 @@ const CMRotate =
         price.className = 'price';
         price.innerText = _bgArr[id].ingredientAvg.ingredientAvgPrice + '원';
         priceWrapper.appendChild(price);
+        // 가격 단위
+        const unit = document.createElement('p');
+        unit.className = 'unit';
+        unit.innerText = '(' + _bgArr[id].ingredientUnit + ')';
         // 번호
         const cardNumber = document.createElement('p');
         cardNumber.className = 'num';
@@ -414,6 +418,7 @@ const CMRotate =
         div.appendChild(cursorWrapper);
         div.appendChild(name);
         div.appendChild(priceWrapper);
+        div.appendChild(unit);
         div.appendChild(cardNumber);
       }
 

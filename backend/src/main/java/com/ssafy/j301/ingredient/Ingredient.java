@@ -24,6 +24,8 @@ public class Ingredient {
 
 	private String ingredientCategory;
 
+	private String ingredientUnit;
+	
 	private IngredientAvg ingredientAvg;
 	
 	private int favorite;
