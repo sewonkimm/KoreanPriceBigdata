@@ -23,7 +23,7 @@ export default {
   methods: {
     getCFRecommand: function() {
       const instance = axios.create({
-        baseURL: 'http://j4a301.p.ssafy.io:8000',
+        baseURL: 'https://j4a301.p.ssafy.io',
       });
       instance
         .get('/cf/' + this.$store.state.userId)
@@ -36,7 +36,7 @@ export default {
     },
   },
   created() {
-    this.getCFRecommand();
+    // this.getCFRecommand();
   },
 };
 </script>

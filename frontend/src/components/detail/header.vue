@@ -7,8 +7,9 @@
         </v-btn>
       </v-app-bar-nav-icon>
       <v-toolbar-title class="title">{{ ingredientName }}</v-toolbar-title>
-      <v-btn icon>
-        <v-icon color="white">mdi-heart-outline</v-icon>
+      <v-btn icon @click="onclickFavorite">
+        <v-icon color="white" v-if="favorite">mdi-heart</v-icon>
+        <v-icon color="white" v-else>mdi-heart-outline</v-icon>
       </v-btn>
 
       <v-spacer></v-spacer>
@@ -40,14 +41,12 @@ import '@/components/css/detail/header.scss';
 
 export default {
   name: 'Header',
-  created() {
-    this.getIngredientName(this.ingredientId); // 찾은 ingredientId로 ingredientName 찾기
-    this.getIngredients();
-  },
   data() {
     return {
       ingredientId: this.$route.params.id, //  라우터에서 ingredientId 찾기
       ingredientName: '',
+      userId: this.$store.state.userId,
+      favorite: false,
       // -- search 관련 state --
       loading: false,
       items: [], // 검색할 때마다 밑에 나오는 데이터
@@ -70,6 +69,7 @@ export default {
     select: function() {
       // 검색한 카드 컴포넌트만 보여주기
       const selectId = this.getIngredientId(this.select);
+      this.handleInsertWatch(selectId);
       this.$router.push({
         name: 'Detail',
         params: {
@@ -80,11 +80,13 @@ export default {
   },
   methods: {
     goBack() {
+      //  뒤로가기
       this.$router.go(-1);
     },
-    getIngredientName(ingredientId) {
+    getIngredientName() {
+      // 상품 이름 불러오기
       this.$axios({
-        url: '/ingredients/detailId/' + ingredientId,
+        url: '/ingredients/detailId/' + this.ingredientId,
         method: 'GET',
       })
         .then((response) => {
@@ -93,6 +95,34 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    onclickFavorite() {
+      // 즐겨찾기 toggle
+      this.$axios({
+        url: '/favorites',
+        method: 'POST',
+        data: {
+          ingredientId: this.ingredientId,
+          memberId: this.userId,
+        },
+      })
+        .then(() => {
+          this.$router.go(this.$router.currentRoute); // 페이지 새로고침
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getFavorite() {
+      // 즐겨찾기 여부 가져오기
+      this.$axios({
+        url: '/favorites/' + this.userId + '/' + this.ingredientId,
+        method: 'GET',
+      }).then((response) => {
+        if (response.data == 1) {
+          this.favorite = true;
+        }
+      });
     },
     // -- search 관련 method --
     querySelections(v) {
@@ -138,6 +168,30 @@ export default {
       })[0].ingredientId;
     },
     // --
+    // 조회수 카운트를 위한 api 호출
+    handleInsertWatch(ingredientId) {
+      this.$axios({
+        url: '/watches',
+        method: 'POST',
+        data: {
+          ingredientId: ingredientId,
+          memberId: this.userId,
+        },
+      })
+        .then(() => {
+          console.log(1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  created() {
+    this.getIngredients(); // 검색 기능을 위한 데이터 로드
+  },
+  mounted() {
+    this.getIngredientName(); // 찾은 ingredientId로 ingredientName 찾기
+    this.getFavorite(); // 즐겨찾기 상품인지 표시
   },
 };
 </script>
