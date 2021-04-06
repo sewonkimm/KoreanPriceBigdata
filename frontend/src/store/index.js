@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     splash: true, // 첫 방문시에만 splash 보기
     userId: '',
+    error: false,
   },
   mutations: {
     LOGIN: (state, token) => {
