@@ -6,10 +6,15 @@
 
 	<select id="selectShopping"
 		resultType="com.ssafy.j301.shopping.Shopping">
-		SELECT shopping_api_id as shoppingApiId, ingredient_id as ingredientId, shopping_api_title as shoppingApiTitle, shopping_api_price as shoppingApiPrice, shopping_api_store as shoppingApiStore, shopping_api_date as shoppingApiDate, shopping_api_link as shoppingApiLink
+		SELECT shopping_api_id as shoppingApiId, ingredient_id as
+		ingredientId, shopping_api_title as shoppingApiTitle,
+		shopping_api_price as shoppingApiPrice, shopping_api_store as
+		shoppingApiStore, shopping_api_date as shoppingApiDate,
+		shopping_api_link as shoppingApiLink
 		FROM shopping_api
-		WHERE ingredient_id = #{ingredientId} AND shopping_api_date = CURDATE() 
-		ORDER BY shopping_api_price 
+		WHERE
+		ingredient_id = #{ingredientId} AND shopping_api_date = CURDATE()
+		ORDER BY shopping_api_price
 		LIMIT 5;
 	</select>
 </mapper>
