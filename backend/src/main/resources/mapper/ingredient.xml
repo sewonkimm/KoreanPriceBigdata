@@ -25,8 +25,7 @@
 			property="ingredientDetailNameCode" />
 		<result column="ingredient_category"
 			property="ingredientCategory" />
-		<result column="ingredient_unit"
-			property="ingredientUnit" />
+		<result column="ingredient_unit" property="ingredientUnit" />
 		<result column="favorite" property="favorite" />
 		<collection property="ingredientAvg"
 			resultMap="IngredientAvg" />
@@ -123,23 +122,27 @@
 		INTERVAL -1 WEEK), "%y-%c-%e") AND
 		watch.watch_date
 		=
-		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
+		"%y-%c-%e")
 
 		GROUP BY
 		ingredient.ingredient_id
 
 		ORDER
-		BY CASE WHEN ingredient.ingredient_id in
+		BY CASE WHEN
+		ingredient.ingredient_id in
 		(
 		SELECT ingredient_id
 		FROM
 		favorite
-		WHERE member_id = #{memberId}
+		WHERE
+		member_id = #{memberId}
 		) THEN 1
 		ELSE 0 END DESC, (
 		SELECT
 		count(*)
-		FROM watch
+		FROM
+		watch
 		WHERE
 		ingredient.ingredient_id =
 		watch.ingredient_id
