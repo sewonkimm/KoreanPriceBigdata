@@ -97,6 +97,7 @@ export default {
             PredictPrice = PredictPrice.ingredientAvgPredictPrice;
             return PredictPrice;
           });
+          this.renderChart(this.chartdata, this.options);
         })
         .catch(() => {});
     },
@@ -104,7 +105,6 @@ export default {
   mounted() {
     this.getIngredientPriceYear(this.ingredientId);
     this.addPlugin(zoom);
-    this.renderChart(this.chartdata, this.options);
   },
 };
 </script>

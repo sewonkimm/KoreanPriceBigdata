@@ -51,6 +51,7 @@ export default {
           this.id = response.data.map((item) => {
             return item.ingredientId;
           });
+          this.renderChart(this.chartdata, this.options);
         })
         .catch((error) => {
           console.error(error);
@@ -59,7 +60,6 @@ export default {
   },
   created() {
     this.getPopularityRecommand();
-    this.renderChart(this.chartdata, this.options);
   },
 };
 </script>
