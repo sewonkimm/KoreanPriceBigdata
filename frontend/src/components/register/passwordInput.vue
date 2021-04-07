@@ -80,9 +80,6 @@ export default {
           memberEmail: this.email,
           memberPassword: this.password,
           memberName: '',
-          memberGender: '',
-          memberArea: '',
-          memberBirth: '',
           memberPlatformType: '',
         },
       })

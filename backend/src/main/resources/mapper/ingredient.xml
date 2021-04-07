@@ -59,7 +59,8 @@
 		"%y-%c-%e") AND
 		watch.watch_date
 		=
-		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
+		DATE_FORMAT(NOW(),
+		"%y-%c-%e")
 
 		GROUP BY
 		ingredient.ingredient_id
@@ -78,10 +79,18 @@
 	<select id="selectAllName"
 		resultType="com.ssafy.j301.ingredient.RequestIngredientName">
 
-		SELECT ingredient_id AS ingredientId, ingredient_name AS
-		ingredientName, ingredient_detail_name AS ingredientDetailName
+		SELECT ingredient.ingredient_id AS ingredientId,
+		ingredient.ingredient_name AS
+		ingredientName,
+		ingredient.ingredient_detail_name AS ingredientDetailName
 		FROM
 		ingredient
+		LEFT JOIN ingredient_avg ON ingredient_avg.ingredient_id =
+		ingredient.ingredient_id
+		WHERE
+		ingredient_avg.ingredient_avg_date =
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
+		"%y-%c-%e")
 
 	</select>
 
@@ -122,7 +131,7 @@
 		INTERVAL -1 WEEK), "%y-%c-%e") AND
 		watch.watch_date
 		=
-		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
+		DATE_FORMAT(NOW(),
 		"%y-%c-%e")
 
 		GROUP BY

@@ -7,7 +7,7 @@ import com.ssafy.j301.favorite.Favorite;
 
 @Repository
 public interface FavoriteMapper {
-
+	
 	public void insertFavorite(Favorite favorite);
 
 	public void deleteFavorite(Favorite favorite);
