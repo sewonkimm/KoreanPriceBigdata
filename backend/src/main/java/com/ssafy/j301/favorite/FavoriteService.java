@@ -1,7 +1,6 @@
 package com.ssafy.j301.favorite;
 
 import java.util.List;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import com.ssafy.j301.mapper.FavoriteMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,6 @@ public class FavoriteService {
 
 	private final FavoriteMapper favoriteMapper;
 
-	@CacheEvict(value = "selectAllByLogin", allEntries = true)
 	public void insertFavorite(Favorite favorite) {
 		int checkFavorite = favoriteMapper.selectFavorite(favorite.getMemberId(), favorite.getIngredientId());
 		if (checkFavorite == 0) {
