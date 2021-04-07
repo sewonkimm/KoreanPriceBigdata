@@ -190,6 +190,113 @@ python main.py
 &nbsp;
 &nbsp;
 
+
+### Java 설치
+```
+$ sudo apt-get install openjdk-8-jre
+
+$ sudo apt-get install openjdk-8-jdk
+```
+### Npm 설치
+```
+$ sudo apt install npm
+```
+### Python3.7 install
+```
+$ sudo apt update
+
+$ sudo apt install software-properties-common
+
+$ sudo add-apt-repository ppa:deadsnakes/ppa 
+
+$ sudo apt update 
+
+$ sudo apt install python3.7
+```
+### Python3.7 venv
+```
+$ sudo apt-get install python3.7-venv //python3.7 가상환경 설치
+ 
+$ python3.7 -m venv my_common_env //python3.7 가상환경 활성화
+
+$ cd my_common_env/bin
+
+$ source activate 
+
+```
+### Docker install
+```
+$ sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common // 다음 패키지들을 설치
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add – // Docker의 공식 GPG키를 추가한다.
+
+$ sudo add-apt-repository "deb [arch=amd64] 
+https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" // stable repository를 세팅하기 위한 명령어
+
+$ sudo apt install docker-ce docker-ce-cli containerd.io // 가장 최신 버전의 Docker 엔진을 설치한다.
+```
+### Docker MariaDB install
+```
+$ sudo docker run --name DB이름 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=비밀번호 - d mariadb // Docker로 Mariadb 설치 및 실행
+```
+### Gradle install
+```
+$ apt-get update
+$ apt-get install unzip wget
+
+$ wget https://downloads.gradle-dn.com/distributions/gradle-6.3-bin.zip //gradle 6.3 설치
+
+$ unzip gradle-6.3-bin.zip -d /opt
+$ In -s /opt/gradle-6.3 /opt/gradle
+
+$ vi /etc/profile.d/gradle.sh
+
+gradle 설정
+
+#/bin/bash
+export GRADLE_HOME=/opt/gradle
+export PATH=/opt/gradle/bin:${PATH}
+
+$ gradle -v //gradle 설치 확인
+```
+### 프로젝트 받기(Git)
+```
+$ git clone https://lab.ssafy.com/s04-bigdata-sub3/s04p23a301.git
+```
+### jar, dist 파일 생성
+```
+$ npm install
+$ npm run build //dist 파일 생성
+
+$ gradle builder //jar 파일 생성
+```
+### 배포하기
+
+```
+<data 폴더> 파이썬 가상환경
+$ pip install -r requirements // 필요한 모듈 설치
+$ uvicorn main:app --reload --host=0.0.0.0 --port=8000 // fastApi 실행하기
+
+<front 폴더>
+$ mv dist /var/www/html // 명령어로 이동
+
+<backend 폴더>
+$ java -jar (파일이름).jar
+
+```
+
+### Nginx 설정
+
+```
+$ cd /etc/nginx/sites-available
+$ sudo vi default // 설정파일 열기
+```
+![image](https://user-images.githubusercontent.com/43171179/113813360-ba412c80-97aa-11eb-8701-b4bb4d1a35a1.png)
+
+![image](https://user-images.githubusercontent.com/43171179/113813530-0c824d80-97ab-11eb-8765-7e1aa7592943.png)
+
+
+
 # 🧙‍♂️만든사람들
 
 ## SSAFY 4기 서울 3반 A301팀
