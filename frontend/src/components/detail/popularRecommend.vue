@@ -14,6 +14,7 @@ export default {
             label: '인기도',
             data: [],
             barPercentage: 0.5,
+            backgroundColor: '#71766B',
           },
         ],
       },
@@ -45,7 +46,7 @@ export default {
             }
             return item.ingredientDetailName;
           });
-          this.chartdata.datasets.data = response.data.map((item) => {
+          this.chartdata.datasets[0].data = response.data.map((item) => {
             return item.popularity;
           });
           this.id = response.data.map((item) => {

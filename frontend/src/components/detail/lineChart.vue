@@ -48,6 +48,11 @@ export default {
         scales: {
           xAxes: [
             {
+              ticks: {
+                callback: function(item, index, items) {
+                  return items[index].toString().slice(2, 7);
+                },
+              },
               gridLines: {
                 color: 'lightgray',
                 borderDash: [2, 5],
