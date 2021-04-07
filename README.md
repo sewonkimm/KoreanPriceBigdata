@@ -11,36 +11,37 @@
 <img src="https://img.shields.io/static/v1?label=Domain&message=Bigdata&color=blueviolet">
 </p>
 
-
 &nbsp;
 &nbsp;
 
-****
+---
+
 &nbsp;
 &nbsp;
 
 ## 목차
 
-* [기획배경](#🍓기획배경)
-* [기획](#🍊기획)
-  * 와이어프레임
-  * UI디자인
-  * ERD
-* [주요기능](#🍋주요기능)
-* [기술스택](#🍏기술스택)
-* [개발환경](#🍇개발환경)
-  * Git flow 전략
-  * 컨벤션
-* [서비스구조](#🍑서비스구조)
-  * 아키텍쳐
-  * 디렉토리 구조
-* [시작하기](#🍭시작하기)
-* [만든사람들](#🧙‍♂️만든사람들)
-  
-&nbsp;
-&nbsp; 
+- [기획배경](#🍓기획배경)
+- [기획](#🍊기획)
+  - 와이어프레임
+  - UI디자인
+  - ERD
+- [주요기능](#🍋주요기능)
+- [기술스택](#🍏기술스택)
+- [개발환경](#🍇개발환경)
+  - Git flow 전략
+  - 컨벤션
+- [서비스구조](#🍑서비스구조)
+  - 아키텍쳐
+  - 디렉토리 구조
+- [시작하기](#🍭시작하기)
+- [만든사람들](#🧙‍♂️만든사람들)
 
-****
+&nbsp;
+&nbsp;
+
+---
+
 &nbsp;
 &nbsp;
 
@@ -66,11 +67,9 @@
 
 > [🔗Figma에서 보기](https://www.figma.com/file/fBnCyMULsrcTRYgCc5NmWt/UI-Design?node-id=2%3A667)
 
-
 ### 메인 페이지
 
 <img src="https://user-images.githubusercontent.com/30452963/113335739-5230b780-9360-11eb-8d0b-a2eedb48311f.png" width=720 />
-
 
 ### 상세 페이지
 
@@ -89,23 +88,35 @@
 
 # 🍋주요기능
 
+잠재요인 기반 협업 필터링
+
+```markdown
+사용자-아이템 평점 행렬에 잠재되어 있는 어떤 요인(factor)이 있다고 가정하고, 행렬 분해를 통해 그 요인들을 찾아내는 방식입니다.
+
+SVD(특이값 분해)를 사용하여 사용자-요인, 요인-아이템 행렬로 분해합니다.
+또한 분해한 행렬로 사용자들에게 추천할 수 있도록 SGD(확률적 경사하강법)를 사용하여 기존 매트릭스와 아이템-요인 \* 유저-요인의 차이가 최소가 되는 값을 찾아 사용자가 아직 방문하지 않은 정보 중 가장 연관성이 있을 데이터를 추천합니다.
+```
+
 &nbsp;
 &nbsp;
 
 # 🍏기술스택
 
+파이썬 : FastApi
+'''markdown
+FastApi : 자바의 Spring과 같이 RestApi 형태의 파이썬 프레임워크입니다.
+'''
 &nbsp;
 &nbsp;
 
 # 🍇개발환경
 
-> [📓git flow 전략](https://www.notion.so/sewonkimm/Git-13372a07ecba456eae0d1ed5637e0861)       
-> [📕git 컨벤션](https://www.notion.so/sewonkimm/Git-13372a07ecba456eae0d1ed5637e0861)      
-> [📙HTML/CSS 컨벤션](https://www.notion.so/sewonkimm/HTML-CSS-e954f3fba9f947699bb077fa4dd90b8d)      
-> [📒JS 컨벤션](https://www.notion.so/sewonkimm/ES6-JS-3c94c15d43a34c5796f676723c8700ff)      
-> [📗Spring/Java 컨벤션](https://www.notion.so/sewonkimm/Spring-Java-f5a0d05840c045b48171d79a8fae0a2e)        
+> [📓git flow 전략](https://www.notion.so/sewonkimm/Git-13372a07ecba456eae0d1ed5637e0861)  
+> [📕git 컨벤션](https://www.notion.so/sewonkimm/Git-13372a07ecba456eae0d1ed5637e0861)  
+> [📙HTML/CSS 컨벤션](https://www.notion.so/sewonkimm/HTML-CSS-e954f3fba9f947699bb077fa4dd90b8d)  
+> [📒JS 컨벤션](https://www.notion.so/sewonkimm/ES6-JS-3c94c15d43a34c5796f676723c8700ff)  
+> [📗Spring/Java 컨벤션](https://www.notion.so/sewonkimm/Spring-Java-f5a0d05840c045b48171d79a8fae0a2e)  
 > [📘이미지파일 및 폴더명 컨벤션](https://www.notion.so/sewonkimm/452f5f37f624499b9432d2d0e7121b7a)
-
 
 &nbsp;
 &nbsp;
@@ -123,9 +134,8 @@
 ├──📁data
 ├──📁sql
 ├──📃.gitignore
-├──📃changelog.config.js  // commit convention을 위한 설정
+├──📃changelog.config.js // commit convention을 위한 설정
 └──📃README.md
-
 ```
 
 ### 디렉토리 구조 - Frontend
@@ -134,16 +144,30 @@
 📁frontend
 ```
 
+### 디렉토리 구조 - Data
+
+```markdown
+📁data/fastApi
+├──📁app
+├──📃main.py -> 실행 파일
+├──📃README.md
+└──📃requirements.txt
+
+📁app
+├──📁common -> 환경설정 폴더
+├──📁database -> DB연결 및 스키마 폴더
+└──📁routes -> RestApi routes 폴더
+```
 
 &nbsp;
 &nbsp;
-
 
 # 🍭시작하기
 
 ### DB
 
 ```bash
+
 ```
 
 ### Client
@@ -153,6 +177,16 @@ cd frontend
 npm install
 npm run serve
 ```
+
+## Data
+
+```bash
+cd data/fastApi
+python version : 3.7
+pip install -r requirements.txt
+python main.py
+```
+
 &nbsp;
 &nbsp;
 
