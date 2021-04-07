@@ -17,7 +17,7 @@ export default {
             pointBackgroundColor: '#e55572',
             backgroundColor: 'transparent',
             data: [],
-            pointRadius: 0,
+            pointRadius: 2,
             borderWidth: 1,
             fill: false,
           },
@@ -27,7 +27,7 @@ export default {
             pointBackgroundColor: '#488cde',
             backgroundColor: 'transparent',
             data: [],
-            pointRadius: 0,
+            pointRadius: 2,
             borderWidth: 1,
             fill: false,
           },
@@ -97,6 +97,7 @@ export default {
             PredictPrice = PredictPrice.ingredientAvgPredictPrice;
             return PredictPrice;
           });
+          this.renderChart(this.chartdata, this.options);
         })
         .catch(() => {});
     },
@@ -104,7 +105,6 @@ export default {
   mounted() {
     this.getIngredientPriceYear(this.ingredientId);
     this.addPlugin(zoom);
-    this.renderChart(this.chartdata, this.options);
   },
 };
 </script>
