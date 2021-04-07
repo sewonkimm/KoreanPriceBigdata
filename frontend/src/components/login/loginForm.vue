@@ -38,7 +38,7 @@ export default {
       showText: false, // 비밀번호 보여줄지 말지 결정
       isActive: false, // 로그인 버튼 활성화 비활성화 결정
       showError: false,
-      errorMessage: '',
+      errorMessage: '', // 에러메세지
     };
   },
   watch: {
@@ -87,7 +87,12 @@ export default {
         })
         .catch((error) => {
           console.error(error);
-          alert('이메일과 비밀번호를 확인해주세요.');
+          this.showError = true;
+          this.errorMessage = '이메일과 비밀번호를 확인해주세요.';
+
+          setTimeout(() => {
+            this.showError = false;
+          }, 5000);
         });
     },
   },

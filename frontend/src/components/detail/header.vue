@@ -1,6 +1,13 @@
 <template>
-  <div class="header">
-    <v-toolbar color="primary">
+  <div
+    :class="{
+      header: 'header',
+      headerGreen: ingredientCategory === '농산',
+      headerBlue: ingredientCategory === '수산',
+      headerRed: ingredientCategory === '축산',
+    }"
+  >
+    <v-toolbar color="transparent">
       <v-app-bar-nav-icon>
         <v-btn icon @click="goBack">
           <v-icon color="white">mdi-chevron-left</v-icon>
@@ -45,6 +52,7 @@ export default {
     return {
       ingredientId: this.$route.params.id, //  라우터에서 ingredientId 찾기
       ingredientName: '',
+      ingredientCategory: '',
       userId: this.$store.state.userId,
       favorite: false,
       // -- search 관련 state --
@@ -91,6 +99,7 @@ export default {
       })
         .then((response) => {
           this.ingredientName = response.data.ingredientName;
+          this.ingredientCategory = response.data.ingredientCategory;
         })
         .catch((error) => {
           console.error(error);
