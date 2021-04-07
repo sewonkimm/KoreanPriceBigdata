@@ -65,9 +65,6 @@ export default {
             data: {
               memberEmail: result.user.email,
               memberPassword: null,
-              memberGender: null,
-              memberArea: null,
-              memberBirth: null,
               memberName: result.user.displayName,
               memberPlatformType: 'Google',
             },
@@ -92,7 +89,7 @@ export default {
     },
     loginWithKakao: function() {
       window.Kakao.Auth.login({
-        scope: 'profile, age_range, account_email, gender, birthday',
+        scope: 'profile, account_email',
         success: this.getInfoWithKaKao,
       });
     },
@@ -101,16 +98,10 @@ export default {
         url: '/v2/user/me',
         success: async (res) => {
           const kakaoAccount = res.kakao_account;
-          let gender = null;
-          if (kakaoAccount.gender === 'female') {
-            gender = 'F';
-          } else if (kakaoAccount.gender === 'male') {
-            gender = 'M';
-          } else {
-            gender = null;
-          }
           if (kakaoAccount.email === null) {
-            // kakao 전용 회원가입 필요
+            alert(
+              '카카오에 이메일을 등록하지 않아서 로그인에 실패했습니다. 다른 방법으로 로그인해주세요.'
+            );
           } else {
             this.$axios({
               url: '/members/social',
@@ -119,9 +110,6 @@ export default {
                 memberEmail: kakaoAccount.email,
                 memberPassword: null,
                 memberName: kakaoAccount.profile.nickname,
-                memberGender: gender,
-                memberBirth: kakaoAccount.birthday,
-                memberArea: null,
                 memberPlatformType: 'Kakao',
               },
             })
