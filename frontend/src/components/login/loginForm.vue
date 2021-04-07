@@ -64,9 +64,6 @@ export default {
         data: {
           memberEmail: this.email,
           memberPassword: this.password,
-          memberGender: '',
-          memberArea: '',
-          memberBirth: '',
           memberName: '',
           memberPlatformType: '',
         },
