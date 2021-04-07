@@ -1,6 +1,8 @@
 package com.ssafy.j301.transition;
 
 import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Transition", description = "1년간 가격 동향 그래프 API")
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/transition")
 public class TransitionController {

@@ -1,6 +1,8 @@
 package com.ssafy.j301.favorite;
 
 import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Favorites", description = "즐겨찾기 API")
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/favorites")
 public class FavoriteController {

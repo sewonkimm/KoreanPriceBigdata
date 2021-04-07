@@ -1,6 +1,8 @@
 package com.ssafy.j301.fluctuationRate;
 
 import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Api(tags = "FluctuationRate", description = "Warning 농축산물 API")
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/fluctuationRates")
 public class FluctuationRateController {

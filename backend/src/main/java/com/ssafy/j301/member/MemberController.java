@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Members", description = "사용자  API")
-@CrossOrigin("*")
+@CrossOrigin
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/members")
