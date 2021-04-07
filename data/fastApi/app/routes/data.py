@@ -25,11 +25,9 @@ def openApi(session: Session = Depends(db.session)):
     apiKey = unquote(
         '1J7amwxnHZ22NEowHAjGL9ihrCj%2FI%2BTvgjIesAJH%2F81p%2FJ0hI2qmYcKjcOrEfPkA0wXoVVgrzJHz4i1%2BRRxv6A%3D%3D')
     date = datetime.date.today()
-    # 지금 데이터가 혼동스러워서 일단 주석으로 남겨놓습니다.
-    # df_list = pd.date_range(start='20201104', end='20201203').strftime("%Y%m%d").tolist()
     ingredientAll = session.query(ingredient).all()
-    # for date in df_list:
     num = session.query(ingredient_info).filter(ingredient_info.ingredient_info_date == date.strftime("%Y%m%d")).count()
+    # 오늘부터 데이터를 안받은 날짜를 탐색
     while num == 0:
         for ingred in ingredientAll:
             """

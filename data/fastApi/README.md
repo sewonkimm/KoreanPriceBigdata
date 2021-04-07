@@ -1,7 +1,7 @@
 ## Usage
 
-1. python version : 3.6.8
-   
+1. python version : 3.7
+
 2. package 설치
 
 ```shell

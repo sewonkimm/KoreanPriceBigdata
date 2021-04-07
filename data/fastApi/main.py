@@ -1,5 +1,4 @@
 from dataclasses import asdict
-from typing import Optional
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
@@ -18,9 +17,6 @@ def create_app():
     # 데이터 베이스 이니셜라이즈
     conf_dict = asdict(c)
     db.init_app(app, **conf_dict)
-
-    # 레디스 이니셜라이즈
-
     # 미들웨어 정의
     app.add_middleware(
         CORSMiddleware,
