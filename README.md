@@ -81,8 +81,7 @@
 ## ERD
 
 > [🔗ERDCloud에서 보기](https://www.erdcloud.com/d/QiA8ksWRJtSpDKDYo)
-
-<img src="https://user-images.githubusercontent.com/30452963/113335987-af2c6d80-9360-11eb-8a91-73ac21b59b0c.png" width=720 />
+<img src="https://user-images.githubusercontent.com/48380687/113811085-85cb7180-97a6-11eb-9e8b-8a3542990172.png" width=720 />
 
 &nbsp;
 &nbsp;
@@ -134,6 +133,57 @@
 📁frontend
 ```
 
+
+### 디렉토리 구조 - Backend
+
+```markdown
+.
+📁backend
+├──📁src/main
+   ├──📁java/com/ssafy/j301
+      ├──📁common
+         ├──📁config
+         ├──📁exception
+         └──📁security
+      ├──📁favorite
+         ├──📃Favorite.java
+         ├──📃FavoriteController.java
+         └──📃FavoriteService.java
+      ├──📁fluctuationRate
+      ├──📁ingredient
+      ├──📁ingredientAvg
+      ├──📁member
+      ├──📁popularity
+      ├──📁shopping
+      ├──📁transition
+      ├──📁watch
+      └──📁mapper
+         ├──📃FavoriteMapper.java
+         ├──📃FluctuationRateMapper.java
+         ├──📃IngredientAvgMapper.java
+         ├──📃IngredientMapper.java
+         ├──📃MemberMapper.java
+         ├──📃PopularityMapper.java
+         ├──📃ShoppingMapper.java
+         ├──📃TransitionMapper.java
+         └──📃WatchMapper.java
+   └──📁resources
+      ├──📃application.properties
+      └──📁mapper
+         ├──📃favorite.xml
+         ├──📃fluctuationRate.xml
+         ├──📃ingredient.xml
+         ├──📃ingredientAvg.xml
+         ├──📃member.xml
+         ├──📃popularity.xml
+         ├──📃shopping.xml
+         ├──📃transition.xml
+         └──📃watch.xml
+├──📃.gitignore
+├──📃build.gradle  // gradle 빌드 툴 설정
+└──📃keystore.p12  // SSL 기능을 위한 설정
+
+```
 
 &nbsp;
 &nbsp;
