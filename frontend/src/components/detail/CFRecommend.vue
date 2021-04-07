@@ -10,7 +10,17 @@
       </v-tooltip>
     </h1>
     <div class="cardContainer">
-      <CFRecommendCard v-for="(item, index) in items" :key="index" :ingredient="item" />
+      <tbody class="table">
+        <tr class="table">
+          <CFRecommendCard v-for="(item, index) in itemsFirst" :key="index" :ingredient="item" />
+        </tr>
+        <tr class="table">
+          <CFRecommendCard v-for="(item, index) in itemsSecond" :key="index" :ingredient="item" />
+        </tr>
+        <tr class="table">
+          <CFRecommendCard v-for="(item, index) in itemsThird" :key="index" :ingredient="item" />
+        </tr>
+      </tbody>
     </div>
   </div>
 </template>
@@ -25,18 +35,23 @@ export default {
   },
   data() {
     return {
-      items: [],
+      itemsFirst: [],
+      itemsSecond: [],
+      itemsThird: [],
     };
   },
   methods: {
     getCFRecommand: function() {
+      // 해당 axios만 python에서 호출하기에 baseURL변경을 위해 instance를 생성했습니다.
       const instance = axios.create({
         baseURL: 'https://j4a301.p.ssafy.io',
       });
       instance
         .get('/cf/' + this.$store.state.userId)
         .then((response) => {
-          this.items = response.data;
+          this.itemsThird = response.data;
+          this.itemsFirst = this.itemsThird.splice(0, 2);
+          this.itemsSecond = this.itemsThird.splice(0, 2);
         })
         .catch((error) => {
           console.error(error);

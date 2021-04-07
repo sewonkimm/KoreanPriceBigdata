@@ -45,8 +45,6 @@ export default {
   },
   mounted() {
     this.getIngredientPrice(this.ingredientId);
-    this.getIngredientPriceInterval(this.ingredientId);
-    this.getIngredientPriceRate(this.ingredientId);
     this.getIngredientWatchs(this.ingredientId);
   },
   data() {

@@ -84,7 +84,7 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          this.rangePercent = response.data;
+          this.rangePercent = response.data.toFixed(2);
           if (this.rangePercent > 0) {
             this.isUp = true;
           }
