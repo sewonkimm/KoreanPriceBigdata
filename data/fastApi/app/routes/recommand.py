@@ -17,12 +17,18 @@ def recommand(memberId: int, session: Session = Depends(db.session)):
     memberAll = session.query(member).all()
     index = []
     memberList = []
-    ingredientList = range(1, 84)
+    ingredientList = []
+    # 오늘 있는 재료만 재료 리스트에 저장
+    for i in range(1, 84):
+        sql = session.query(ingredient_avg).filter(and_(ingredient_avg.ingredient_id == i, ingredient_avg.ingredient_avg_date == (datetime.date.today() + datetime.timedelta(days=-7)).strftime("%Y%m%d"))).count()
+        if sql == 0:
+            continue;
+        ingredientList.append(i)
     # 유저가 검색한 재료 리스트를 합쳐서 데이터프레임 생성
     for mem in memberAll:
         index.append(mem.member_id)
         w = []
-        for i in range(1, 84):
+        for i in ingredientList:
             # 유저가 검색한 재료 별 횟수를 리스트로 저장
             query = session.query(watch).filter(and_(watch.member_id == mem.member_id, watch.ingredient_id == i))
             count = query.count()
