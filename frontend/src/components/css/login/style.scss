@@ -37,12 +37,13 @@
                 background: linear-gradient(109.63deg, #78D0FF 1.79%, #4B6EB2 101.38%);
             }
         }
+    }
 
-        .error {
-            position: absolute;
-            right: 30px;
-            bottom: 50px;
-        }
+    // 에러메세지
+    .error {
+        position: absolute;
+        right: 30px;
+        bottom: 50px;
     }
 
     // 소셜로그인 모달 버튼

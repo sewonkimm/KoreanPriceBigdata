@@ -2,6 +2,12 @@
   <div class="currentPrice">
     <p class="title">
       3일 후 예측 가격
+      <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+        </template>
+        <span>지자체 농수축산물 물가 정보를 바탕으로 예측한 3일 후 예측 가격 입니다.</span>
+      </v-tooltip>
     </p>
     <div class="priceContainer">
       <p class="price">{{ price | comma }}원</p>

@@ -2,6 +2,12 @@
   <div class="currentPrice">
     <p class="title">
       현재 시세
+      <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon v-bind="attrs" v-on="on">mdi-help-circle-outline</v-icon>
+        </template>
+        <span>지자체 농수축산물 물가 정보에 따른 현재 시세 입니다.</span>
+      </v-tooltip>
     </p>
     <div class="priceContainer">
       <p class="price">{{ price | comma }}원</p>
