@@ -129,8 +129,6 @@ export default {
                 const token = response.data.accesstoken;
                 this.$store.commit('LOGIN', token);
                 this.$router.push({ name: 'Main' });
-                alert('카카오 로그인에 성공하셨습니다.');
-                this.$router.push({ name: 'Main' });
               })
               .catch((error) => {
                 console.error(error);
