@@ -151,9 +151,7 @@ export default {
           memberId: this.userId,
         },
       })
-        .then(() => {
-          console.log(1);
-        })
+        .then(() => {})
         .catch((error) => {
           console.log(error);
         });

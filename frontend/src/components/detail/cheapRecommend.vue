@@ -50,12 +50,25 @@ export default {
         });
     },
     moveToRecommend: function(index) {
-      this.$router.push({
-        name: 'Detail',
-        params: {
-          id: index,
+      this.$axios({
+        url: '/watches',
+        method: 'POST',
+        data: {
+          ingredientId: index,
+          memberId: this.$store.state.userId,
         },
-      });
+      })
+        .then(() => {
+          this.$router.push({
+            name: 'Detail',
+            params: {
+              id: index,
+            },
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   created() {

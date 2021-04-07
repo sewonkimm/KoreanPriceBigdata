@@ -37,12 +37,25 @@ export default {
   },
   methods: {
     moveToIngredient: function() {
-      this.$router.push({
-        name: 'Detail',
-        params: {
-          id: this.ingredient.ingredientId,
+      this.$axios({
+        url: '/watches',
+        method: 'POST',
+        data: {
+          ingredientId: this.ingredient.ingredientId,
+          memberId: this.$store.state.userId,
         },
-      });
+      })
+        .then(() => {
+          this.$router.push({
+            name: 'Detail',
+            params: {
+              id: this.ingredient.ingredientId,
+            },
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
