@@ -59,7 +59,7 @@ export default {
     },
   },
   created() {
-    // this.getCFRecommand();
+    this.getCFRecommand();
   },
 };
 </script>
