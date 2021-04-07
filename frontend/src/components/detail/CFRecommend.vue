@@ -26,7 +26,9 @@ export default {
   },
   data() {
     return {
-      items: [],
+      itemsFirst: [],
+      itemsSecond: [],
+      itemsThird: [],
     };
   },
   methods: {
@@ -38,7 +40,9 @@ export default {
       instance
         .get('/cf/' + this.$store.state.userId)
         .then((response) => {
-          this.items = response.data;
+          this.itemsThird = response.data;
+          this.itemsFirst = this.itemsThird.splice(0, 2);
+          this.itemsSecond = this.itemsThird.splice(0, 2);
         })
         .catch((error) => {
           console.error(error);
