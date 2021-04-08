@@ -3,12 +3,14 @@
 </p>
 <p align="center"><img  width=600 src="https://user-images.githubusercontent.com/30452963/113331210-9c169f00-935a-11eb-9ebb-900d1158369c.png" alt="logo" />
 <br />
-동해물가 농수산물은 농수산물 물가 데이터를 상요하여 가격 변동 추이를 확인하고, 저렴하게 구입 할 수 있도록 도와주는 서비스 입니다.
+동해물가 농수산물은 지자체 농수산물 물가 데이터를 사용하여 가격 변동 추이를 확인하고, 저렴하게 구입 할 수 있도록 도와주는 서비스 입니다.
 <br />
 <br />
 <img src="https://img.shields.io/static/v1?label=SSAFY&message=4%EA%B8%B0&color=ff69b4">
 <img src="https://img.shields.io/static/v1?label=서울&message=3반&color=violet">
 <img src="https://img.shields.io/static/v1?label=Domain&message=Bigdata&color=blueviolet">
+<br />
+<img src="https://user-images.githubusercontent.com/30452963/113960062-d69ea100-985e-11eb-9d0a-baea4c05d0ae.png" width=720 />
 </p>
 
 &nbsp;
@@ -21,21 +23,21 @@
 
 ## 목차
 
-- [기획배경](#🍓기획배경)
-- [기획](#🍊기획)
+- [기획배경](#기획배경)
+- [기획](#기획)
   - 와이어프레임
   - UI디자인
   - ERD
-- [주요기능](#🍋주요기능)
-- [기술스택](#🍏기술스택)
-- [개발환경](#🍇개발환경)
+- [주요기능](#주요기능)
+- [기술스택](#기술스택)
+- [개발환경](#개발환경)
   - Git flow 전략
   - 컨벤션
-- [서비스구조](#🍑서비스구조)
+- [서비스구조](#서비스구조)
   - 아키텍쳐
   - 디렉토리 구조
-- [시작하기](#🍭시작하기)
-- [만든사람들](#🧙‍♂️만든사람들)
+- [시작하기](#시작하기)
+- [만든사람들](#만든사람들)
 
 &nbsp;
 &nbsp;
@@ -73,7 +75,7 @@
 
 ### 상세 페이지
 
-<img src="https://user-images.githubusercontent.com/30452963/113335802-670d4b00-9360-11eb-9e1c-56385d05c15c.png" width=720 />
+<img src="https://user-images.githubusercontent.com/30452963/113957779-d7353880-985a-11eb-9adc-18d86727549a.png" width=720 />
 
 &nbsp;
 
@@ -88,13 +90,19 @@
 
 # 🍋주요기능
 
-잠재요인 기반 협업 필터링
+<img src="https://user-images.githubusercontent.com/30452963/113960295-3e54ec00-985f-11eb-8793-42c91fee8a42.png" width=720 />
+
+### 1. 농수산물 물가 확인
+### 2. 가격 등락률에 따른 구입 추천/비추천
+### 3. 3일 후 예측가격 안내
+### 4. 사용자 맞춤 상품 추천
 
 ```markdown
+## 추천 시스템 - 잠재요인 기반 협업 필터링
+
 사용자-아이템 평점 행렬에 잠재되어 있는 어떤 요인(factor)이 있다고 가정하고, 행렬 분해를 통해 그 요인들을 찾아내는 방식입니다.
 
-SVD(특이값 분해)를 사용하여 사용자-요인, 요인-아이템 행렬로 분해합니다.
-또한 분해한 행렬로 사용자들에게 추천할 수 있도록 SGD(확률적 경사하강법)를 사용하여 기존 매트릭스와 아이템-요인 \* 유저-요인의 차이가 최소가 되는 값을 찾아 사용자가 아직 방문하지 않은 정보 중 가장 연관성이 있을 데이터를 추천합니다.
+SVD(특이값 분해)를 사용하여 사용자-요인, 요인-아이템 행렬로 분해합니다. 또한 분해한 행렬로 사용자들에게 추천할 수 있도록 SGD(확률적 경사하강법)를 사용하여 기존 매트릭스와 아이템-요인 \* 유저-요인의 차이가 최소가 되는 값을 찾아 사용자가 아직 방문하지 않은 정보 중 가장 연관성이 있을 데이터를 추천합니다.
 ```
 
 &nbsp;
@@ -102,10 +110,21 @@ SVD(특이값 분해)를 사용하여 사용자-요인, 요인-아이템 행렬�
 
 # 🍏기술스택
 
-파이썬 : FastApi
-'''markdown
-FastApi : 자바의 Spring과 같이 RestApi 형태의 파이썬 프레임워크입니다.
-'''
+<img src="https://user-images.githubusercontent.com/30452963/113966706-904f3f00-986a-11eb-9ff7-9f8f224681a3.png" width=720 />
+
+
+| Domain   | Name       | Version |
+|----------|------------|---------|
+| Frontend | vue        | 2.6.11  |
+| Frontend | vuetify    | 2.4.0   |
+| Frontend | vuex       | 3.6.2   |
+| Frontend | charts.js  | 2.9.4   |
+| Backend  | Springboot |         |
+| Backend  | MariaDB    |         |
+| Backend  | FastAPI    | 0.63.0  |
+| Backend  | python     | 3.7     |
+
+
 &nbsp;
 &nbsp;
 
@@ -142,72 +161,89 @@ FastApi : 자바의 Spring과 같이 RestApi 형태의 파이썬 프레임워크
 
 ```markdown
 📁frontend
+├──📁views
+│  ├──📃Splash.vue
+│  ├──📃Main.vue
+│  ├──📃Detail.vue
+│  ├──📃Login.vue
+│  └──📃Register.vue
+├──📁components
+│   ├──📁css
+│   ├──📁main
+│   ├──📁detail
+│   ├──📁login
+│   └──📁register
+├──📁assets // 각종 이미지
+│   └──📃index.js // svg파일은 index.js 파일 하나로 관리
+├──📁router // vue-router
+├──📁store  // vuex 
+├──📃.eslintrc.js // lint 설정
+├──📃vue.config.js
+└──📃package.json // 패키지 의존성 관리
 ```
 
 ### 디렉토리 구조 - Backend
 
 ```markdown
-.
 📁backend
-├──📁src/main
-   ├──📁java/com/ssafy/j301
-      ├──📁common
-         ├──📁config
-         ├──📁exception
-         └──📁security
-      ├──📁favorite
-         ├──📃Favorite.java
-         ├──📃FavoriteController.java
-         └──📃FavoriteService.java
-      ├──📁fluctuationRate
-      ├──📁ingredient
-      ├──📁ingredientAvg
-      ├──📁member
-      ├──📁popularity
-      ├──📁shopping
-      ├──📁transition
-      ├──📁watch
-      └──📁mapper
-         ├──📃FavoriteMapper.java
-         ├──📃FluctuationRateMapper.java
-         ├──📃IngredientAvgMapper.java
-         ├──📃IngredientMapper.java
-         ├──📃MemberMapper.java
-         ├──📃PopularityMapper.java
-         ├──📃ShoppingMapper.java
-         ├──📃TransitionMapper.java
-         └──📃WatchMapper.java
-   └──📁resources
-      ├──📃application.properties
-      └──📁mapper
-         ├──📃favorite.xml
-         ├──📃fluctuationRate.xml
-         ├──📃ingredient.xml
-         ├──📃ingredientAvg.xml
-         ├──📃member.xml
-         ├──📃popularity.xml
-         ├──📃shopping.xml
-         ├──📃transition.xml
-         └──📃watch.xml
-├──📃.gitignore
-├──📃build.gradle  // gradle 빌드 툴 설정
-└──📃keystore.p12  // SSL 기능을 위한 설정
-
+ └──📁src/main
+    ├──📁java/com/ssafy/j301
+    │   ├──📁common
+    │   ├──📁config
+    │   ├──📁exception
+    │   ├──📁security
+    │   ├──📁favorite
+    │   │  ├──📃Favorite.java
+    │   │  ├──📃FavoriteController.java
+    │   │  └──📃FavoriteService.java
+    │   ├──📁fluctuationRate
+    │   ├──📁ingredient
+    │   ├──📁ingredientAvg
+    │   ├──📁member
+    │   ├──📁popularity
+    │   ├──📁shopping
+    │   ├──📁transition
+    │   ├──📁watch
+    │   └──📁mapper
+    │       ├──📃FavoriteMapper.java
+    │       ├──📃FluctuationRateMapper.java
+    │       ├──📃IngredientAvgMapper.java
+    │       ├──📃IngredientMapper.java
+    │       ├──📃MemberMapper.java
+    │       ├──📃PopularityMapper.java
+    │       ├──📃ShoppingMapper.java
+    │       ├──📃TransitionMapper.java
+    │       └──📃WatchMapper.java
+    ├──📁resources
+    │   ├──📃application.properties
+    │   └──📁mapper
+    │       ├──📃favorite.xml
+    │       ├──📃fluctuationRate.xml
+    │       ├──📃ingredient.xml
+    │       ├──📃ingredientAvg.xml
+    │       ├──📃member.xml
+    │       ├──📃popularity.xml
+    │       ├──📃shopping.xml
+    │       ├──📃transition.xml
+    │       └──📃watch.xml
+    ├──📃.gitignore
+    ├──📃build.gradle  // gradle 빌드 툴 설정
+    └──📃keystore.p12  // SSL 기능을 위한 설정
 ```
 
-### 디렉토리 구조 - Data
+### 디렉토리 구조 - Data(빅데이터 관련)
 
 ```markdown
-📁data/fastApi
-├──📁app
-├──📃main.py -> 실행 파일
-├──📃README.md
-└──📃requirements.txt
-
-📁app
-├──📁common -> 환경설정 폴더
-├──📁database -> DB연결 및 스키마 폴더
-└──📁routes -> RestApi routes 폴더
+📁data
+ ├──📁fastApi
+ │  ├──📁app
+ │  ├──📃main.py // 실행 파일
+ │  ├──📃README.md
+ │  └──📃requirements.txt // 패키지 의존성 관리
+ └──📁app
+     ├──📁common // 환경설정 폴더
+     ├──📁database // DB연결 및 스키마 폴더
+     └──📁routes // RestApi routes 폴더
 ```
 
 &nbsp;
@@ -215,91 +251,87 @@ FastApi : 자바의 Spring과 같이 RestApi 형태의 파이썬 프레임워크
 
 # 🍭시작하기
 
-### DB
+
+## Client
 
 ```bash
-
-```
-
-### Client
-
-```bash
-cd frontend
-npm install
-npm run serve
+$ cd frontend
+$ npm install
+$ npm run serve
 ```
 
 ## Data
 
 ```bash
-cd data/fastApi
-python version : 3.7
-pip install -r requirements.txt
-python main.py
+$ cd data/fastApi
+$ python version : 3.7
+$ pip install -r requirements.txt
+$ python main.py
 ```
 
-&nbsp;
-&nbsp;
+## DB
+
+sql 폴더 내 쿼리문 실행
 
 
-### Java 설치
-```
+## 서버
+
+### 1. Java 설치
+
+```bash
 $ sudo apt-get install openjdk-8-jre
-
 $ sudo apt-get install openjdk-8-jdk
 ```
-### Npm 설치
-```
+
+### 2. Npm 설치
+
+```bash
 $ sudo apt install npm
 ```
-### Python3.7 install
-```
+
+### 3. Python3.7 설치
+
+```bash
 $ sudo apt update
-
 $ sudo apt install software-properties-common
-
 $ sudo add-apt-repository ppa:deadsnakes/ppa 
-
 $ sudo apt update 
-
 $ sudo apt install python3.7
 ```
-### Python3.7 venv
-```
+
+### 4. Python3.7 venv
+
+```bash
 $ sudo apt-get install python3.7-venv //python3.7 가상환경 설치
- 
 $ python3.7 -m venv my_common_env //python3.7 가상환경 활성화
-
 $ cd my_common_env/bin
-
 $ source activate 
+```
 
-```
-### Docker install
-```
+### 5. Docker 설치
+
+```bash
 $ sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common // 다음 패키지들을 설치
-
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add – // Docker의 공식 GPG키를 추가한다.
-
 $ sudo add-apt-repository "deb [arch=amd64] 
 https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" // stable repository를 세팅하기 위한 명령어
-
 $ sudo apt install docker-ce docker-ce-cli containerd.io // 가장 최신 버전의 Docker 엔진을 설치한다.
 ```
-### Docker MariaDB install
-```
+
+### 6. Docker MariaDB install
+
+```bash
 $ sudo docker run --name DB이름 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=비밀번호 - d mariadb // Docker로 Mariadb 설치 및 실행
 ```
-### Gradle install
-```
+
+### 7. Gradle install
+
+```bash
 $ apt-get update
 $ apt-get install unzip wget
-
 $ wget https://downloads.gradle-dn.com/distributions/gradle-6.3-bin.zip //gradle 6.3 설치
-
 $ unzip gradle-6.3-bin.zip -d /opt
 $ In -s /opt/gradle-6.3 /opt/gradle
-
 $ vi /etc/profile.d/gradle.sh
 
 gradle 설정
@@ -310,38 +342,37 @@ export PATH=/opt/gradle/bin:${PATH}
 
 $ gradle -v //gradle 설치 확인
 ```
-### 프로젝트 받기(Git)
-```
-$ git clone https://lab.ssafy.com/s04-bigdata-sub3/s04p23a301.git
-```
-### jar, dist 파일 생성
-```
-$ npm install
-$ npm run build //dist 파일 생성
 
-$ gradle builder //jar 파일 생성
-```
-### 배포하기
+### 8. 프로젝트 설치 및 실행
 
+```bash
+$ git clone https://lab.ssafy.com/s04-bigdata-sub3/s04p23a301.git         #프로젝트 받기(Git)
+$ npm install #jar, dist 파일 생성
+$ npm run build #dist 파일 생성
+$ gradle builder #jar 파일 생성
 ```
+
+### 9.배포
+
+```bash
 <data 폴더> 파이썬 가상환경
-$ pip install -r requirements // 필요한 모듈 설치
-$ uvicorn main:app --reload --host=0.0.0.0 --port=8000 // fastApi 실행하기
+$ pip install -r requirements # 필요한 모듈 설치
+$ uvicorn main:app --reload --host=0.0.0.0 --port=8000 # fastApi 실행하기
 
 <front 폴더>
-$ mv dist /var/www/html // 명령어로 이동
+$ mv dist /var/www/html # 명령어로 이동
 
 <backend 폴더>
 $ java -jar (파일이름).jar
-
 ```
 
-### Nginx 설정
+### 10. Nginx 설정
 
-```
+```bash
 $ cd /etc/nginx/sites-available
 $ sudo vi default // 설정파일 열기
 ```
+
 ![image](https://user-images.githubusercontent.com/43171179/113813360-ba412c80-97aa-11eb-8701-b4bb4d1a35a1.png)
 
 ![image](https://user-images.githubusercontent.com/43171179/113813530-0c824d80-97ab-11eb-8765-7e1aa7592943.png)
