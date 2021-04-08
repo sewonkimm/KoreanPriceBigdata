@@ -2,10 +2,16 @@
   <div class="emailInput">
     <h1 class="informationMessage">이메일을 입력해주세요</h1>
 
-    <v-form>
+    <v-form onsubmit="return false;">
       <v-container fluid>
         <v-row>
-          <v-text-field v-model="email" :rules="emailRule" label="이메일" required></v-text-field>
+          <v-text-field
+            v-model="email"
+            :rules="emailRule"
+            label="이메일"
+            required
+            @keyup.enter="goPasswordWithEnter()"
+          ></v-text-field>
         </v-row>
       </v-container>
     </v-form>
@@ -44,6 +50,10 @@ export default {
     },
     goPassword: function() {
       this.$emit('pass', this.email); // 상위 컴포넌트로 이벤트 전달
+    },
+    goPasswordWithEnter: function() {
+      // 이메일 조건이 충족됐을때만 이벤트 전달
+      if (this.isActive) this.$emit('pass', this.email);
     },
   },
   watch: {

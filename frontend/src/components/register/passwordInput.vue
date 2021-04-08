@@ -26,6 +26,7 @@
             counter
             required
             @click:append="showPasswordConfirm = !showPasswordConfirm"
+            @keyup.enter="register()"
           ></v-text-field>
         </v-row>
       </v-container>
@@ -84,6 +85,7 @@ export default {
         },
       })
         .then(() => {
+          alert('회원가입이 완료되었습니다!');
           this.$router.push({ name: 'Login' });
         })
         .catch((error) => {
