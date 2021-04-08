@@ -20,7 +20,7 @@
 
 LOCK TABLES `favorite` WRITE;
 /*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
-INSERT INTO `favorite` VALUES (1,1),(1,3),(1,4),(1,5),(1,7),(1,9),(1,42),(1,57),(3,1),(3,2),(3,3),(3,4),(4,1),(20,32);
+INSERT INTO `favorite` VALUES (1,1),(2,69),(4,19),(4,61),(5,9),(5,39),(7,9),(9,2),(13,3),(13,61),(21,37),(22,16),(22,17),(22,57),(22,62),(22,82),(22,83),(23,31);
 /*!40000 ALTER TABLE `favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -32,4 +32,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-07 13:26:45
+-- Dump completed on 2021-04-08 14:44:18
