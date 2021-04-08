@@ -21,18 +21,22 @@ public class IngredientAvgController {
 	@ApiOperation(value = "오늘 날짜 기준 농축산물 등락률 조회", notes = "(현재가 - 전일가)/전일가 * 100")
 	@GetMapping("/rate/{ingredientId}")
 	public double selectRate(@PathVariable Long ingredientId) {
+
 		return ingredientAvgService.selectRate(ingredientId);
 	}
 
 	@ApiOperation(value = "오늘 날짜 기준 농축산물 현재가격 조회", notes = "농축산물 오늘 현재 가격 조회")
 	@GetMapping("/price/{ingredientId}")
 	public IngredientAvg selectPrice(@PathVariable Long ingredientId) {
+
 		return ingredientAvgService.selectPrice(ingredientId);
 	}
 
 	@ApiOperation(value = "오늘 날짜 기준 농축산물 등락가 조회", notes = "농축산물 오늘 현재 등락가 조회")
 	@GetMapping("/price/interval/{ingredientId}")
 	public int selectIntervalPrice(@PathVariable Long ingredientId) {
+
 		return ingredientAvgService.selectIntervalPrice(ingredientId);
 	}
+
 }

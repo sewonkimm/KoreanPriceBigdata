@@ -26,4 +26,5 @@ public class TransitionController {
 
 		return transitionMapper.selectTransition(ingredientId);
 	}
+
 }

@@ -11,6 +11,7 @@ public class IngredientAvgService {
 	private final IngredientAvgMapper ingredientAvgMapper;
 
 	public double selectRate(Long ingredientId) {
+
 		IngredientAvg avg = ingredientAvgMapper.selectRate(ingredientId);
 		double FluctuationRate = 0;
 
@@ -22,10 +23,13 @@ public class IngredientAvgService {
 	}
 
 	public IngredientAvg selectPrice(Long ingredientId) {
+
 		return ingredientAvgMapper.selectPrice(ingredientId);
 	}
 
 	public int selectIntervalPrice(Long ingredientId) {
+
 		return ingredientAvgMapper.selectIntervalPrice(ingredientId);
 	}
+
 }

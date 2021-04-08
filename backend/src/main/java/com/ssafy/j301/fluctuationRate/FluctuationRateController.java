@@ -22,6 +22,8 @@ public class FluctuationRateController {
 	@ApiOperation(value = "등락률 Top5 조회", notes = "등락율 내림차순으로 5개 리스트업")
 	@GetMapping("/rate/{ingredientId}")
 	public List<FluctuationRate> selectfluctuationRates() {
+
 		return fluctuationRateMapper.selectRateOfDecline();
 	}
+
 }

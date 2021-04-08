@@ -28,4 +28,5 @@ public class Shopping {
 
 	@NonNull
 	private String shoppingApiLink;
+
 }

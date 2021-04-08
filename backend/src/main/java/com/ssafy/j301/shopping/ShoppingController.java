@@ -20,6 +20,8 @@ public class ShoppingController {
 
 	@GetMapping("/{ingredientId}")
 	public List<Shopping> selectShopping(@PathVariable Long ingredientId) {
+
 		return shoppingService.selectShopping(ingredientId);
 	}
+
 }

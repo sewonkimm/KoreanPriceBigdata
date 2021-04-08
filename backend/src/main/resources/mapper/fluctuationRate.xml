@@ -5,16 +5,23 @@
 <mapper namespace="com.ssafy.j301.mapper.FluctuationRateMapper">
 	<select id="selectRateOfDecline"
 		resultType="com.ssafy.j301.fluctuationRate.FluctuationRate">
+
 		SELECT
 		ingredient.ingredient_id AS ingredientId,
-		ingredient.ingredient_name AS ingredientName,
-		ingredient.ingredient_detail_name AS ingredientDetailName,
-		ingredient_avg.ingredient_avg_price AS ingredientAvgPrice,
-		round((ingredient_avg_price - ingredient_avg_previous_price)/
-		ingredient_avg_previous_price * 100, 2) AS rate
+		ingredient.ingredient_name AS
+		ingredientName,
+		ingredient.ingredient_detail_name AS
+		ingredientDetailName,
+		ingredient_avg.ingredient_avg_price AS
+		ingredientAvgPrice,
+		round((ingredient_avg_price -
+		ingredient_avg_previous_price)/
+		ingredient_avg_previous_price * 100, 2)
+		AS rate
 		FROM ingredient,
 		ingredient_avg
-		WHERE NOT ingredient_avg_previous_price IS NULL
+		WHERE NOT
+		ingredient_avg_previous_price IS NULL
 		AND
 		ingredient_avg_date =
 		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
@@ -23,19 +30,26 @@
 		ingredient_avg.ingredient_id
 		ORDER BY rate
 		LIMIT 5;
+
 	</select>
 
 	<select id="selectRateOfRise"
 		resultType="com.ssafy.j301.fluctuationRate.FluctuationRate">
+
 		SELECT
 		ingredient.ingredient_id AS ingredientId,
-		ingredient.ingredient_name AS ingredientName,
-		ingredient.ingredient_detail_name AS ingredientDetailName,
-		round((ingredient_avg_price - ingredient_avg_previous_price)/
-		ingredient_avg_previous_price * 100, 2) AS rate
+		ingredient.ingredient_name AS
+		ingredientName,
+		ingredient.ingredient_detail_name AS
+		ingredientDetailName,
+		round((ingredient_avg_price -
+		ingredient_avg_previous_price)/
+		ingredient_avg_previous_price * 100, 2)
+		AS rate
 		FROM ingredient,
 		ingredient_avg
-		WHERE NOT ingredient_avg_previous_price IS NULL
+		WHERE NOT
+		ingredient_avg_previous_price IS NULL
 		AND
 		ingredient_avg_date =
 		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
@@ -45,5 +59,7 @@
 		ORDER BY rate
 		DESC
 		LIMIT 5;
+
 	</select>
+
 </mapper>

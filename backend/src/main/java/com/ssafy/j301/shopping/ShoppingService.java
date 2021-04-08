@@ -12,6 +12,8 @@ public class ShoppingService {
 	private final ShoppingMapper shoppingMapper;
 
 	public List<Shopping> selectShopping(Long ingredientId) {
+
 		return shoppingMapper.selectShopping(ingredientId);
 	}
+
 }

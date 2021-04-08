@@ -160,6 +160,7 @@
 		ingredient.ingredient_id =
 		watch.ingredient_id
 		) DESC;
+
 	</select>
 
 	<select id="selectByIngredientId" resultMap="Ingredient">
@@ -218,4 +219,5 @@
 		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK), "%y-%c-%e")
 
 	</select>
+
 </mapper>

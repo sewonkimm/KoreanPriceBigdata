@@ -14,23 +14,32 @@
 	</insert>
 
 	<delete id="deleteFavorite">
+
 		DELETE FROM favorite WHERE member_id = #{memberId}
-		AND ingredient_id = #{ingredientId}
+		AND ingredient_id =
+		#{ingredientId}
+
 	</delete>
 
 	<select id="selectAll"
 		resultType="com.ssafy.j301.favorite.Favorite">
+
 		SELECT ingredient_id as ingredientId, member_id as memberId
 		FROM favorite
 		WHERE member_id = #{memberId}
+
 	</select>
 
 	<select id="selectFavorite" resultType="int">
+
 		SELECT
-		IF(COUNT(*) = 1, 1, 0)
+		IF(COUNT(*) = 1, 1,
+		0)
 		FROM favorite
 		WHERE member_id = #{memberId} AND
 		ingredient_id =
 		#{ingredientId}
+
 	</select>
+
 </mapper>

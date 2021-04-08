@@ -17,4 +17,5 @@ public interface IngredientMapper {
 	public Ingredient selectByIngredientName(String ingredientName);
 
 	public List<RequestIngredientName> selectAllName();
+
 }

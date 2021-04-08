@@ -13,13 +13,17 @@
 		VALUES
 		(#{memberId}, #{ingredientId},
 		DATE_FORMAT(NOW(), "%y-%c-%e"));
+
 	</insert>
 
 	<select id="selectCount" resultType="int">
+
 		SELECT COUNT(ingredient_id)
 		FROM watch
 		WHERE ingredient_id = #{ingredientId}
 		AND watch_date =
 		DATE_FORMAT(NOW(), "%y-%c-%e")
+
 	</select>
+
 </mapper>
