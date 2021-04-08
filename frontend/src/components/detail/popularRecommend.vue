@@ -6,13 +6,15 @@ export default {
   extends: HorizontalBar,
   data() {
     return {
+      id: [],
       chartdata: {
-        labels: ['양파', '대파', '연어', '김치', '닭가슴살'],
+        labels: [],
         datasets: [
           {
             label: '인기도',
-            data: [30, 26, 22, 16, 10],
+            data: [],
             barPercentage: 0.5,
+            backgroundColor: '#E26238',
           },
         ],
       },
@@ -31,8 +33,34 @@ export default {
       },
     };
   },
+  methods: {
+    getPopularityRecommand: function() {
+      this.$axios({
+        url: '/popularity',
+        method: 'GET',
+      })
+        .then((response) => {
+          this.chartdata.labels = response.data.map((item) => {
+            if (item.ingredientDetailName == null) {
+              return item.ingredientName;
+            }
+            return item.ingredientDetailName;
+          });
+          this.chartdata.datasets[0].data = response.data.map((item) => {
+            return item.popularity;
+          });
+          this.id = response.data.map((item) => {
+            return item.ingredientId;
+          });
+          this.renderChart(this.chartdata, this.options);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
   mounted() {
-    this.renderChart(this.chartdata, this.options);
+    this.getPopularityRecommand();
   },
 };
 </script>

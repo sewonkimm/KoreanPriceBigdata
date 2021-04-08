@@ -9,13 +9,16 @@
 		ingredient.ingredient_id AS ingredientId,
 		ingredient.ingredient_name AS ingredientName,
 		ingredient.ingredient_detail_name AS ingredientDetailName,
+		ingredient_avg.ingredient_avg_price AS ingredientAvgPrice,
 		round((ingredient_avg_price - ingredient_avg_previous_price)/
 		ingredient_avg_previous_price * 100, 2) AS rate
 		FROM ingredient,
 		ingredient_avg
 		WHERE NOT ingredient_avg_previous_price IS NULL
-		&amp;&amp; ingredient_avg_date =
-		'2019-01-02' &amp;&amp;
+		AND
+		ingredient_avg_date =
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
+		"%y-%c-%e") AND
 		ingredient.ingredient_id =
 		ingredient_avg.ingredient_id
 		ORDER BY rate
@@ -33,8 +36,10 @@
 		FROM ingredient,
 		ingredient_avg
 		WHERE NOT ingredient_avg_previous_price IS NULL
-		&amp;&amp; ingredient_avg_date =
-		'2019-01-02' &amp;&amp;
+		AND
+		ingredient_avg_date =
+		DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -1 WEEK),
+		"%y-%c-%e") AND
 		ingredient.ingredient_id =
 		ingredient_avg.ingredient_id
 		ORDER BY rate

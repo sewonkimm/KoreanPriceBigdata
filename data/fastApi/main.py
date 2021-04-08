@@ -1,11 +1,10 @@
 from dataclasses import asdict
-from typing import Optional
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from app.database.conn import db
 from app.common.config import conf
-from app.routes import index, data, recommand
+from app.routes import data, recommand
 
 
 def create_app():
@@ -18,9 +17,6 @@ def create_app():
     # 데이터 베이스 이니셜라이즈
     conf_dict = asdict(c)
     db.init_app(app, **conf_dict)
-
-    # 레디스 이니셜라이즈
-
     # 미들웨어 정의
     app.add_middleware(
         CORSMiddleware,
@@ -30,7 +26,6 @@ def create_app():
         allow_headers=["*"],
     )
     # 라우터 정의
-    app.include_router(index.router)
     app.include_router(data.router)
     app.include_router(recommand.router)
     return app

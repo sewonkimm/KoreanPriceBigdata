@@ -12,6 +12,7 @@ class Config:
     """
     BASE_DIR = base_dir
 
+    # DB 환경설정
     DB_POOL_RECYCLE: int = 900
     DB_ECHO: bool = True
     SECRET_FILE = path.join(path.dirname(path.dirname(path.abspath(__file__)))+"/database", 'secrets.json')
@@ -21,14 +22,18 @@ class Config:
 
 @dataclass
 class LocalConfig(Config):
+    # 로컬 환경설정
     PROJ_RELOAD: bool = True
+    # Cross Origin설정
     ALLOW_SITE = ["*"]
 
 
 
 @dataclass
 class ProdConfig(Config):
+    # 배포 환경설정
     PROJ_RELOAD: bool = False
+    # Cross Origin설정
     ALLOW_SITE = ["*"]
 
 

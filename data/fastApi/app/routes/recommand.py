@@ -10,19 +10,25 @@ import numpy as np
 import datetime
 from sklearn.linear_model import LinearRegression
 
-router = APIRouter(prefix="/recommand")
+router = APIRouter()
 
-@router.get('/latent/{memberId}')
+@router.get('/cf/{memberId}')
 def recommand(memberId: int, session: Session = Depends(db.session)):
     memberAll = session.query(member).all()
     index = []
     memberList = []
-    ingredientList = range(1, 84)
+    ingredientList = []
+    # 오늘 있는 재료만 재료 리스트에 저장
+    for i in range(1, 84):
+        sql = session.query(ingredient_avg).filter(and_(ingredient_avg.ingredient_id == i, ingredient_avg.ingredient_avg_date == (datetime.date.today() + datetime.timedelta(days=-7)).strftime("%Y%m%d"))).count()
+        if sql == 0:
+            continue;
+        ingredientList.append(i)
     # 유저가 검색한 재료 리스트를 합쳐서 데이터프레임 생성
     for mem in memberAll:
         index.append(mem.member_id)
         w = []
-        for i in range(1, 84):
+        for i in ingredientList:
             # 유저가 검색한 재료 별 횟수를 리스트로 저장
             query = session.query(watch).filter(and_(watch.member_id == mem.member_id, watch.ingredient_id == i))
             count = query.count()
@@ -77,20 +83,19 @@ def recommand(memberId: int, session: Session = Depends(db.session)):
 
 @router.get('/predict')
 def predict(session: Session = Depends(db.session)):
+    # 3일 후 가격을 예측하여 ingredient_avg의 예측 컬럼에 저장하는 api
     # sql로 데이터를 받아서 데이터 프레임 생성
     date = datetime.date.today()
-    # 지금 데이터가 혼동스러워서 일단 주석으로 남겨놓습니다.
-    # df_list = pd.date_range(start='20200923', end='20210331').strftime("%Y%m%d").tolist()
     num = session.query(ingredient_avg.ingredient_avg_predict_price).filter(ingredient_avg.ingredient_avg_date == date.strftime("%Y%m%d")).count()
     while num == 0:
         date = date + datetime.timedelta(days=-1)
         num = session.query(ingredient_avg.ingredient_avg_predict_price).filter(ingredient_avg.ingredient_avg_date == date.strftime("%Y%m%d")).count()
     value = session.query(ingredient_avg.ingredient_avg_predict_price).filter(ingredient_avg.ingredient_avg_date == date.strftime("%Y%m%d")).first()
+    # ingredient_avg에 데이터는 있지만 예측 컬럼이 비어있는 날짜를 찾아서 예측 알고리즘 실행(Linear Regression - 선형 회귀법)
     while num > 0:
         if value[0] is not None:
             break
         for ingredient_id in range(1, 84):
-            # for date in df_list:
             df = pd.read_sql(session.query(ingredient_avg).filter(and_(ingredient_avg.ingredient_id == ingredient_id, ingredient_avg.ingredient_avg_date <= date.strftime("%Y%m%d"))).statement, session.bind)
 
             # 전날 데이터와 현재 데이터를 비교하여 예측
@@ -98,7 +103,7 @@ def predict(session: Session = Depends(db.session)):
             if prev.empty:
                 continue
             # 트레이닝 데이터
-            x_train = prev['ingredient_avg_previous_price'].to_numpy()  # 날짜 (오늘 날짜 기준)
+            x_train = prev['ingredient_avg_previous_price'].to_numpy()  # 전날 가격(오늘 날짜 기준)
             y_train = prev['ingredient_avg_price'].to_numpy()  # 가격 (y원)
 
             # 회귀 선형을 위한 라이브러리 객체 호출

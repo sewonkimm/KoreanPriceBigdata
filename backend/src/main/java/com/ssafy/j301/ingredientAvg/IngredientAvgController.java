@@ -10,8 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "IngredientAvg", description = "농축산물 가격 API")
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/ingredientAvg")
 public class IngredientAvgController {
@@ -26,7 +26,7 @@ public class IngredientAvgController {
 
 	@ApiOperation(value = "오늘 날짜 기준 농축산물 현재가격 조회", notes = "농축산물 오늘 현재 가격 조회")
 	@GetMapping("/price/{ingredientId}")
-	public int selectPrice(@PathVariable Long ingredientId) {
+	public IngredientAvg selectPrice(@PathVariable Long ingredientId) {
 		return ingredientAvgService.selectPrice(ingredientId);
 	}
 

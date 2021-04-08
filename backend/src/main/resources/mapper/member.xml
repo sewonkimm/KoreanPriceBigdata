@@ -9,11 +9,13 @@
 		keyProperty="memberId">
 
 		INSERT INTO member(member_email, member_name,
-		member_password, member_birth,
-		member_gender, member_area, member_platform_type)
+		member_password,
+		member_platform_type)
 		VALUES
-		(#{memberEmail}, #{memberName}, #{memberPassword}, #{memberBirth},
-		#{memberGender}, #{memberArea}, #{memberPlatformType});
+		(#{memberEmail},
+		#{memberName},
+		#{memberPassword},
+		#{memberPlatformType});
 
 	</insert>
 
@@ -30,13 +32,25 @@
 		resultType="com.ssafy.j301.member.Member">
 
 		SELECT member_id AS memberId, member_email AS memberEmail,
-		member_name AS memberName, member_password AS memberPassword,
-		member_birth AS memberBirth
-		FROM member
+		member_name AS memberName, member_password AS memberPassword
+		FROM
+		member
 		WHERE member_email =
 		#{memberEmail} AND
 		member_password =
 		#{memberPassword};
+
+	</select>
+
+	<select id="getMemberByMemberEmail"
+		resultType="com.ssafy.j301.member.Member">
+
+		SELECT member_id AS memberId, member_email AS memberEmail,
+		member_name AS memberName, member_password AS memberPassword
+		FROM
+		member
+		WHERE member_email =
+		#{memberEmail};
 
 	</select>
 

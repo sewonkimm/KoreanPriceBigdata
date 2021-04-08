@@ -12,6 +12,6 @@ public class RequestIngredientName {
 	private Long ingredientId;
 
 	private String ingredientName;
-	
+
 	private String ingredientDetailName;
 }

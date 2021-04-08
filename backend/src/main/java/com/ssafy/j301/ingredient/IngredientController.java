@@ -11,8 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Ingredients", description = "농축산물 API")
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/ingredients")
 public class IngredientController {
@@ -43,7 +43,7 @@ public class IngredientController {
 		return ingredientService.selectByIngredientName(ingredientName);
 	}
 
-	@ApiOperation(value = "농축산물 83개 항목 이름 조회", notes = "IngredientId, IngredientName을 조회합니다.")
+	@ApiOperation(value = "농축산물 날짜기준 항목 이름 조회", notes = "IngredientId, IngredientName을 조회합니다.")
 	@GetMapping("/ingredientName")
 	public List<RequestIngredientName> selectAllName() {
 		return ingredientService.selectAllName();

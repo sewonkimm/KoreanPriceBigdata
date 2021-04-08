@@ -14,24 +14,21 @@ class member(Base):
     __tablename__ = "member"
     member_id = Column(Integer, primary_key=True, index=True)
     member_email = Column(VARCHAR(128), nullable=False, unique=True, index=True)
-    member_password = Column(VARCHAR(255), nullable=False)
+    member_password = Column(VARCHAR(255), nullable=True)
     member_name = Column(VARCHAR(10), nullable=False)
-    member_gender = Column(CHAR(1), nullable=False)
-    member_birth = Column(Date, nullable=False)
-    member_area = Column(VARCHAR(10), nullable=False)
+    member_platform_type = Column(VARCHAR(10), nullable=True)
 
     watch = relationship("watch", back_populates='member')
 
-    def __init__(self, member_email, member_password, member_name, member_gender, member_birth, member_area):
+    def __init__(self, member_email, member_password, member_name, member_platform_type):
         self.member_email = member_email
         self.member_password = member_password
         self.member_name = member_name
-        self.member_gender = member_gender
-        self.member_birth = member_birth
-        self.member_area = member_area
+        self.member_platform_type = member_platform_type
+
 
     def __repr__(self):
-        return "<member('%s', '%s', '%s', '%s', '%s', '%s')>" % (self.member_email, self.member_password, self.member_name, self.member_gender, self.member_birth, self.member_area)
+        return "<member('%s', '%s', '%s', '%s')>" % (self.member_email, self.member_password, self.member_name, self.member_platform_type)
 
 
 class ingredient(Base):
@@ -42,21 +39,25 @@ class ingredient(Base):
     ingredient_detail_name = Column(VARCHAR(20), nullable=True)
     ingredient_detail_name_code = Column(VARCHAR(10), nullable=True)
     ingredient_category = Column(VARCHAR(10), nullable=True)
+    ingredient_image = Column(VARCHAR(255), nullable=True)
+    ingredient_unit = Column(VARCHAR(10), nullable=True)
 
     ingredient_info = relationship("ingredient_info", back_populates='ingredient')
     ingredient_avg = relationship("ingredient_avg", back_populates='ingredient')
     shopping_api = relationship("shopping_api", back_populates='ingredient')
     watch = relationship("watch", back_populates='ingredient')
 
-    def __init__(self, ingredient_name, ingredient_name_code, ingredient_detail_name, ingredient_detail_name_code, ingredient_category):
+    def __init__(self, ingredient_name, ingredient_name_code, ingredient_detail_name, ingredient_detail_name_code, ingredient_category, ingredient_image, ingredient_unit):
         self.ingredient_name = ingredient_name
         self.ingredient_name_code = ingredient_name_code
         self.ingredient_detail_name = ingredient_detail_name
         self.ingredient_detail_name_code = ingredient_detail_name_code
         self.ingredient_category = ingredient_category
+        self.ingredient_image = ingredient_image
+        self.ingredient_unit = ingredient_unit
 
     def __repr__(self):
-        return "<ingredient('%s', '%s', '%s', '%s', '%s')>" % (self.ingredient_name, self.ingredient_name_code, self.ingredient_detail_name, self.ingredient_detail_name_code, self.ingredient_category)
+        return "<ingredient('%s', '%s', '%s', '%s', '%s', '%s', '%s')>" % (self.ingredient_name, self.ingredient_name_code, self.ingredient_detail_name, self.ingredient_detail_name_code, self.ingredient_category, self.ingredient_image, self.ingredient_unit)
 
 
 class ingredient_info(Base):

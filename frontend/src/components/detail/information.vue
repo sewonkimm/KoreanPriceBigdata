@@ -26,6 +26,11 @@ export default {
       count: '',
     };
   },
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
+  },
   methods: {
     getIngredientInfo(ingredientId) {
       this.$axios({

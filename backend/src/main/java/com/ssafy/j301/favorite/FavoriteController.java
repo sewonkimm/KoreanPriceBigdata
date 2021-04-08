@@ -13,8 +13,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Favorites", description = "즐겨찾기 API")
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/favorites")
 public class FavoriteController {
@@ -34,8 +34,8 @@ public class FavoriteController {
 	}
 
 	@ApiOperation(value = "사용자 즐겨찾기 체크", notes = "즐겨찾기 항목 조회")
-	@GetMapping
-	public Favorite selectFavorite(@RequestBody Favorite favorite) {
-		return favoriteService.selectFavorite(favorite);
+	@GetMapping("/{memberId}/{ingredientId}")
+	public int selectFavorite(@PathVariable Long memberId, @PathVariable Long ingredientId) {
+		return favoriteService.selectFavorite(memberId, ingredientId);
 	}
 }

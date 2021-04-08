@@ -12,8 +12,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Transition", description = "1년간 가격 동향 그래프 API")
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/transition")
 public class TransitionController {

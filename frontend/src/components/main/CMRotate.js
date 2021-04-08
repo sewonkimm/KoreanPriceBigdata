@@ -373,11 +373,17 @@ const CMRotate =
         cursorWrapper.addEventListener('mouseleave', onMouseLeave, false);
         // plane contents
         // 상품명
+        let ingredientName = _bgArr[id].ingredientName;
+        if (_bgArr[id].ingredientDetailName !== null) {
+          ingredientName = _bgArr[id].ingredientDetailName + '(' + ingredientName + ')';
+        }
         const name = document.createElement('p');
         name.className = 'name';
-        name.innerText = _bgArr[id].ingredientName;
+        name.innerText = ingredientName;
         // 상품명이 5글자 이상일 경우 폰트 조정
-        if (_bgArr[id].ingredientName.length >= 5) {
+        if (ingredientName.length >= 10) {
+          name.className = 'longLongName';
+        } else if (ingredientName.length >= 5) {
           name.className = 'longName';
         }
         // 가격
@@ -388,10 +394,14 @@ const CMRotate =
         price.className = 'price';
         price.innerText = _bgArr[id].ingredientAvg.ingredientAvgPrice + '원';
         priceWrapper.appendChild(price);
+        // 가격 단위
+        const unit = document.createElement('p');
+        unit.className = 'unit';
+        unit.innerText = '(' + _bgArr[id].ingredientUnit + ')';
         // 번호
         const cardNumber = document.createElement('p');
         cardNumber.className = 'num';
-        cardNumber.innerText = id;
+        cardNumber.innerText = id + 1;
         // 즐겨찾기 표시
         if (_bgArr[id].favorite === 1) {
           const bookmark = document.createElement('div');
@@ -414,6 +424,7 @@ const CMRotate =
         div.appendChild(cursorWrapper);
         div.appendChild(name);
         div.appendChild(priceWrapper);
+        div.appendChild(unit);
         div.appendChild(cardNumber);
       }
 

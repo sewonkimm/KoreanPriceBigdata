@@ -11,8 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "FluctuationRate", description = "Warning 농축산물 API")
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/fluctuationRates")
 public class FluctuationRateController {

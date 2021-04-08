@@ -2,13 +2,11 @@ package com.ssafy.j301.ingredient;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-
 import com.ssafy.j301.fluctuationRate.FluctuationRate;
 import com.ssafy.j301.mapper.FluctuationRateMapper;
 import com.ssafy.j301.mapper.IngredientMapper;
 import com.ssafy.j301.mapper.PopularityMapper;
 import com.ssafy.j301.popularity.Popularity;
-
 import lombok.RequiredArgsConstructor;
 
 @Service

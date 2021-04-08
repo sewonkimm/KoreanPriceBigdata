@@ -10,8 +10,8 @@ import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 
 @Api(tags = "Shoppings", description = "쇼핑 API")
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping(value = "/shoppings")
 public class ShoppingController {

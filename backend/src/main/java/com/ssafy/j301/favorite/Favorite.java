@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 public class Favorite {
 
 	private Long memberId;
+
 	private Long ingredientId;
+
 }

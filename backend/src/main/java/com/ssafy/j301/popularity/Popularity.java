@@ -1,10 +1,12 @@
 package com.ssafy.j301.popularity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Popularity {
@@ -15,5 +17,5 @@ public class Popularity {
 
 	private String ingredientDetailName;
 
-	private int Popularity;
+	private int popularity;
 }
