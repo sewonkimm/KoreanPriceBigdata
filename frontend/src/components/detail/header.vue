@@ -89,7 +89,7 @@ export default {
   methods: {
     goBack() {
       //  뒤로가기
-      this.$router.go(-1);
+      this.$router.push({ name: 'Main' });
     },
     getIngredientName() {
       // 상품 이름 불러오기
@@ -98,7 +98,11 @@ export default {
         method: 'GET',
       })
         .then((response) => {
-          this.ingredientName = response.data.ingredientName;
+          let ingredientName = response.data.ingredientName;
+          if (response.data.ingredientDetailName !== null) {
+            ingredientName = response.data.ingredientDetailName + '(' + ingredientName + ')';
+          }
+          this.ingredientName = ingredientName;
           this.ingredientCategory = response.data.ingredientCategory;
         })
         .catch((error) => {

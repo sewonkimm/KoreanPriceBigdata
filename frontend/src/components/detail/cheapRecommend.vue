@@ -20,7 +20,7 @@
             {{ item.ingredientName }}
           </td>
           <td v-else>{{ item.ingredientDetailName }}</td>
-          <td>{{ item.ingredientAvgPrice }}</td>
+          <td>{{ item.ingredientAvgPrice | comma }}원</td>
           <td>{{ item.rate }}%</td>
         </tr>
       </tbody>
@@ -35,6 +35,11 @@ export default {
       items: [],
       ingredientId: this.$route.params.id,
     };
+  },
+  filters: {
+    comma(val) {
+      return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
   },
   methods: {
     getFluctuationRecommand: function() {

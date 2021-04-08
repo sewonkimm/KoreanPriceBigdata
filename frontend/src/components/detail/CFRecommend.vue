@@ -9,18 +9,9 @@
         <span>회원 정보를 기반으로 추천하는 상품입니다.</span>
       </v-tooltip>
     </h1>
-    <div class="cardContainer">
-      <tbody class="table">
-        <tr class="table">
-          <CFRecommendCard v-for="(item, index) in itemsFirst" :key="index" :ingredient="item" />
-        </tr>
-        <tr class="table">
-          <CFRecommendCard v-for="(item, index) in itemsSecond" :key="index" :ingredient="item" />
-        </tr>
-        <tr class="table">
-          <CFRecommendCard v-for="(item, index) in itemsThird" :key="index" :ingredient="item" />
-        </tr>
-      </tbody>
+    <v-progress-circular indeterminate class="loading" v-if="items.length === 0" />
+    <div class="cardContainer" v-else>
+      <CFRecommendCard v-for="(item, index) in items" :key="index" :ingredient="item" />
     </div>
   </div>
 </template>
@@ -35,9 +26,7 @@ export default {
   },
   data() {
     return {
-      itemsFirst: [],
-      itemsSecond: [],
-      itemsThird: [],
+      items: [],
     };
   },
   methods: {
@@ -49,9 +38,7 @@ export default {
       instance
         .get('/cf/' + this.$store.state.userId)
         .then((response) => {
-          this.itemsThird = response.data;
-          this.itemsFirst = this.itemsThird.splice(0, 2);
-          this.itemsSecond = this.itemsThird.splice(0, 2);
+          this.items = response.data;
         })
         .catch((error) => {
           console.error(error);
