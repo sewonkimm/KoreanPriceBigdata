@@ -23,7 +23,7 @@
           <tr v-for="(item, index) in items" :key="index">
             <td>{{ item.shoppingApiStore }}</td>
             <td>
-              <a :href="item.shoppingApiLink">{{ item.shoppingApiTitle }}</a>
+              <a :href="item.shoppingApiLink" target="item.place">{{ item.shoppingApiTitle }}</a>
             </td>
             <td>{{ item.shoppingApiPrice | comma }}원</td>
           </tr>
@@ -41,6 +41,7 @@ export default {
     return {
       ingredientId: this.$route.params.id,
       items: [],
+      place: '_blank',
     };
   },
   filters: {

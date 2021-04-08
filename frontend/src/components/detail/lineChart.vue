@@ -14,17 +14,19 @@ export default {
           {
             label: '가격 그래프',
             borderColor: '#e55572',
-            pointBackgroundColor: '#e55572',
+            pointBorderColor: 'transparent',
+            pointBackgroundColor: 'transparent',
             backgroundColor: 'transparent',
             data: [],
-            pointRadius: 2,
+            pointRadius: 3,
             borderWidth: 1,
             fill: false,
           },
           {
             label: '가격 예측 그래프',
             borderColor: ' #488cde',
-            pointBackgroundColor: '#488cde',
+            pointBorderColor: 'transparent',
+            pointBackgroundColor: 'transparent',
             backgroundColor: 'transparent',
             data: [],
             pointRadius: 2,
@@ -36,15 +38,6 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          zoom: {
-            zoom: {
-              enabled: true,
-              mode: 'x',
-              speed: 100,
-            },
-          },
-        },
         scales: {
           xAxes: [
             {

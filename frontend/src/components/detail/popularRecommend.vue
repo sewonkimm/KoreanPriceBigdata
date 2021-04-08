@@ -14,7 +14,7 @@ export default {
             label: '인기도',
             data: [],
             barPercentage: 0.5,
-            backgroundColor: '#71766B',
+            backgroundColor: '#E26238',
           },
         ],
       },
@@ -59,7 +59,7 @@ export default {
         });
     },
   },
-  created() {
+  mounted() {
     this.getPopularityRecommand();
   },
 };
