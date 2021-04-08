@@ -21,6 +21,8 @@
 		<result column="ingredient_name" property="ingredientName" />
 		<result column="ingredient_name_code"
 			property="ingredientNameCode" />
+		<result column="ingredient_detail_name"
+			property="ingredientDetailName" />
 		<result column="ingredient_detail_name_code"
 			property="ingredientDetailNameCode" />
 		<result column="ingredient_category"
@@ -37,6 +39,7 @@
 
 		ingredient.ingredient_id,
 		ingredient.ingredient_name,
+		ingredient.ingredient_detail_name,
 		ingredient.ingredient_category,
 		ingredient.ingredient_unit,
 		ingredient_avg.ingredient_avg_id,
@@ -100,6 +103,7 @@
 
 		ingredient.ingredient_id,
 		ingredient.ingredient_name,
+		ingredient.ingredient_detail_name,
 		ingredient.ingredient_category,
 		ingredient.ingredient_unit,
 		ingredient_avg.ingredient_avg_id,
