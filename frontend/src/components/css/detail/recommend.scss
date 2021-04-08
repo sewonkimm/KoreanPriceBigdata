@@ -24,6 +24,9 @@
         th, td {
             vertical-align: middle;
         }
+        td {
+            cursor: pointer;
+        }
     }
 
     .CFRecommend {
@@ -33,9 +36,17 @@
             font-size: 24px;
         }
 
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+
         .cardContainer {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             width: 100% !important;
             height: 270px;
             align-items: center;
