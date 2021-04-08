@@ -14,12 +14,13 @@
             :append-icon="showText ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showText ? 'text' : 'password'"
             @click:append="showText = !showText"
+            @keyup.enter="login()"
           ></v-text-field>
         </v-row>
       </v-container>
     </v-form>
 
-    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" height="63" @click="login">
+    <v-btn :class="{ active: isActive, loginButton: 'loginButton' }" height="63" @click="login()">
       로그인
     </v-btn>
 
