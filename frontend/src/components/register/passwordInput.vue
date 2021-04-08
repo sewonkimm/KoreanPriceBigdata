@@ -37,6 +37,10 @@
       height="63"
       >회원가입</v-btn
     >
+
+    <v-alert :value="showError" type="error" class="error">
+      {{ errorMessage }}
+    </v-alert>
   </div>
 </template>
 <script>
@@ -58,6 +62,8 @@ export default {
           '소문자(a-z)와 대문자(A-Z), 숫자(0-9)를 모두 포함하고, 8자 이상이어야 합니다.',
       ],
       passwordConfirmationRule: [(value) => this.password === value || '비밀번호가 같지 않습니다.'],
+      showError: false,
+      errorMessage: '', // 에러메세지
     };
   },
   props: {
@@ -89,6 +95,14 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+
+          // error alert 출력
+          this.showError = true;
+          this.errorMessage = '회원가입에 실패했습니다.';
+
+          setTimeout(() => {
+            this.showError = false;
+          }, 5000);
         });
     },
   },
