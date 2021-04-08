@@ -17,7 +17,7 @@
 
       <div :class="{ range: 'range', up: status === 1, down: status === 2 }">
         <span v-if="status === 1">+{{ rangePrice | comma }}원 ({{ rangePercent }}%)</span>
-        <span v-else-if="status === 2">-{{ rangePrice | comma }}원 ({{ rangePercent }}%)</span>
+        <span v-else-if="status === 2">{{ rangePrice | comma }}원 ({{ rangePercent }}%)</span>
         <span v-else>변동사항 없음</span>
 
         <Up v-if="status === 1" class="arrow" />

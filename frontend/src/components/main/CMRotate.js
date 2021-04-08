@@ -381,7 +381,9 @@ const CMRotate =
         name.className = 'name';
         name.innerText = ingredientName;
         // 상품명이 5글자 이상일 경우 폰트 조정
-        if (_bgArr[id].ingredientName.length >= 5) {
+        if (ingredientName.length >= 10) {
+          name.className = 'longLongName';
+        } else if (ingredientName.length >= 5) {
           name.className = 'longName';
         }
         // 가격
@@ -399,7 +401,7 @@ const CMRotate =
         // 번호
         const cardNumber = document.createElement('p');
         cardNumber.className = 'num';
-        cardNumber.innerText = id;
+        cardNumber.innerText = id + 1;
         // 즐겨찾기 표시
         if (_bgArr[id].favorite === 1) {
           const bookmark = document.createElement('div');
