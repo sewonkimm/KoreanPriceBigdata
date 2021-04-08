@@ -11,4 +11,5 @@ public interface IngredientAvgMapper {
 	public IngredientAvg selectPrice(Long ingredientId);
 
 	public int selectIntervalPrice(Long ingredientId);
+
 }

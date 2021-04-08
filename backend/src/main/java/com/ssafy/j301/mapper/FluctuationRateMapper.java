@@ -10,4 +10,5 @@ public interface FluctuationRateMapper {
 	public List<FluctuationRate> selectRateOfRise();
 
 	public List<FluctuationRate> selectRateOfDecline();
+
 }

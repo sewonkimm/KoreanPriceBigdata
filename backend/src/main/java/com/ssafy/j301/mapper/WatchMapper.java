@@ -9,4 +9,5 @@ public interface WatchMapper {
 	public void insertWatch(Watch watch);
 
 	public int selectCount(Long ingredientId);
+
 }

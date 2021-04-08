@@ -22,7 +22,6 @@ public class IngredientService {
 		List<Ingredient> list = ingredientMapper.selectAll();
 
 		return insertStatus(list);
-
 	}
 
 	public List<Ingredient> selectAllByLogin(Long memberId) {
@@ -33,19 +32,24 @@ public class IngredientService {
 	}
 
 	public Ingredient selectByingredientId(Long ingredientId) {
+
 		return ingredientMapper.selectByIngredientId(ingredientId);
 	}
 
 	public Ingredient selectByIngredientName(String ingredientName) {
+
 		return ingredientMapper.selectByIngredientName(ingredientName);
 	}
 
 	public List<RequestIngredientName> selectAllName() {
+
 		return ingredientMapper.selectAllName();
 	}
 
 	public List<Ingredient> insertStatus(List<Ingredient> list) {
+
 		List<Popularity> bestList = popularityMapper.selectPopularity();
+
 		List<FluctuationRate> warningList = fluctuationRateMapper.selectRateOfRise();
 
 		for (int i = 0; i < bestList.size(); i++) {

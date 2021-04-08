@@ -13,4 +13,5 @@ public interface MemberMapper {
 	public Member getMemberByMemberEmailAndPassword(Member member);
 
 	public Member getMemberByMemberEmail(Member member);
+
 }

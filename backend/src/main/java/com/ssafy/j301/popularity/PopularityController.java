@@ -24,4 +24,5 @@ public class PopularityController {
 	public List<Popularity> selectPopularity() {
 		return populartiyMapper.selectPopularity();
 	}
+
 }

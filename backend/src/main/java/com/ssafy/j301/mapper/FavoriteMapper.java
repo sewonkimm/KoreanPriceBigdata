@@ -7,7 +7,7 @@ import com.ssafy.j301.favorite.Favorite;
 
 @Repository
 public interface FavoriteMapper {
-	
+
 	public void insertFavorite(Favorite favorite);
 
 	public void deleteFavorite(Favorite favorite);
@@ -16,4 +16,5 @@ public interface FavoriteMapper {
 			@Param(value = "ingredientId") Long ingredientId);
 
 	public List<Favorite> selectAll(Long memberId);
+
 }

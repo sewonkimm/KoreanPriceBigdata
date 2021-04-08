@@ -17,4 +17,5 @@ public class Transition {
 	private int ingredientAvgPrice;
 
 	private int ingredientAvgPredictPrice;
+
 }

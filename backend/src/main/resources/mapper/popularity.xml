@@ -6,10 +6,13 @@
 
 	<select id="selectPopularity"
 		resultType="com.ssafy.j301.popularity.Popularity">
+
 		SELECT
 		ingredient.ingredient_id AS ingredientId,
-		ingredient.ingredient_name AS ingredientName,
-		ingredient.ingredient_detail_name AS ingredientDetailName,
+		ingredient.ingredient_name AS
+		ingredientName,
+		ingredient.ingredient_detail_name AS
+		ingredientDetailName,
 		sum(fame.fav) AS
 		popularity
 		FROM ingredient join ((
@@ -17,7 +20,8 @@
 		(COUNT(*)*3) AS
 		fav
 		FROM favorite
-		GROUP BY ingredient_id
+		GROUP BY
+		ingredient_id
 		)
 		UNION
 		(
@@ -27,7 +31,8 @@
 		FROM watch
 		WHERE MONTH(watch.watch_date) =
 		MONTH(current_date())
-		GROUP BY ingredient_id
+		GROUP BY
+		ingredient_id
 		)) AS fame
 		ON
 		ingredient.ingredient_id = fame.ingredient_id
@@ -35,5 +40,7 @@
 		fame.ingredient_id
 		ORDER BY SUM(fame.fav) DESC
 		LIMIT 5;
+
 	</select>
+
 </mapper>

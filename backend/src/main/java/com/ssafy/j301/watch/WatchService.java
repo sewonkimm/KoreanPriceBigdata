@@ -13,11 +13,14 @@ public class WatchService {
 
 	@Transactional
 	public Watch insertWatch(Watch watch) {
+
 		watchMapper.insertWatch(watch);
 		return watch;
 	}
 
 	public int selectCount(Long ingredientId) {
+
 		return watchMapper.selectCount(ingredientId);
 	}
+
 }

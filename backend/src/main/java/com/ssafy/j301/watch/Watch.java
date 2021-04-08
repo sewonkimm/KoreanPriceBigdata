@@ -21,4 +21,5 @@ public class Watch {
 
 	@NonNull
 	private LocalDate watchDate;
+
 }

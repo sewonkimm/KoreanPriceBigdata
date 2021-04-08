@@ -17,4 +17,5 @@ public class IngredientAvg {
 	private int ingredientAvgPrice;
 
 	private int ingredientAvgPredictPrice;
+
 }

@@ -8,4 +8,5 @@ import com.ssafy.j301.transition.Transition;
 public interface TransitionMapper {
 
 	public List<Transition> selectTransition(Long ingredientId);
+
 }

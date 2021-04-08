@@ -14,4 +14,5 @@ public class RequestIngredientName {
 	private String ingredientName;
 
 	private String ingredientDetailName;
+
 }

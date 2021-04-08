@@ -66,4 +66,5 @@ public class MemberService {
 		resultMap.put("message", "Success");
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
 	}
+
 }

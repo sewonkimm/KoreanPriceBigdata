@@ -30,6 +30,8 @@ public class WatchController {
 	@ApiOperation(value = "오늘 해당 농축산물을 조회한 유저 수", notes = "ingredientId로 오늘 해당 농축산물을 조회한 사람을 count합니다.")
 	@GetMapping("/{ingredientId}")
 	public int selectCount(@PathVariable Long ingredientId) {
+
 		return watchService.selectCount(ingredientId);
 	}
+
 }

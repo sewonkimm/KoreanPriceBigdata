@@ -13,7 +13,7 @@ public class Sha256 {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(password.getBytes());
-			return password.format("%040x", new BigInteger(1, md.digest()));
+			return String.format("%040x", new BigInteger(1, md.digest()));
 		} catch (NoSuchAlgorithmException e) {
 			throw new EncoderNoSuchAlgorithmException("SHA256EncoderNoSuchAlgorithmException", e);
 		}

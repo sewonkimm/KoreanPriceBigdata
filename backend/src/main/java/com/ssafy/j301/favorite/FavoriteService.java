@@ -12,6 +12,7 @@ public class FavoriteService {
 	private final FavoriteMapper favoriteMapper;
 
 	public void insertFavorite(Favorite favorite) {
+
 		int checkFavorite = favoriteMapper.selectFavorite(favorite.getMemberId(), favorite.getIngredientId());
 		if (checkFavorite == 0) {
 			favoriteMapper.insertFavorite(favorite);
@@ -21,10 +22,13 @@ public class FavoriteService {
 	}
 
 	public List<Favorite> selectAll(Long memberId) {
+
 		return favoriteMapper.selectAll(memberId);
 	}
 
 	public int selectFavorite(Long memberId, Long ingredientId) {
+
 		return favoriteMapper.selectFavorite(memberId, ingredientId);
 	}
+
 }

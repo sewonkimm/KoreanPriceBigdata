@@ -14,4 +14,5 @@ public class LoginFailedException extends RuntimeException {
 	public LoginFailedException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
+
 }

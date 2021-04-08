@@ -8,4 +8,5 @@ import com.ssafy.j301.popularity.Popularity;
 public interface PopularityMapper {
 
 	public List<Popularity> selectPopularity();
+
 }

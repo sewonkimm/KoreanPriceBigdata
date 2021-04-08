@@ -54,11 +54,12 @@ public class JwtService {
 		try {
 			claims = Jwts.parser().setSigningKey(signature.getBytes()).parseClaimsJws(jwt);
 		} catch (final Exception e) {
-			throw new RuntimeException();
+			e.printStackTrace();
 		}
 
 		logger.info("claims : {}", claims);
 		// Claims는 Map의 구현체이다.
 		return claims.getBody();
 	}
+
 }
